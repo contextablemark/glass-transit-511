@@ -164,8 +164,9 @@ export async function refreshCurrentArrivals(
   if (page.station.agency === 'BA') {
     return fetchBartStation(page.station, settings)
   } else {
-    if (!settings.proxyBaseUrl && !settings.gtfsApiKey) {
-      // No GTFS-RT config — can't fetch Muni
+    // In dev mode, empty proxyBaseUrl works (Vite proxy at /transit/...)
+    const isDev = import.meta.env.DEV
+    if (!isDev && !settings.proxyBaseUrl && !settings.gtfsApiKey) {
       return {
         stationId: page.station.id,
         platforms: page.station.platformLabels.map(() => []),

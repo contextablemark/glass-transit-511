@@ -69,7 +69,11 @@ export function DepartureView({ favorites }: Props) {
           ...muniStations,
           ...(settings.bartApiKey ? [] : bartStations),
         ]
-        if (gtfsStations.length === 0 || (!settings.proxyBaseUrl && !settings.gtfsApiKey)) return
+        if (gtfsStations.length === 0) return
+        // In dev mode, empty proxyBaseUrl works (Vite proxy at /transit/...).
+        // In prod, need either proxyBaseUrl or gtfsApiKey.
+        const isDev = import.meta.env.DEV
+        if (!isDev && !settings.proxyBaseUrl && !settings.gtfsApiKey) return
 
         const agencies = agenciesForStations(gtfsStations)
         const feedMap = new Map<string, FeedEntity[]>()
