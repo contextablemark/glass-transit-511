@@ -4,31 +4,44 @@
  * Dual-mode bootstrap (same pattern as SubwayLens):
  * - Phone screen: settings page (React) — always shown
  * - Glasses display: real-time departures — only inside Even App WebView
+ *
+ * Storage is initialized before mounting the settings page when running
+ * inside the Even App WebView, so favorites persist via bridge storage.
  */
 
+import { initStorage } from './lib/storage'
 import { initSettingsPage } from './settings/settings-mount'
 
 async function main(): Promise<void> {
-  // Always show settings page on phone screen
-  initSettingsPage()
-
   // Check if inside Even App WebView
   const hasFlutter =
     !!(window as any).flutter_inappwebview ||
     !!(window as any).webkit?.messageHandlers?.callHandler
 
   if (hasFlutter) {
-    // Glasses mode will be wired up in a later phase
-    const { waitForEvenAppBridge } = await import(
-      '@evenrealities/even_hub_sdk'
-    )
     try {
+      const { waitForEvenAppBridge } = await import(
+        '@evenrealities/even_hub_sdk'
+      )
       const bridge = await waitForEvenAppBridge()
+
+      // Init storage BEFORE mounting settings so favorites load from bridge
+      initStorage(bridge)
+
+      // Mount settings page (will read from bridge storage now)
+      initSettingsPage()
+
+      // Start glasses mode
       const { startGlassesMode } = await import('./glasses/boot')
       await startGlassesMode(bridge)
     } catch {
+      // Bridge failed — fall back to browser-only mode
       console.warn('Glasses mode failed, settings page still available')
+      initSettingsPage()
     }
+  } else {
+    // Browser mode — no bridge, localStorage only
+    initSettingsPage()
   }
 }
 

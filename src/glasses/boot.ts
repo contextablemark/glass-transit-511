@@ -14,7 +14,7 @@ import {
   TextContainerUpgrade,
 } from '@evenrealities/even_hub_sdk'
 import type { EvenAppBridge } from '@evenrealities/even_hub_sdk'
-import { initStorage, getSettings } from '../lib/storage'
+import { getSettings } from '../lib/storage'
 import {
   loadStations,
   currentStation,
@@ -222,7 +222,7 @@ function stopAutoRefresh(): void {
 
 export async function startGlassesMode(b: EvenAppBridge): Promise<void> {
   bridge = b
-  initStorage(b)
+  // Storage already initialized in main.ts before settings page mount
 
   await loadStations()
 

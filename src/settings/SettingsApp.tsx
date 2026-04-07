@@ -17,6 +17,7 @@ import { DEFAULT_SETTINGS } from '../types'
 import { FavoritesList } from './FavoritesList'
 import { StationSearch } from './StationSearch'
 import { SettingsPanel } from './SettingsPanel'
+import { DepartureView } from './DepartureView'
 
 function SectionLabel({ children }: { children: string }) {
   return (
@@ -91,6 +92,14 @@ export function SettingsApp() {
           BART &amp; Muni departures for G2
         </p>
       </div>
+
+      {/* Departures */}
+      {favoriteIds.length > 0 && (
+        <>
+          <SectionLabel>Departures</SectionLabel>
+          <DepartureView favoriteIds={favoriteIds} />
+        </>
+      )}
 
       {/* My Stations */}
       <SectionLabel>My Stations</SectionLabel>
