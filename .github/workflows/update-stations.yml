@@ -1,0 +1,29 @@
+name: Update Station Data
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci
+
+      - name: Generate stations.json
+        run: npx tsx scripts/build-stations.ts
+        env:
+          API_511_KEY: ${{ secrets.API_511_KEY }}
+
+      - name: Commit if changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update station data from 511.org GTFS"
+          file_pattern: src/data/stations.json

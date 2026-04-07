@@ -1,0 +1,4881 @@
+[
+  {
+    "id": "bart-900109",
+    "name": "12th Street / Oakland City Center",
+    "stops": [
+      "900101",
+      "900102",
+      "900103"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Orange",
+      "Red",
+      "Yellow"
+    ],
+    "lat": 37.803482,
+    "lng": -122.27163,
+    "north": "Richmond",
+    "south": "Berryessa/North San Jose"
+  },
+  {
+    "id": "bart-901509",
+    "name": "16th Street / Mission",
+    "stops": [
+      "901501",
+      "901502"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Blue",
+      "Green",
+      "Red",
+      "Yellow"
+    ],
+    "lat": 37.765173,
+    "lng": -122.419704,
+    "north": "Richmond",
+    "south": "Daly City"
+  },
+  {
+    "id": "bart-900209",
+    "name": "19th Street Oakland",
+    "stops": [
+      "900201",
+      "900202",
+      "900203"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Orange",
+      "Red",
+      "Yellow"
+    ],
+    "lat": 37.808078,
+    "lng": -122.268758,
+    "north": "Richmond",
+    "south": "Berryessa/North San Jose"
+  },
+  {
+    "id": "bart-901609",
+    "name": "24th Street / Mission",
+    "stops": [
+      "901601",
+      "901602"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Blue",
+      "Green",
+      "Red",
+      "Yellow"
+    ],
+    "lat": 37.752419,
+    "lng": -122.418468,
+    "north": "Richmond",
+    "south": "Daly City"
+  },
+  {
+    "id": "bart-908309",
+    "name": "Antioch",
+    "stops": [
+      "908301",
+      "908302"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Yellow"
+    ],
+    "lat": 37.995373,
+    "lng": -121.780346,
+    "north": "Antioch",
+    "south": "SF Int'l Airport SFO/Millbrae"
+  },
+  {
+    "id": "bart-904109",
+    "name": "Ashby",
+    "stops": [
+      "904101",
+      "904102"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Orange",
+      "Red"
+    ],
+    "lat": 37.853072,
+    "lng": -122.269771,
+    "north": "Richmond",
+    "south": "Berryessa/North San Jose"
+  },
+  {
+    "id": "bart-901809",
+    "name": "Balboa Park",
+    "stops": [
+      "901801",
+      "901802"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Blue",
+      "Green",
+      "Red",
+      "Yellow"
+    ],
+    "lat": 37.721747,
+    "lng": -122.447457,
+    "north": "Richmond",
+    "south": "Daly City"
+  },
+  {
+    "id": "bart-902509",
+    "name": "Bay Fair",
+    "stops": [
+      "902501",
+      "902502"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Blue",
+      "Green",
+      "Orange"
+    ],
+    "lat": 37.696908,
+    "lng": -122.126446,
+    "north": "Richmond",
+    "south": "Berryessa/North San Jose"
+  },
+  {
+    "id": "bart-909509",
+    "name": "Berryessa / North San Jose",
+    "stops": [
+      "909501",
+      "909502"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Green",
+      "Orange"
+    ],
+    "lat": 37.368473,
+    "lng": -121.874681,
+    "north": "Richmond",
+    "south": "Berryessa/North San Jose"
+  },
+  {
+    "id": "bart-905109",
+    "name": "Castro Valley",
+    "stops": [
+      "905101",
+      "905102"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Blue"
+    ],
+    "lat": 37.690737,
+    "lng": -122.075601,
+    "north": "Dublin/Pleasanton",
+    "south": "Daly City"
+  },
+  {
+    "id": "bart-901409",
+    "name": "Civic Center / UN Plaza",
+    "stops": [
+      "901401",
+      "901402"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Blue",
+      "Green",
+      "Red",
+      "Yellow"
+    ],
+    "lat": 37.779408,
+    "lng": -122.413826,
+    "north": "Richmond",
+    "south": "Daly City"
+  },
+  {
+    "id": "bart-902309",
+    "name": "Coliseum",
+    "stops": [
+      "902301",
+      "902302",
+      "902303"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Blue",
+      "Green",
+      "Grey",
+      "Orange"
+    ],
+    "lat": 37.753576,
+    "lng": -122.196716,
+    "north": "Richmond",
+    "south": "Berryessa/North San Jose"
+  },
+  {
+    "id": "bart-906109",
+    "name": "Colma",
+    "stops": [
+      "906101",
+      "906102"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Red",
+      "Yellow"
+    ],
+    "lat": 37.684635,
+    "lng": -122.466157,
+    "north": "Richmond",
+    "south": "SF Int'l Airport SFO/Millbrae"
+  },
+  {
+    "id": "bart-903609",
+    "name": "Concord",
+    "stops": [
+      "903601",
+      "903602"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Yellow"
+    ],
+    "lat": 37.973757,
+    "lng": -122.029072,
+    "north": "Antioch",
+    "south": "SF Int'l Airport SFO/Millbrae"
+  },
+  {
+    "id": "bart-901909",
+    "name": "Daly City",
+    "stops": [
+      "901901",
+      "901902",
+      "901903"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Blue",
+      "Green",
+      "Red",
+      "Yellow"
+    ],
+    "lat": 37.706259,
+    "lng": -122.468908,
+    "north": "Richmond",
+    "south": "Daly City"
+  },
+  {
+    "id": "bart-904209",
+    "name": "Downtown Berkeley",
+    "stops": [
+      "904201",
+      "904202"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Orange",
+      "Red"
+    ],
+    "lat": 37.87011,
+    "lng": -122.268109,
+    "north": "Richmond",
+    "south": "Berryessa/North San Jose"
+  },
+  {
+    "id": "bart-905309",
+    "name": "Dublin / Pleasanton",
+    "stops": [
+      "905301",
+      "905302"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Blue"
+    ],
+    "lat": 37.701646,
+    "lng": -121.899229,
+    "north": "Dublin/Pleasanton",
+    "south": "Daly City"
+  },
+  {
+    "id": "bart-904509",
+    "name": "El Cerrito Del Norte",
+    "stops": [
+      "904501",
+      "904502"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Orange",
+      "Red"
+    ],
+    "lat": 37.925184,
+    "lng": -122.316892,
+    "north": "Richmond",
+    "south": "Berryessa/North San Jose"
+  },
+  {
+    "id": "bart-904409",
+    "name": "El Cerrito Plaza",
+    "stops": [
+      "904401",
+      "904402"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Orange",
+      "Red"
+    ],
+    "lat": 37.90261,
+    "lng": -122.29892,
+    "north": "Richmond",
+    "south": "Berryessa/North San Jose"
+  },
+  {
+    "id": "bart-901169",
+    "name": "Embarcadero",
+    "stops": [
+      "901161",
+      "901162"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Blue",
+      "Green",
+      "Red",
+      "Yellow"
+    ],
+    "lat": 37.792762,
+    "lng": -122.397037,
+    "north": "Richmond",
+    "south": "Daly City"
+  },
+  {
+    "id": "bart-902909",
+    "name": "Fremont",
+    "stops": [
+      "902901",
+      "902902"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Green",
+      "Orange"
+    ],
+    "lat": 37.55748,
+    "lng": -121.976619,
+    "north": "Richmond",
+    "south": "Berryessa/North San Jose"
+  },
+  {
+    "id": "bart-902209",
+    "name": "Fruitvale",
+    "stops": [
+      "902201",
+      "902202"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Blue",
+      "Green",
+      "Orange"
+    ],
+    "lat": 37.774841,
+    "lng": -122.224081,
+    "north": "Richmond",
+    "south": "Berryessa/North San Jose"
+  },
+  {
+    "id": "bart-901709",
+    "name": "Glen Park",
+    "stops": [
+      "901701",
+      "901702"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Blue",
+      "Green",
+      "Red",
+      "Yellow"
+    ],
+    "lat": 37.733235,
+    "lng": -122.433515,
+    "north": "Richmond",
+    "south": "Daly City"
+  },
+  {
+    "id": "bart-902609",
+    "name": "Hayward",
+    "stops": [
+      "902601",
+      "902602"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Green",
+      "Orange"
+    ],
+    "lat": 37.669699,
+    "lng": -122.086958,
+    "north": "Richmond",
+    "south": "Berryessa/North San Jose"
+  },
+  {
+    "id": "bart-903309",
+    "name": "Lafayette",
+    "stops": [
+      "903301",
+      "903302"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Yellow"
+    ],
+    "lat": 37.893183,
+    "lng": -122.12462,
+    "north": "Antioch",
+    "south": "SF Int'l Airport SFO/Millbrae"
+  },
+  {
+    "id": "bart-902109",
+    "name": "Lake Merritt",
+    "stops": [
+      "902101",
+      "902102"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Blue",
+      "Green",
+      "Orange"
+    ],
+    "lat": 37.797322,
+    "lng": -122.265247,
+    "north": "Richmond",
+    "south": "Berryessa/North San Jose"
+  },
+  {
+    "id": "bart-900309",
+    "name": "MacArthur",
+    "stops": [
+      "900301",
+      "900302",
+      "900303",
+      "900304"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Orange",
+      "Red",
+      "Yellow"
+    ],
+    "lat": 37.828803,
+    "lng": -122.267105,
+    "north": "Richmond",
+    "south": "Berryessa/North San Jose"
+  },
+  {
+    "id": "bart-906409",
+    "name": "Millbrae",
+    "stops": [
+      "906403"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Red",
+      "Yellow"
+    ],
+    "lat": 37.600237,
+    "lng": -122.386757,
+    "north": "Richmond",
+    "south": "SF Int'l Airport SFO/Millbrae"
+  },
+  {
+    "id": "bart-909409",
+    "name": "Milpitas",
+    "stops": [
+      "909401",
+      "909402"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Green",
+      "Orange"
+    ],
+    "lat": 37.410277,
+    "lng": -121.891081,
+    "north": "Richmond",
+    "south": "Berryessa/North San Jose"
+  },
+  {
+    "id": "bart-901209",
+    "name": "Montgomery Street",
+    "stops": [
+      "901201",
+      "901202"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Blue",
+      "Green",
+      "Red",
+      "Yellow"
+    ],
+    "lat": 37.789173,
+    "lng": -122.401587,
+    "north": "Richmond",
+    "south": "Daly City"
+  },
+  {
+    "id": "bart-904309",
+    "name": "North Berkeley",
+    "stops": [
+      "904301",
+      "904302"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Orange",
+      "Red"
+    ],
+    "lat": 37.874005,
+    "lng": -122.283523,
+    "north": "Richmond",
+    "south": "Berryessa/North San Jose"
+  },
+  {
+    "id": "bart-903709",
+    "name": "North Concord / Martinez",
+    "stops": [
+      "903701",
+      "903702"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Yellow"
+    ],
+    "lat": 38.003383,
+    "lng": -122.024512,
+    "north": "Antioch",
+    "south": "SF Int'l Airport SFO/Millbrae"
+  },
+  {
+    "id": "bart-907409",
+    "name": "Oakland International Airport",
+    "stops": [
+      "907401"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Grey"
+    ],
+    "lat": 37.713256,
+    "lng": -122.212237,
+    "north": "Coliseum",
+    "south": "Oakland Int'l Airport OAK"
+  },
+  {
+    "id": "bart-903209",
+    "name": "Orinda",
+    "stops": [
+      "903201",
+      "903202"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Yellow"
+    ],
+    "lat": 37.878481,
+    "lng": -122.183667,
+    "north": "Antioch",
+    "south": "SF Int'l Airport SFO/Millbrae"
+  },
+  {
+    "id": "bart-903809",
+    "name": "Pittsburg / Bay Point",
+    "stops": [
+      "903801",
+      "903802"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Yellow"
+    ],
+    "lat": 38.01891,
+    "lng": -121.944236,
+    "north": "Antioch",
+    "south": "SF Int'l Airport SFO/Millbrae"
+  },
+  {
+    "id": "bart-908209",
+    "name": "Pittsburg Center",
+    "stops": [
+      "908201",
+      "908202"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Yellow"
+    ],
+    "lat": 38.016847,
+    "lng": -121.889062,
+    "north": "Antioch",
+    "south": "SF Int'l Airport SFO/Millbrae"
+  },
+  {
+    "id": "bart-903509",
+    "name": "Pleasant Hill / Contra Costa Centre",
+    "stops": [
+      "903501",
+      "903502"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Yellow"
+    ],
+    "lat": 37.928434,
+    "lng": -122.055971,
+    "north": "Antioch",
+    "south": "SF Int'l Airport SFO/Millbrae"
+  },
+  {
+    "id": "bart-901309",
+    "name": "Powell Street",
+    "stops": [
+      "901301",
+      "901302"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Blue",
+      "Green",
+      "Red",
+      "Yellow"
+    ],
+    "lat": 37.784606,
+    "lng": -122.407331,
+    "north": "Richmond",
+    "south": "Daly City"
+  },
+  {
+    "id": "bart-904609",
+    "name": "Richmond",
+    "stops": [
+      "904601",
+      "904602"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Orange",
+      "Red"
+    ],
+    "lat": 37.936758,
+    "lng": -122.353047,
+    "north": "Richmond",
+    "south": "Berryessa/North San Jose"
+  },
+  {
+    "id": "bart-903109",
+    "name": "Rockridge",
+    "stops": [
+      "903101",
+      "903102"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Yellow"
+    ],
+    "lat": 37.844755,
+    "lng": -122.251235,
+    "north": "Antioch",
+    "south": "SF Int'l Airport SFO/Millbrae"
+  },
+  {
+    "id": "bart-906309",
+    "name": "San Bruno",
+    "stops": [
+      "906301",
+      "906302"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Red",
+      "Yellow"
+    ],
+    "lat": 37.63773,
+    "lng": -122.416326,
+    "north": "Richmond",
+    "south": "SF Int'l Airport SFO/Millbrae"
+  },
+  {
+    "id": "bart-907109",
+    "name": "San Francisco International Airport",
+    "stops": [
+      "907101",
+      "907102",
+      "907103"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Red",
+      "Yellow"
+    ],
+    "lat": 37.616091,
+    "lng": -122.391954,
+    "north": "Richmond",
+    "south": "SF Int'l Airport SFO/Millbrae"
+  },
+  {
+    "id": "bart-902409",
+    "name": "San Leandro",
+    "stops": [
+      "902401",
+      "902402"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Blue",
+      "Green",
+      "Orange"
+    ],
+    "lat": 37.721784,
+    "lng": -122.16074,
+    "north": "Richmond",
+    "south": "Berryessa/North San Jose"
+  },
+  {
+    "id": "bart-902709",
+    "name": "South Hayward",
+    "stops": [
+      "902701",
+      "902702"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Green",
+      "Orange"
+    ],
+    "lat": 37.63434,
+    "lng": -122.057182,
+    "north": "Richmond",
+    "south": "Berryessa/North San Jose"
+  },
+  {
+    "id": "bart-906209",
+    "name": "South San Francisco",
+    "stops": [
+      "906201",
+      "906202"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Red",
+      "Yellow"
+    ],
+    "lat": 37.664462,
+    "lng": -122.444211,
+    "north": "Richmond",
+    "south": "SF Int'l Airport SFO/Millbrae"
+  },
+  {
+    "id": "bart-902809",
+    "name": "Union City",
+    "stops": [
+      "902801",
+      "902802"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Green",
+      "Orange"
+    ],
+    "lat": 37.590735,
+    "lng": -122.017248,
+    "north": "Richmond",
+    "south": "Berryessa/North San Jose"
+  },
+  {
+    "id": "bart-903409",
+    "name": "Walnut Creek",
+    "stops": [
+      "903401",
+      "903402"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Yellow"
+    ],
+    "lat": 37.905791,
+    "lng": -122.067327,
+    "north": "Antioch",
+    "south": "SF Int'l Airport SFO/Millbrae"
+  },
+  {
+    "id": "bart-909209",
+    "name": "Warm Springs / South Fremont",
+    "stops": [
+      "909201",
+      "909202"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Green",
+      "Orange"
+    ],
+    "lat": 37.502285,
+    "lng": -121.939395,
+    "north": "Richmond",
+    "south": "Berryessa/North San Jose"
+  },
+  {
+    "id": "bart-905209",
+    "name": "West Dublin / Pleasanton",
+    "stops": [
+      "905201",
+      "905202"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Blue"
+    ],
+    "lat": 37.699721,
+    "lng": -121.928277,
+    "north": "Dublin/Pleasanton",
+    "south": "Daly City"
+  },
+  {
+    "id": "bart-901109",
+    "name": "West Oakland",
+    "stops": [
+      "901101",
+      "901102"
+    ],
+    "agency": "BA",
+    "routes": [
+      "Blue",
+      "Green",
+      "Red",
+      "Yellow"
+    ],
+    "lat": 37.804888,
+    "lng": -122.295151,
+    "north": "Richmond",
+    "south": "Daly City"
+  },
+  {
+    "id": "muni-13266",
+    "name": "15th Ave & Taraval St",
+    "stops": [
+      "13266"
+    ],
+    "agency": "SF",
+    "routes": [
+      "L"
+    ],
+    "lat": 37.743124,
+    "lng": -122.471297,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13311",
+    "name": "17th St & Castro St",
+    "stops": [
+      "13311"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.762576,
+    "lng": -122.434979,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13318",
+    "name": "17th St & Noe St",
+    "stops": [
+      "13318"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.762645,
+    "lng": -122.432991,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13358-17065",
+    "name": "19th Ave & Holloway Ave",
+    "stops": [
+      "13358",
+      "17065"
+    ],
+    "agency": "SF",
+    "routes": [
+      "M"
+    ],
+    "lat": 37.721342,
+    "lng": -122.4752105,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13361",
+    "name": "19th Ave & Junipero Serra Blvd",
+    "stops": [
+      "13361"
+    ],
+    "agency": "SF",
+    "routes": [
+      "M"
+    ],
+    "lat": 37.716889,
+    "lng": -122.472275,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13376-13385-13387",
+    "name": "19th Ave & Randolph St",
+    "stops": [
+      "13376",
+      "13385",
+      "13387"
+    ],
+    "agency": "SF",
+    "routes": [
+      "M"
+    ],
+    "lat": 37.715166333333336,
+    "lng": -122.470639,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13403-17449",
+    "name": "19th Ave & Winston Dr",
+    "stops": [
+      "13403",
+      "17449"
+    ],
+    "agency": "SF",
+    "routes": [
+      "M"
+    ],
+    "lat": 37.727106,
+    "lng": -122.4748915,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13537-13538",
+    "name": "30th St & Dolores St",
+    "stops": [
+      "13537",
+      "13538"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J"
+    ],
+    "lat": 37.742237,
+    "lng": -122.4242415,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13599",
+    "name": "46th Ave & Taraval St",
+    "stops": [
+      "13599"
+    ],
+    "agency": "SF",
+    "routes": [
+      "L"
+    ],
+    "lat": 37.741685,
+    "lng": -122.504534,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13600-13601",
+    "name": "46th Ave & Ulloa St",
+    "stops": [
+      "13600",
+      "13601"
+    ],
+    "agency": "SF",
+    "routes": [
+      "L"
+    ],
+    "lat": 37.7399135,
+    "lng": -122.504493,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13602-13603",
+    "name": "46th Ave & Vicente St",
+    "stops": [
+      "13602",
+      "13603"
+    ],
+    "agency": "SF",
+    "routes": [
+      "L"
+    ],
+    "lat": 37.7380575,
+    "lng": -122.504354,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17869",
+    "name": "47th Ave & Cutler Ave",
+    "stops": [
+      "17869"
+    ],
+    "agency": "SF",
+    "routes": [
+      "L"
+    ],
+    "lat": 37.736991,
+    "lng": -122.505413,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17872",
+    "name": "4th & Brannan Southbound",
+    "stops": [
+      "17872"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.778341,
+    "lng": -122.396613,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17166-17397",
+    "name": "4th St & King St",
+    "stops": [
+      "17166",
+      "17397"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.7762065,
+    "lng": -122.3938465,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17999",
+    "name": "9th Ave & Irving St",
+    "stops": [
+      "17999"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.763307,
+    "lng": -122.466344,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15418",
+    "name": "Balboa Park BART/Mezzanine Level",
+    "stops": [
+      "15418"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J",
+      "K",
+      "M"
+    ],
+    "lat": 37.721809,
+    "lng": -122.447425,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17399",
+    "name": "Bayshore Blvd & Areta Ave",
+    "stops": [
+      "17399"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.712226,
+    "lng": -122.402339,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17395",
+    "name": "Bayshore Blvd & Blanken Ave",
+    "stops": [
+      "17395"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.712253,
+    "lng": -122.402316,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17396-17398",
+    "name": "Bayshore Blvd & Sunnydale Ave",
+    "stops": [
+      "17396",
+      "17398"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.708957,
+    "lng": -122.4050785,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13092",
+    "name": "Beach St & Mason St",
+    "stops": [
+      "13092"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.807407,
+    "lng": -122.414125,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13095",
+    "name": "Beach St & Stockton St",
+    "stops": [
+      "13095"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.807841,
+    "lng": -122.41081,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13715-13716",
+    "name": "Broad St & Capitol Ave",
+    "stops": [
+      "13715",
+      "13716"
+    ],
+    "agency": "SF",
+    "routes": [
+      "M"
+    ],
+    "lat": 37.7131715,
+    "lng": -122.45904,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13717",
+    "name": "Broad St & Orizaba Ave",
+    "stops": [
+      "13717"
+    ],
+    "agency": "SF",
+    "routes": [
+      "M"
+    ],
+    "lat": 37.713178,
+    "lng": -122.462331,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13718-13719",
+    "name": "Broad St & Plymouth Ave",
+    "stops": [
+      "13718",
+      "13719"
+    ],
+    "agency": "SF",
+    "routes": [
+      "M"
+    ],
+    "lat": 37.7131915,
+    "lng": -122.4560535,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13849-17444",
+    "name": "California St & Battery St",
+    "stops": [
+      "13849",
+      "17444"
+    ],
+    "agency": "SF",
+    "routes": [
+      "CA"
+    ],
+    "lat": 37.7932115,
+    "lng": -122.399956,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13855-13857-17294",
+    "name": "California St & Davis St",
+    "stops": [
+      "13855",
+      "13857",
+      "17294"
+    ],
+    "agency": "SF",
+    "routes": [
+      "CA"
+    ],
+    "lat": 37.793512,
+    "lng": -122.397336,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13860",
+    "name": "California St & Drumm St",
+    "stops": [
+      "13860"
+    ],
+    "agency": "SF",
+    "routes": [
+      "CA"
+    ],
+    "lat": 37.793678,
+    "lng": -122.396373,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13863-13864",
+    "name": "California St & Front St",
+    "stops": [
+      "13863",
+      "13864"
+    ],
+    "agency": "SF",
+    "routes": [
+      "CA"
+    ],
+    "lat": 37.793354,
+    "lng": -122.39878150000001,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13865-13866",
+    "name": "California St & Grant Ave",
+    "stops": [
+      "13865",
+      "13866"
+    ],
+    "agency": "SF",
+    "routes": [
+      "CA"
+    ],
+    "lat": 37.792441499999995,
+    "lng": -122.4059465,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13867-13868",
+    "name": "California St & Hyde St",
+    "stops": [
+      "13867",
+      "13868"
+    ],
+    "agency": "SF",
+    "routes": [
+      "CA"
+    ],
+    "lat": 37.79096,
+    "lng": -122.4175485,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13869-13870",
+    "name": "California St & Jones St",
+    "stops": [
+      "13869",
+      "13870"
+    ],
+    "agency": "SF",
+    "routes": [
+      "CA"
+    ],
+    "lat": 37.7914095,
+    "lng": -122.4141095,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13871-13872",
+    "name": "California St & Kearny St",
+    "stops": [
+      "13871",
+      "13872"
+    ],
+    "agency": "SF",
+    "routes": [
+      "CA"
+    ],
+    "lat": 37.792655499999995,
+    "lng": -122.4042615,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13873-13874",
+    "name": "California St & Larkin St",
+    "stops": [
+      "13873",
+      "13874"
+    ],
+    "agency": "SF",
+    "routes": [
+      "CA"
+    ],
+    "lat": 37.790783000000005,
+    "lng": -122.419025,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13877-13878",
+    "name": "California St & Leavenworth St",
+    "stops": [
+      "13877",
+      "13878"
+    ],
+    "agency": "SF",
+    "routes": [
+      "CA"
+    ],
+    "lat": 37.791209,
+    "lng": -122.41568000000001,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13880-13881",
+    "name": "California St & Mason St",
+    "stops": [
+      "13880",
+      "13881"
+    ],
+    "agency": "SF",
+    "routes": [
+      "CA"
+    ],
+    "lat": 37.7918095,
+    "lng": -122.4109685,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13882-13883",
+    "name": "California St & Montgomery St",
+    "stops": [
+      "13882",
+      "13883"
+    ],
+    "agency": "SF",
+    "routes": [
+      "CA"
+    ],
+    "lat": 37.7928465,
+    "lng": -122.40276499999999,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13888-13889",
+    "name": "California St & Polk St",
+    "stops": [
+      "13888",
+      "13889"
+    ],
+    "agency": "SF",
+    "routes": [
+      "CA"
+    ],
+    "lat": 37.7905765,
+    "lng": -122.4206845,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13890-13891",
+    "name": "California St & Powell St",
+    "stops": [
+      "13890",
+      "13891"
+    ],
+    "agency": "SF",
+    "routes": [
+      "CA"
+    ],
+    "lat": 37.792010000000005,
+    "lng": -122.40938,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13894-13895",
+    "name": "California St & Sansome St",
+    "stops": [
+      "13894",
+      "13895"
+    ],
+    "agency": "SF",
+    "routes": [
+      "CA"
+    ],
+    "lat": 37.79306,
+    "lng": -122.4011255,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13899-13900",
+    "name": "California St & Stockton St",
+    "stops": [
+      "13899",
+      "13900"
+    ],
+    "agency": "SF",
+    "routes": [
+      "CA"
+    ],
+    "lat": 37.792246,
+    "lng": -122.4075405,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13901-13902",
+    "name": "California St & Taylor St",
+    "stops": [
+      "13901",
+      "13902"
+    ],
+    "agency": "SF",
+    "routes": [
+      "CA"
+    ],
+    "lat": 37.7916275,
+    "lng": -122.4124645,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17142",
+    "name": "California St & Van Ness Ave",
+    "stops": [
+      "17142"
+    ],
+    "agency": "SF",
+    "routes": [
+      "CA"
+    ],
+    "lat": 37.790412,
+    "lng": -122.422238,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13909-13911",
+    "name": "Carl St & Cole St",
+    "stops": [
+      "13909",
+      "13911"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.765804,
+    "lng": -122.4499675,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13912-13913",
+    "name": "Carl St & Hillway Ave",
+    "stops": [
+      "13912",
+      "13913"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.7649675,
+    "lng": -122.4565365,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13914-13915",
+    "name": "Carl St & Stanyan St",
+    "stops": [
+      "13914",
+      "13915"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.765433,
+    "lng": -122.452759,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-metro-castro",
+    "name": "Castro",
+    "stops": [
+      "15728",
+      "16991"
+    ],
+    "agency": "SF",
+    "routes": [
+      "K",
+      "L",
+      "M"
+    ],
+    "lat": 37.762651500000004,
+    "lng": -122.43526,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17876",
+    "name": "Chinatown - Rose Pak Station",
+    "stops": [
+      "17876"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.794807,
+    "lng": -122.408078,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-metro-church",
+    "name": "Church",
+    "stops": [
+      "15726",
+      "16998"
+    ],
+    "agency": "SF",
+    "routes": [
+      "K",
+      "L",
+      "M"
+    ],
+    "lat": 37.767260500000006,
+    "lng": -122.42924450000001,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13984-13985",
+    "name": "Church St & 16th St",
+    "stops": [
+      "13984",
+      "13985"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J"
+    ],
+    "lat": 37.764501499999994,
+    "lng": -122.4286655,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13987",
+    "name": "Church St & 18th St",
+    "stops": [
+      "13987"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J"
+    ],
+    "lat": 37.761467,
+    "lng": -122.428416,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13994-16218",
+    "name": "Church St & 22nd St",
+    "stops": [
+      "13994",
+      "16218"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J"
+    ],
+    "lat": 37.754674,
+    "lng": -122.427693,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13995-13996",
+    "name": "Church St & 24th St",
+    "stops": [
+      "13995",
+      "13996"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J"
+    ],
+    "lat": 37.7516955,
+    "lng": -122.4274235,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-18155-18156",
+    "name": "Church St & 26th St",
+    "stops": [
+      "18155",
+      "18156"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J"
+    ],
+    "lat": 37.7485095,
+    "lng": -122.4271605,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-18157-18158",
+    "name": "Church St & 28th St",
+    "stops": [
+      "18157",
+      "18158"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J"
+    ],
+    "lat": 37.7453115,
+    "lng": -122.42684600000001,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-13999",
+    "name": "Church St & 29th St",
+    "stops": [
+      "13999"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J"
+    ],
+    "lat": 37.743587,
+    "lng": -122.426585,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-14000",
+    "name": "Church St & 30th St",
+    "stops": [
+      "14000"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J"
+    ],
+    "lat": 37.742222,
+    "lng": -122.426459,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-14004",
+    "name": "Church St & Day St",
+    "stops": [
+      "14004"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J"
+    ],
+    "lat": 37.742811,
+    "lng": -122.426654,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-14006",
+    "name": "Church St & Duboce Ave",
+    "stops": [
+      "14006"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J"
+    ],
+    "lat": 37.769302,
+    "lng": -122.429087,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17073-18059",
+    "name": "Church St & Market St",
+    "stops": [
+      "17073",
+      "18059"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J"
+    ],
+    "lat": 37.7673975,
+    "lng": -122.42899,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-metro-civic-center",
+    "name": "Civic Center",
+    "stops": [
+      "15727",
+      "16997"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J",
+      "K",
+      "L",
+      "M",
+      "N"
+    ],
+    "lat": 37.779476,
+    "lng": -122.413785,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-14104-17181",
+    "name": "Columbus Ave & Chestnut St",
+    "stops": [
+      "14104",
+      "17181"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PM"
+    ],
+    "lat": 37.80312,
+    "lng": -122.414282,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-14113",
+    "name": "Columbus Ave & Lombard St",
+    "stops": [
+      "14113"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PM"
+    ],
+    "lat": 37.802687,
+    "lng": -122.413531,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-14726-14727",
+    "name": "Don Chee Way/Steuart St",
+    "stops": [
+      "14726",
+      "14727"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.793949,
+    "lng": -122.3934965,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-14447-14448",
+    "name": "Duboce Ave & Church St",
+    "stops": [
+      "14447",
+      "14448"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.7694405,
+    "lng": -122.429404,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17252",
+    "name": "Duboce St/Noe St/Duboce Park",
+    "stops": [
+      "17252"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.769357,
+    "lng": -122.433557,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-metro-embarcadero",
+    "name": "Embarcadero",
+    "stops": [
+      "16992",
+      "17217"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J",
+      "K",
+      "L",
+      "M",
+      "N"
+    ],
+    "lat": 37.792922000000004,
+    "lng": -122.39679050000001,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17281",
+    "name": "Embarcadero & Sansome St",
+    "stops": [
+      "17281"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.805146,
+    "lng": -122.403233,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-metro-forest-hill",
+    "name": "Forest Hill",
+    "stops": [
+      "15730"
+    ],
+    "agency": "SF",
+    "routes": [
+      "K",
+      "L",
+      "M"
+    ],
+    "lat": 37.748351,
+    "lng": -122.458623,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16993",
+    "name": "Forest Hill Station Outbound",
+    "stops": [
+      "16993"
+    ],
+    "agency": "SF",
+    "routes": [
+      "K",
+      "L",
+      "M"
+    ],
+    "lat": 37.74817,
+    "lng": -122.459192,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17879",
+    "name": "Fourth Street & Brannan Northbound",
+    "stops": [
+      "17879"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.778403,
+    "lng": -122.39659,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15059-15060",
+    "name": "Hyde St & Bay St",
+    "stops": [
+      "15059",
+      "15060"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH"
+    ],
+    "lat": 37.804786,
+    "lng": -122.4201805,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15063-15064",
+    "name": "Hyde St & Beach St",
+    "stops": [
+      "15063",
+      "15064"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH"
+    ],
+    "lat": 37.806771499999996,
+    "lng": -122.4208005,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15061-15062",
+    "name": "Hyde St & Broadway",
+    "stops": [
+      "15061",
+      "15062"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH"
+    ],
+    "lat": 37.796420499999996,
+    "lng": -122.4184865,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15066-15067",
+    "name": "Hyde St & Chestnut St",
+    "stops": [
+      "15066",
+      "15067"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH"
+    ],
+    "lat": 37.802876,
+    "lng": -122.4197915,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15069-15070",
+    "name": "Hyde St & Filbert St",
+    "stops": [
+      "15069",
+      "15070"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH"
+    ],
+    "lat": 37.8001905,
+    "lng": -122.41924800000001,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15074-15075",
+    "name": "Hyde St & Green St",
+    "stops": [
+      "15074",
+      "15075"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH"
+    ],
+    "lat": 37.798325500000004,
+    "lng": -122.41887,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15072-15073",
+    "name": "Hyde St & Greenwich St",
+    "stops": [
+      "15072",
+      "15073"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH"
+    ],
+    "lat": 37.801002,
+    "lng": -122.419408,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15076",
+    "name": "Hyde St & Jackson St",
+    "stops": [
+      "15076"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH"
+    ],
+    "lat": 37.794542,
+    "lng": -122.418189,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15077-15078",
+    "name": "Hyde St & Lombard St",
+    "stops": [
+      "15077",
+      "15078"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH"
+    ],
+    "lat": 37.8018855,
+    "lng": -122.4196135,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15080-15081",
+    "name": "Hyde St & North Point St",
+    "stops": [
+      "15080",
+      "15081"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH"
+    ],
+    "lat": 37.805669,
+    "lng": -122.42036350000001,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15082-15083",
+    "name": "Hyde St & Pacific Ave",
+    "stops": [
+      "15082",
+      "15083"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH"
+    ],
+    "lat": 37.795377,
+    "lng": -122.41828050000001,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15088-15089",
+    "name": "Hyde St & Union St",
+    "stops": [
+      "15088",
+      "15089"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH"
+    ],
+    "lat": 37.799209000000005,
+    "lng": -122.419059,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15090-15091",
+    "name": "Hyde St & Vallejo St",
+    "stops": [
+      "15090",
+      "15091"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH"
+    ],
+    "lat": 37.797423,
+    "lng": -122.4187015,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15118",
+    "name": "Irving St & 2nd Ave",
+    "stops": [
+      "15118"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.764441,
+    "lng": -122.458643,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-18031",
+    "name": "Irving St & 5th Ave",
+    "stops": [
+      "18031"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.764182,
+    "lng": -122.462139,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-18032",
+    "name": "Irving St & 6th Ave",
+    "stops": [
+      "18032"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.764244,
+    "lng": -122.462987,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17996",
+    "name": "Irving St & 8th Ave",
+    "stops": [
+      "17996"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.764038,
+    "lng": -122.465428,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15124",
+    "name": "Irving St & Arguello Blvd",
+    "stops": [
+      "15124"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.764366,
+    "lng": -122.458024,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15150",
+    "name": "Jackson St & Hyde St",
+    "stops": [
+      "15150"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH"
+    ],
+    "lat": 37.79464,
+    "lng": -122.417994,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15152",
+    "name": "Jackson St & Jones St",
+    "stops": [
+      "15152"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH"
+    ],
+    "lat": 37.795041,
+    "lng": -122.414842,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15154",
+    "name": "Jackson St & Leavenworth St",
+    "stops": [
+      "15154"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH"
+    ],
+    "lat": 37.794854,
+    "lng": -122.416366,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15156",
+    "name": "Jackson St & Mason St",
+    "stops": [
+      "15156"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH",
+      "PM"
+    ],
+    "lat": 37.79545,
+    "lng": -122.411712,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15164",
+    "name": "Jackson St & Taylor St",
+    "stops": [
+      "15164"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH"
+    ],
+    "lat": 37.795255,
+    "lng": -122.413202,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15174",
+    "name": "Jefferson St & Powell St",
+    "stops": [
+      "15174"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.808594,
+    "lng": -122.413357,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15175",
+    "name": "Jefferson St & Taylor St",
+    "stops": [
+      "15175"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.80832,
+    "lng": -122.415514,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15184",
+    "name": "Jones St & Beach St",
+    "stops": [
+      "15184"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.807132,
+    "lng": -122.417324,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15195-15196",
+    "name": "Judah St & 12th Ave",
+    "stops": [
+      "15195",
+      "15196"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.7620285,
+    "lng": -122.469425,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15197",
+    "name": "Judah St & 15th Ave",
+    "stops": [
+      "15197"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.761848,
+    "lng": -122.472777,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15198",
+    "name": "Judah St & 16th Ave",
+    "stops": [
+      "15198"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.76194,
+    "lng": -122.473632,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15199-15200",
+    "name": "Judah St & 19th Ave",
+    "stops": [
+      "15199",
+      "15200"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.761699,
+    "lng": -122.4770575,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15201",
+    "name": "Judah St & 22nd Ave",
+    "stops": [
+      "15201"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.761534,
+    "lng": -122.479855,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15202",
+    "name": "Judah St & 23rd Ave",
+    "stops": [
+      "15202"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.761547,
+    "lng": -122.481164,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15203-15204",
+    "name": "Judah St & 25th Ave",
+    "stops": [
+      "15203",
+      "15204"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.7614125,
+    "lng": -122.48343,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15205-15206",
+    "name": "Judah St & 28th Ave",
+    "stops": [
+      "15205",
+      "15206"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.761271,
+    "lng": -122.4866365,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15207-15208",
+    "name": "Judah St & 31st Ave",
+    "stops": [
+      "15207",
+      "15208"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.7611385,
+    "lng": -122.4896095,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15209-15210",
+    "name": "Judah St & 34th Ave",
+    "stops": [
+      "15209",
+      "15210"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.7609915,
+    "lng": -122.4930645,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15211-15212",
+    "name": "Judah St & 40th Ave",
+    "stops": [
+      "15211",
+      "15212"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.760711,
+    "lng": -122.4992565,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15213-15214",
+    "name": "Judah St & 43rd Ave",
+    "stops": [
+      "15213",
+      "15214"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.760558,
+    "lng": -122.50270649999999,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15215-15216",
+    "name": "Judah St & 46th Ave",
+    "stops": [
+      "15215",
+      "15216"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.760442499999996,
+    "lng": -122.50594799999999,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15193-15194",
+    "name": "Judah St & 9th Ave",
+    "stops": [
+      "15193",
+      "15194"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.762183,
+    "lng": -122.4665,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15219-15220",
+    "name": "Judah St & Funston Ave",
+    "stops": [
+      "15219",
+      "15220"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.7620125,
+    "lng": -122.4704505,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15224-15225",
+    "name": "Judah St & Sunset Blvd",
+    "stops": [
+      "15224",
+      "15225"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.760881,
+    "lng": -122.49573649999999,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15223-17219",
+    "name": "Judah/La Playa/Ocean Beach",
+    "stops": [
+      "15223",
+      "17219"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.7603265,
+    "lng": -122.508433,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17113-17114",
+    "name": "Junipero Serra Blvd & Ocean Ave",
+    "stops": [
+      "17113",
+      "17114"
+    ],
+    "agency": "SF",
+    "routes": [
+      "K"
+    ],
+    "lat": 37.7314495,
+    "lng": -122.4717625,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15234-15237",
+    "name": "King St & 2nd St",
+    "stops": [
+      "15234",
+      "15237"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.779670499999995,
+    "lng": -122.389848,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15239-15240",
+    "name": "King St & 4th St",
+    "stops": [
+      "15239",
+      "15240"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.776269,
+    "lng": -122.3941275,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17264",
+    "name": "Market St & 1st St",
+    "stops": [
+      "17264"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.79094,
+    "lng": -122.399195,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15639",
+    "name": "Market St & 2nd St",
+    "stops": [
+      "15639"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.789353,
+    "lng": -122.401306,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15640",
+    "name": "Market St & 3rd St",
+    "stops": [
+      "15640"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.787525,
+    "lng": -122.403519,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15643",
+    "name": "Market St & 4th St",
+    "stops": [
+      "15643"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.785705,
+    "lng": -122.405847,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15645-15655",
+    "name": "Market St & 5th St",
+    "stops": [
+      "15645",
+      "15655"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.783984000000004,
+    "lng": -122.40806649999999,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15647",
+    "name": "Market St & 6th St",
+    "stops": [
+      "15647"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.782102,
+    "lng": -122.4104,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15650-15656",
+    "name": "Market St & 7th St",
+    "stops": [
+      "15650",
+      "15656"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.780465500000005,
+    "lng": -122.412527,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15651",
+    "name": "Market St & 8th St",
+    "stops": [
+      "15651"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.778606,
+    "lng": -122.414826,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15652",
+    "name": "Market St & 9th St",
+    "stops": [
+      "15652"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.77741,
+    "lng": -122.41634,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15657",
+    "name": "Market St & Battery St",
+    "stops": [
+      "15657"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.79111,
+    "lng": -122.399069,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15659",
+    "name": "Market St & Buchanan St",
+    "stops": [
+      "15659"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.769786,
+    "lng": -122.426149,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15661-15662",
+    "name": "Market St & Church St",
+    "stops": [
+      "15661",
+      "15662"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.7674775,
+    "lng": -122.428996,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15668",
+    "name": "Market St & Dolores St",
+    "stops": [
+      "15668"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.76888,
+    "lng": -122.427103,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15669",
+    "name": "Market St & Drumm St",
+    "stops": [
+      "15669"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.793473,
+    "lng": -122.396178,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15672-15673",
+    "name": "Market St & Gough St",
+    "stops": [
+      "15672",
+      "15673"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.773072,
+    "lng": -122.4218795,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15675",
+    "name": "Market St & Guerrero St",
+    "stops": [
+      "15675"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.77057,
+    "lng": -122.424971,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15676",
+    "name": "Market St & Hyde St",
+    "stops": [
+      "15676"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.779105,
+    "lng": -122.414379,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15678",
+    "name": "Market St & Kearny St",
+    "stops": [
+      "15678"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.78773,
+    "lng": -122.40337,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15681",
+    "name": "Market St & Laguna St",
+    "stops": [
+      "15681"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.770953,
+    "lng": -122.424666,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15680",
+    "name": "Market St & Larkin St",
+    "stops": [
+      "15680"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.777598,
+    "lng": -122.416236,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15682",
+    "name": "Market St & Main St",
+    "stops": [
+      "15682"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.792984,
+    "lng": -122.396627,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15685",
+    "name": "Market St & New Montgomery St",
+    "stops": [
+      "15685"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.788613,
+    "lng": -122.402163,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15686-15687",
+    "name": "Market St & Noe St",
+    "stops": [
+      "15686",
+      "15687"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.7642235,
+    "lng": -122.43306749999999,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15690-17123",
+    "name": "Market St & Sanchez St",
+    "stops": [
+      "15690",
+      "17123"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.765908499999995,
+    "lng": -122.4309615,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15692",
+    "name": "Market St & South Van Ness Ave",
+    "stops": [
+      "15692"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.775056,
+    "lng": -122.419321,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15694",
+    "name": "Market St & Stockton St",
+    "stops": [
+      "15694"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.785777,
+    "lng": -122.405859,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15695",
+    "name": "Market St & Taylor St",
+    "stops": [
+      "15695"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.782316,
+    "lng": -122.410228,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15696",
+    "name": "Market St & Van Ness Ave",
+    "stops": [
+      "15696"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.775198,
+    "lng": -122.419252,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15355-15356",
+    "name": "Mason St & Broadway",
+    "stops": [
+      "15355",
+      "15356"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PM"
+    ],
+    "lat": 37.7972795,
+    "lng": -122.41191699999999,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15358-15359",
+    "name": "Mason St & Filbert St",
+    "stops": [
+      "15358",
+      "15359"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PM"
+    ],
+    "lat": 37.8009335,
+    "lng": -122.4126545,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15362-15363",
+    "name": "Mason St & Green St",
+    "stops": [
+      "15362",
+      "15363"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PM"
+    ],
+    "lat": 37.79906,
+    "lng": -122.4122775,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15360-15361",
+    "name": "Mason St & Greenwich St",
+    "stops": [
+      "15360",
+      "15361"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PM"
+    ],
+    "lat": 37.8018795,
+    "lng": -122.4128495,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15364-15365",
+    "name": "Mason St & Jackson St",
+    "stops": [
+      "15364",
+      "15365"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PM"
+    ],
+    "lat": 37.7955575,
+    "lng": -122.411603,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15366-15367",
+    "name": "Mason St & Pacific Ave",
+    "stops": [
+      "15366",
+      "15367"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PM"
+    ],
+    "lat": 37.79616,
+    "lng": -122.41169400000001,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15368-15369",
+    "name": "Mason St & Union St",
+    "stops": [
+      "15368",
+      "15369"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PM"
+    ],
+    "lat": 37.8000055,
+    "lng": -122.41247150000001,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15370-15371",
+    "name": "Mason St & Vallejo St",
+    "stops": [
+      "15370",
+      "15371"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PM"
+    ],
+    "lat": 37.798221,
+    "lng": -122.412106,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15372",
+    "name": "Mason St & Washington St",
+    "stops": [
+      "15372"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH"
+    ],
+    "lat": 37.794504,
+    "lng": -122.411059,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-metro-montgomery",
+    "name": "Montgomery",
+    "stops": [
+      "15731",
+      "16994"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J",
+      "K",
+      "L",
+      "M",
+      "N"
+    ],
+    "lat": 37.789005,
+    "lng": -122.40173899999999,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15779-15780",
+    "name": "Ocean Ave & Aptos Ave",
+    "stops": [
+      "15779",
+      "15780"
+    ],
+    "agency": "SF",
+    "routes": [
+      "K"
+    ],
+    "lat": 37.728334000000004,
+    "lng": -122.467716,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15787",
+    "name": "Ocean Ave & Dorado Ter",
+    "stops": [
+      "15787"
+    ],
+    "agency": "SF",
+    "routes": [
+      "K"
+    ],
+    "lat": 37.724957,
+    "lng": -122.461059,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15788",
+    "name": "Ocean Ave & Fairfield Way",
+    "stops": [
+      "15788"
+    ],
+    "agency": "SF",
+    "routes": [
+      "K"
+    ],
+    "lat": 37.726008,
+    "lng": -122.464072,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15793",
+    "name": "Ocean Ave & Jules Ave",
+    "stops": [
+      "15793"
+    ],
+    "agency": "SF",
+    "routes": [
+      "K"
+    ],
+    "lat": 37.724955,
+    "lng": -122.46139,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15794-15795",
+    "name": "Ocean Ave & Lee St",
+    "stops": [
+      "15794",
+      "15795"
+    ],
+    "agency": "SF",
+    "routes": [
+      "K"
+    ],
+    "lat": 37.723428,
+    "lng": -122.454211,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15797-15798",
+    "name": "Ocean Ave & Miramar Ave",
+    "stops": [
+      "15797",
+      "15798"
+    ],
+    "agency": "SF",
+    "routes": [
+      "K"
+    ],
+    "lat": 37.7243245,
+    "lng": -122.4581915,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15806-15807",
+    "name": "Ocean Ave & San Leandro Way",
+    "stops": [
+      "15806",
+      "15807"
+    ],
+    "agency": "SF",
+    "routes": [
+      "K"
+    ],
+    "lat": 37.729967,
+    "lng": -122.46928600000001,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15808",
+    "name": "Ocean Ave & Victoria St",
+    "stops": [
+      "15808"
+    ],
+    "agency": "SF",
+    "routes": [
+      "K"
+    ],
+    "lat": 37.726029,
+    "lng": -122.464337,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15784-15785",
+    "name": "Ocean Ave/Ccsf Pedestrian Bridge",
+    "stops": [
+      "15784",
+      "15785"
+    ],
+    "agency": "SF",
+    "routes": [
+      "K"
+    ],
+    "lat": 37.7229935,
+    "lng": -122.451157,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-15825",
+    "name": "Orizaba Ave & Broad St",
+    "stops": [
+      "15825"
+    ],
+    "agency": "SF",
+    "routes": [
+      "M"
+    ],
+    "lat": 37.713328,
+    "lng": -122.462585,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-metro-powell",
+    "name": "Powell",
+    "stops": [
+      "15417",
+      "16995"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J",
+      "K",
+      "L",
+      "M",
+      "N"
+    ],
+    "lat": 37.7844765,
+    "lng": -122.407454,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16047-16048",
+    "name": "Powell St & Bush St",
+    "stops": [
+      "16047",
+      "16048"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH",
+      "PM"
+    ],
+    "lat": 37.7901495,
+    "lng": -122.40879100000001,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16049-16050",
+    "name": "Powell St & California St",
+    "stops": [
+      "16049",
+      "16050"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH",
+      "PM"
+    ],
+    "lat": 37.792255499999996,
+    "lng": -122.4092195,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16051-16052",
+    "name": "Powell St & Clay St",
+    "stops": [
+      "16051",
+      "16052"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH",
+      "PM"
+    ],
+    "lat": 37.793795,
+    "lng": -122.40954550000001,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16057-16058",
+    "name": "Powell St & Geary St",
+    "stops": [
+      "16057",
+      "16058"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH",
+      "PM"
+    ],
+    "lat": 37.7873655,
+    "lng": -122.408225,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16059",
+    "name": "Powell St & Jackson St",
+    "stops": [
+      "16059"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH",
+      "PM"
+    ],
+    "lat": 37.795405,
+    "lng": -122.409763,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16063-16064",
+    "name": "Powell St & Market St",
+    "stops": [
+      "16063",
+      "16064"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH",
+      "PM"
+    ],
+    "lat": 37.7846665,
+    "lng": -122.4077335,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16067-16068",
+    "name": "Powell St & O'Farrell St",
+    "stops": [
+      "16067",
+      "16068"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH",
+      "PM"
+    ],
+    "lat": 37.786415500000004,
+    "lng": -122.40803600000001,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16069-16070",
+    "name": "Powell St & Pine St",
+    "stops": [
+      "16069",
+      "16070"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH",
+      "PM"
+    ],
+    "lat": 37.7910865,
+    "lng": -122.4089855,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16071-16072",
+    "name": "Powell St & Post St",
+    "stops": [
+      "16071",
+      "16072"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH",
+      "PM"
+    ],
+    "lat": 37.7882935,
+    "lng": -122.408402,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16073-16074",
+    "name": "Powell St & Sacramento St",
+    "stops": [
+      "16073",
+      "16074"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH",
+      "PM"
+    ],
+    "lat": 37.792919999999995,
+    "lng": -122.409351,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16075-16076",
+    "name": "Powell St & Sutter St",
+    "stops": [
+      "16075",
+      "16076"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH",
+      "PM"
+    ],
+    "lat": 37.7890965,
+    "lng": -122.4085675,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16172-16173",
+    "name": "Randolph St & Arch St",
+    "stops": [
+      "16172",
+      "16173"
+    ],
+    "agency": "SF",
+    "routes": [
+      "M"
+    ],
+    "lat": 37.7142715,
+    "lng": -122.4671,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16174-16175",
+    "name": "Randolph St & Bright St",
+    "stops": [
+      "16174",
+      "16175"
+    ],
+    "agency": "SF",
+    "routes": [
+      "M"
+    ],
+    "lat": 37.714299,
+    "lng": -122.4635335,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16213",
+    "name": "Right Of Way/18th St",
+    "stops": [
+      "16213"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J"
+    ],
+    "lat": 37.761192,
+    "lng": -122.428184,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16214-16215",
+    "name": "Right Of Way/20th St",
+    "stops": [
+      "16214",
+      "16215"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J"
+    ],
+    "lat": 37.7582465,
+    "lng": -122.42785950000001,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16216-16217",
+    "name": "Right Of Way/21st St",
+    "stops": [
+      "16216",
+      "16217"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J"
+    ],
+    "lat": 37.7565395,
+    "lng": -122.426872,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16219-16220",
+    "name": "Right Of Way/Eucalyptus Dr",
+    "stops": [
+      "16219",
+      "16220"
+    ],
+    "agency": "SF",
+    "routes": [
+      "M"
+    ],
+    "lat": 37.7310885,
+    "lng": -122.474358,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16221-16222",
+    "name": "Right Of Way/Liberty St",
+    "stops": [
+      "16221",
+      "16222"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J"
+    ],
+    "lat": 37.757345,
+    "lng": -122.42693299999999,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16223-16224",
+    "name": "Right Of Way/Ocean Ave",
+    "stops": [
+      "16223",
+      "16224"
+    ],
+    "agency": "SF",
+    "routes": [
+      "M"
+    ],
+    "lat": 37.731915,
+    "lng": -122.47376700000001,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16257-16259",
+    "name": "San Jose Ave & Farallones St",
+    "stops": [
+      "16257",
+      "16259"
+    ],
+    "agency": "SF",
+    "routes": [
+      "M"
+    ],
+    "lat": 37.714055,
+    "lng": -122.4522145,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16262-17164-17778",
+    "name": "San Jose Ave & Geneva Ave",
+    "stops": [
+      "16262",
+      "17164",
+      "17778"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J",
+      "K",
+      "M"
+    ],
+    "lat": 37.720655,
+    "lng": -122.44665733333333,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16265-16266",
+    "name": "San Jose Ave & Lakeview Ave",
+    "stops": [
+      "16265",
+      "16266"
+    ],
+    "agency": "SF",
+    "routes": [
+      "M"
+    ],
+    "lat": 37.7162065,
+    "lng": -122.4504015,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16269",
+    "name": "San Jose Ave & Niagra Ave",
+    "stops": [
+      "16269"
+    ],
+    "agency": "SF",
+    "routes": [
+      "M"
+    ],
+    "lat": 37.719421,
+    "lng": -122.447654,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16274-16275",
+    "name": "San Jose Ave & Ocean Ave",
+    "stops": [
+      "16274",
+      "16275"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J"
+    ],
+    "lat": 37.722973499999995,
+    "lng": -122.4447445,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16277-16280",
+    "name": "San Jose Ave & Randall St",
+    "stops": [
+      "16277",
+      "16280"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J"
+    ],
+    "lat": 37.739563000000004,
+    "lng": -122.4242385,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16284-16285",
+    "name": "San Jose Ave & Santa Rosa Ave",
+    "stops": [
+      "16284",
+      "16285"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J"
+    ],
+    "lat": 37.7289935,
+    "lng": -122.43996899999999,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16287-16288",
+    "name": "San Jose Ave & Santa Ynez Ave",
+    "stops": [
+      "16287",
+      "16288"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J"
+    ],
+    "lat": 37.725779,
+    "lng": -122.44240049999999,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-14787-14788",
+    "name": "San Jose Ave/Glen Park Station",
+    "stops": [
+      "14787",
+      "14788"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J"
+    ],
+    "lat": 37.732463,
+    "lng": -122.4336355,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17318",
+    "name": "Sunset Tunnel East Portal",
+    "stops": [
+      "17318"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.769285,
+    "lng": -122.433511,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16615",
+    "name": "Taraval St & 17th Ave",
+    "stops": [
+      "16615"
+    ],
+    "agency": "SF",
+    "routes": [
+      "L"
+    ],
+    "lat": 37.743131,
+    "lng": -122.473306,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16616-16617",
+    "name": "Taraval St & 19th Ave",
+    "stops": [
+      "16616",
+      "16617"
+    ],
+    "agency": "SF",
+    "routes": [
+      "L"
+    ],
+    "lat": 37.7430405,
+    "lng": -122.47563249999999,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16619",
+    "name": "Taraval St & 22nd Ave",
+    "stops": [
+      "16619"
+    ],
+    "agency": "SF",
+    "routes": [
+      "L"
+    ],
+    "lat": 37.74289,
+    "lng": -122.478426,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16620",
+    "name": "Taraval St & 23rd Ave",
+    "stops": [
+      "16620"
+    ],
+    "agency": "SF",
+    "routes": [
+      "L"
+    ],
+    "lat": 37.742872,
+    "lng": -122.48045,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16622-16623",
+    "name": "Taraval St & 26th Ave",
+    "stops": [
+      "16622",
+      "16623"
+    ],
+    "agency": "SF",
+    "routes": [
+      "L"
+    ],
+    "lat": 37.742729999999995,
+    "lng": -122.483234,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16626-16627",
+    "name": "Taraval St & 30th Ave",
+    "stops": [
+      "16626",
+      "16627"
+    ],
+    "agency": "SF",
+    "routes": [
+      "L"
+    ],
+    "lat": 37.742541,
+    "lng": -122.48750899999999,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16628-16629",
+    "name": "Taraval St & 32nd Ave",
+    "stops": [
+      "16628",
+      "16629"
+    ],
+    "agency": "SF",
+    "routes": [
+      "L"
+    ],
+    "lat": 37.7424465,
+    "lng": -122.489653,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16632-16633",
+    "name": "Taraval St & 40th Ave",
+    "stops": [
+      "16632",
+      "16633"
+    ],
+    "agency": "SF",
+    "routes": [
+      "L"
+    ],
+    "lat": 37.742057,
+    "lng": -122.4981855,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16634-16635",
+    "name": "Taraval St & 42nd Ave",
+    "stops": [
+      "16634",
+      "16635"
+    ],
+    "agency": "SF",
+    "routes": [
+      "L"
+    ],
+    "lat": 37.741960500000005,
+    "lng": -122.5003315,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16636-16637",
+    "name": "Taraval St & 44th Ave",
+    "stops": [
+      "16636",
+      "16637"
+    ],
+    "agency": "SF",
+    "routes": [
+      "L"
+    ],
+    "lat": 37.741864,
+    "lng": -122.502476,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16638",
+    "name": "Taraval St & 46th Ave",
+    "stops": [
+      "16638"
+    ],
+    "agency": "SF",
+    "routes": [
+      "L"
+    ],
+    "lat": 37.741823,
+    "lng": -122.50449,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16640-16641",
+    "name": "Taraval St & Sunset Blvd",
+    "stops": [
+      "16640",
+      "16641"
+    ],
+    "agency": "SF",
+    "routes": [
+      "L"
+    ],
+    "lat": 37.7422375,
+    "lng": -122.49443550000001,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16642-16644",
+    "name": "Taylor St & Bay St",
+    "stops": [
+      "16642",
+      "16644"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PM"
+    ],
+    "lat": 37.805244,
+    "lng": -122.4152495,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16645",
+    "name": "Taylor St & Columbus Ave",
+    "stops": [
+      "16645"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PM"
+    ],
+    "lat": 37.803758,
+    "lng": -122.414998,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16646",
+    "name": "Taylor St & Francisco St",
+    "stops": [
+      "16646"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PM"
+    ],
+    "lat": 37.804383,
+    "lng": -122.414952,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-14501-14502",
+    "name": "The Embarcadero & Bay St",
+    "stops": [
+      "14501",
+      "14502"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.806787,
+    "lng": -122.406154,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-14506-17145",
+    "name": "The Embarcadero & Brannan St",
+    "stops": [
+      "14506",
+      "17145"
+    ],
+    "agency": "SF",
+    "routes": [
+      "N"
+    ],
+    "lat": 37.784493,
+    "lng": -122.3880575,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-14503-14504",
+    "name": "The Embarcadero & Broadway",
+    "stops": [
+      "14503",
+      "14504"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.7992265,
+    "lng": -122.3976515,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-14513-17283",
+    "name": "The Embarcadero & Ferry Building",
+    "stops": [
+      "14513",
+      "17283"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.794859,
+    "lng": -122.39366100000001,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-14509-14510",
+    "name": "The Embarcadero & Folsom St",
+    "stops": [
+      "14509",
+      "14510"
+    ],
+    "agency": "SF",
+    "routes": [
+      "K",
+      "L",
+      "M",
+      "N"
+    ],
+    "lat": 37.790615,
+    "lng": -122.38976650000001,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-14517-14518",
+    "name": "The Embarcadero & Green St",
+    "stops": [
+      "14517",
+      "14518"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.8009345,
+    "lng": -122.3991445,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-14515-14516",
+    "name": "The Embarcadero & Greenwich St",
+    "stops": [
+      "14515",
+      "14516"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.8031115,
+    "lng": -122.401071,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-14529",
+    "name": "The Embarcadero & Sansome St",
+    "stops": [
+      "14529"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.805022,
+    "lng": -122.403314,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-14530",
+    "name": "The Embarcadero & Stockton St",
+    "stops": [
+      "14530"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.808351,
+    "lng": -122.410287,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-14532-14534",
+    "name": "The Embarcadero & Washington St",
+    "stops": [
+      "14532",
+      "14534"
+    ],
+    "agency": "SF",
+    "routes": [
+      "F"
+    ],
+    "lat": 37.79672,
+    "lng": -122.39542549999999,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17355-17362",
+    "name": "Third Street & 20th St",
+    "stops": [
+      "17355",
+      "17362"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.760442499999996,
+    "lng": -122.3885755,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17354-17363",
+    "name": "Third Street & 23rd St",
+    "stops": [
+      "17354",
+      "17363"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.7553385,
+    "lng": -122.388024,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17343-17344",
+    "name": "Third Street & Carroll Ave",
+    "stops": [
+      "17343",
+      "17344"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.725365999999994,
+    "lng": -122.394308,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17352-17365",
+    "name": "Third Street & Evans Ave",
+    "stops": [
+      "17352",
+      "17365"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.7427265,
+    "lng": -122.387977,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17394-17400",
+    "name": "Third Street & Le Conte Ave",
+    "stops": [
+      "17394",
+      "17400"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.7187245,
+    "lng": -122.3975825,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17353-17364",
+    "name": "Third Street & Marin St",
+    "stops": [
+      "17353",
+      "17364"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.749048,
+    "lng": -122.387485,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17358-17359",
+    "name": "Third Street & Mission Rock St",
+    "stops": [
+      "17358",
+      "17359"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.772908,
+    "lng": -122.3897,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17345-17346",
+    "name": "Third Street & Williams Ave",
+    "stops": [
+      "17345",
+      "17346"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.729251000000005,
+    "lng": -122.392644,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17342-17347",
+    "name": "Third Street/Gilman/Paul",
+    "stops": [
+      "17342",
+      "17347"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.722324,
+    "lng": -122.395696,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17390-17404",
+    "name": "Third Street/Hudson/Innes",
+    "stops": [
+      "17390",
+      "17404"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.739925,
+    "lng": -122.388907,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17391-17403",
+    "name": "Third Street/Kirkwood/La Salle",
+    "stops": [
+      "17391",
+      "17403"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.7376455,
+    "lng": -122.389711,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17392-17402",
+    "name": "Third Street/Oakdale/Palou",
+    "stops": [
+      "17392",
+      "17402"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.734353999999996,
+    "lng": -122.39086449999999,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17393-17401",
+    "name": "Third Street/Revere/Shafter",
+    "stops": [
+      "17393",
+      "17401"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.7322755,
+    "lng": -122.3915535,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17357",
+    "name": "Ucsf / Chase Center (16th St)",
+    "stops": [
+      "17357"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.768504,
+    "lng": -122.389182,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17360",
+    "name": "Ucsf / Chase Center (16th Street)",
+    "stops": [
+      "17360"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.768237,
+    "lng": -122.389366,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17356-17361",
+    "name": "Ucsf Medical Center (Mariposa)",
+    "stops": [
+      "17356",
+      "17361"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.764315,
+    "lng": -122.388859,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-18136-18137",
+    "name": "Ulloa St & 14th Ave",
+    "stops": [
+      "18136",
+      "18137"
+    ],
+    "agency": "SF",
+    "routes": [
+      "L"
+    ],
+    "lat": 37.741428,
+    "lng": -122.47009,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16738",
+    "name": "Ulloa St & Lenox Way",
+    "stops": [
+      "16738"
+    ],
+    "agency": "SF",
+    "routes": [
+      "L",
+      "M"
+    ],
+    "lat": 37.741125,
+    "lng": -122.466155,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16744",
+    "name": "Ulloa St & West Portal Ave",
+    "stops": [
+      "16744"
+    ],
+    "agency": "SF",
+    "routes": [
+      "L",
+      "M"
+    ],
+    "lat": 37.741009,
+    "lng": -122.466167,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17877",
+    "name": "Union Square/Market St Station Northbound",
+    "stops": [
+      "17877"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.787151,
+    "lng": -122.406477,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17874",
+    "name": "Union Square/Market St Station Southbound",
+    "stops": [
+      "17874"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.787133,
+    "lng": -122.406523,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-metro-van-ness",
+    "name": "Van Ness",
+    "stops": [
+      "15419"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J",
+      "K",
+      "L",
+      "M",
+      "N"
+    ],
+    "lat": 37.775127,
+    "lng": -122.419252,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16996",
+    "name": "Van Ness Station Outbound",
+    "stops": [
+      "16996"
+    ],
+    "agency": "SF",
+    "routes": [
+      "J",
+      "K",
+      "L",
+      "M",
+      "N"
+    ],
+    "lat": 37.775234,
+    "lng": -122.41934,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16920",
+    "name": "Washington St & Jones St",
+    "stops": [
+      "16920"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH"
+    ],
+    "lat": 37.794042,
+    "lng": -122.414693,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16922",
+    "name": "Washington St & Leavenworth St",
+    "stops": [
+      "16922"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH"
+    ],
+    "lat": 37.793828,
+    "lng": -122.416287,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16924-16925",
+    "name": "Washington St & Mason St",
+    "stops": [
+      "16924",
+      "16925"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH",
+      "PM"
+    ],
+    "lat": 37.794486,
+    "lng": -122.4114445,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16927",
+    "name": "Washington St & Powell St",
+    "stops": [
+      "16927"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH",
+      "PM"
+    ],
+    "lat": 37.794629,
+    "lng": -122.410038,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16929",
+    "name": "Washington St & Taylor St",
+    "stops": [
+      "16929"
+    ],
+    "agency": "SF",
+    "routes": [
+      "PH"
+    ],
+    "lat": 37.794255,
+    "lng": -122.413008,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16932",
+    "name": "Wawona/46th Ave /Sf Zoo",
+    "stops": [
+      "16932"
+    ],
+    "agency": "SF",
+    "routes": [
+      "L"
+    ],
+    "lat": 37.736125,
+    "lng": -122.504351,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16898-17125",
+    "name": "West Portal Ave & 14th Ave",
+    "stops": [
+      "16898",
+      "17125"
+    ],
+    "agency": "SF",
+    "routes": [
+      "K",
+      "M"
+    ],
+    "lat": 37.7379615,
+    "lng": -122.469013,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16739-16740",
+    "name": "West Portal Station",
+    "stops": [
+      "16739",
+      "16740"
+    ],
+    "agency": "SF",
+    "routes": [
+      "K",
+      "L",
+      "M"
+    ],
+    "lat": 37.7414545,
+    "lng": -122.465373,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-16503-17109",
+    "name": "West Portal/Sloat/St Francis Circle",
+    "stops": [
+      "16503",
+      "17109"
+    ],
+    "agency": "SF",
+    "routes": [
+      "K",
+      "M"
+    ],
+    "lat": 37.734816,
+    "lng": -122.471532,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17878",
+    "name": "Yerba Buena/Moscone Station Northbound",
+    "stops": [
+      "17878"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.782358,
+    "lng": -122.401551,
+    "north": "Outbound",
+    "south": "Inbound"
+  },
+  {
+    "id": "muni-17873",
+    "name": "Yerba Buena/Moscone Station Southbound",
+    "stops": [
+      "17873"
+    ],
+    "agency": "SF",
+    "routes": [
+      "T"
+    ],
+    "lat": 37.78238,
+    "lng": -122.40173,
+    "north": "Outbound",
+    "south": "Inbound"
+  }
+]

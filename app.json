@@ -1,0 +1,20 @@
+{
+  "package_id": "com.glasstransit.app",
+  "edition": "202601",
+  "name": "Glass Transit",
+  "version": "0.1.0",
+  "min_app_version": "0.1.0",
+  "min_sdk_version": "0.0.9",
+  "tagline": "Bay Area transit departures on your glasses",
+  "description": "Real-time BART and Muni departure times on Even Realities G2 smart glasses. Scroll between saved stations, see upcoming trains in both directions, and never miss your ride.",
+  "author": "Glass Transit",
+  "entrypoint": "index.html",
+  "permissions": [
+    {
+      "name": "network",
+      "desc": "Access transit data proxy to fetch real-time BART and Muni departure times",
+      "whitelist": ["*"]
+    }
+  ],
+  "supported_languages": ["en"]
+}

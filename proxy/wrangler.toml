@@ -1,0 +1,6 @@
+name = "glass-transit-proxy"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+
+# Set the API key as a secret (not committed):
+#   wrangler secret put API_511_KEY
