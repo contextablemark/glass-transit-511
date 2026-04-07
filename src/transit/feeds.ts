@@ -26,10 +26,15 @@ function displayRoute(routeId: string): string {
 
 /**
  * Get terminal name for a route from GTFS static data.
- * Falls back to display route name if no terminal defined.
+ * Tries "route_id:direction_id" first (Muni), then "route_id" (BART).
+ * Falls back to display route name.
  */
-function getTerminal(routeId: string): string {
-  return terminals[routeId] || displayRoute(routeId)
+function getTerminal(routeId: string, directionId: number): string {
+  return (
+    terminals[`${routeId}:${directionId}`] ||
+    terminals[routeId] ||
+    displayRoute(routeId)
+  )
 }
 
 type FeedEntity = GtfsRealtimeBindings.transit_realtime.IFeedEntity
@@ -76,7 +81,8 @@ export function extractArrivals(
     if (!tu?.trip || !tu.stopTimeUpdate) continue
 
     const routeId = (tu.trip.routeId as string) || ''
-    const terminal = getTerminal(routeId)
+    const directionId = tu.trip.directionId ?? 0
+    const terminal = getTerminal(routeId, directionId as number)
 
     for (const stu of tu.stopTimeUpdate) {
       const fullStopId = stu.stopId as string

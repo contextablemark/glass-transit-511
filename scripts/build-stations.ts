@@ -95,17 +95,86 @@ function buildStopRoutes(tripsText: string, stopTimesText: string): Map<string, 
 
 // ── Build route → terminal mapping ──
 
-function buildRouteTerminals(routesText: string): Record<string, string> {
+/**
+ * Build route terminal mapping.
+ * For BART: uses "X to Y" from route_long_name (keyed by route_id like "Red-N").
+ * For Muni: derives terminal from the most common last stop per route+direction
+ * (keyed as "route_id:direction_id" like "N:0").
+ */
+function buildRouteTerminals(
+  routesText: string,
+  tripsText: string,
+  stopTimesText: string,
+  stopsText: string
+): Record<string, string> {
   const terminals: Record<string, string> = {}
+
+  // 1. Try "X to Y" from route_long_name (works for BART)
   for (const r of parseCsv(routesText)) {
     const name = r.route_long_name || ''
     const parts = name.split(/\s+to\s+/i)
     if (parts.length === 2) {
       terminals[r.route_id] = parts[1].trim()
-    } else if (r.route_short_name) {
-      terminals[r.route_id] = r.route_short_name
     }
   }
+
+  // 2. For routes without "X to Y", derive from trip stop sequences
+  const stopNames = new Map<string, string>()
+  for (const s of parseCsv(stopsText)) {
+    stopNames.set(s.stop_id, s.stop_name)
+  }
+
+  const trips = parseCsv(tripsText)
+  const tripInfo = new Map<string, { routeId: string; directionId: string }>()
+  for (const t of trips) {
+    tripInfo.set(t.trip_id, { routeId: t.route_id, directionId: t.direction_id })
+  }
+
+  // Build trip → last stop
+  const tripStops = new Map<string, Array<[number, string]>>()
+  for (const st of parseCsv(stopTimesText)) {
+    const arr = tripStops.get(st.trip_id) || []
+    arr.push([parseInt(st.stop_sequence), st.stop_id])
+    tripStops.set(st.trip_id, arr)
+  }
+
+  // Count terminal frequency per route:direction
+  const terminalCounts = new Map<string, Map<string, number>>()
+  for (const [tripId, seqs] of tripStops) {
+    const info = tripInfo.get(tripId)
+    if (!info) continue
+    seqs.sort((a, b) => a[0] - b[0])
+    const lastStopId = seqs[seqs.length - 1][1]
+    const lastStopName = stopNames.get(lastStopId) || lastStopId
+    // Clean up Muni stop names
+    const cleanName = lastStopName
+      .replace(/\s*BART\/.*$/, '')
+      .replace(/^Metro\s+/, '')
+      .replace(/\s+Station.*$/, '')
+      .trim()
+
+    const key = `${info.routeId}:${info.directionId}`
+    if (terminals[info.routeId]) continue // already have from route_long_name
+
+    const counts = terminalCounts.get(key) || new Map()
+    counts.set(cleanName, (counts.get(cleanName) || 0) + 1)
+    terminalCounts.set(key, counts)
+  }
+
+  // Pick most common terminal for each route:direction
+  for (const [key, counts] of terminalCounts) {
+    if (terminals[key]) continue
+    let best = ''
+    let bestCount = 0
+    for (const [name, count] of counts) {
+      if (count > bestCount) {
+        best = name
+        bestCount = count
+      }
+    }
+    if (best) terminals[key] = best
+  }
+
   return terminals
 }
 
@@ -117,7 +186,12 @@ function buildBartStations(files: Map<string, string>): {
 } {
   const stops = parseCsv(files.get('stops.txt')!)
   const stopRoutes = buildStopRoutes(files.get('trips.txt')!, files.get('stop_times.txt')!)
-  const routeTerminals = buildRouteTerminals(files.get('routes.txt')!)
+  const routeTerminals = buildRouteTerminals(
+    files.get('routes.txt')!,
+    files.get('trips.txt')!,
+    files.get('stop_times.txt')!,
+    files.get('stops.txt')!
+  )
 
   const parents = stops.filter((s) => s.location_type === '1')
   const childByParent = new Map<string, string[]>()
@@ -194,7 +268,12 @@ function buildMuniStations(files: Map<string, string>): {
 } {
   const stops = parseCsv(files.get('stops.txt')!)
   const stopRoutes = buildStopRoutes(files.get('trips.txt')!, files.get('stop_times.txt')!)
-  const routeTerminals = buildRouteTerminals(files.get('routes.txt')!)
+  const routeTerminals = buildRouteTerminals(
+    files.get('routes.txt')!,
+    files.get('trips.txt')!,
+    files.get('stop_times.txt')!,
+    files.get('stops.txt')!
+  )
 
   const RAIL_ROUTES = new Set(['N', 'J', 'K', 'L', 'M', 'T', 'F', 'CA', 'PH', 'PM'])
 
