@@ -96,8 +96,57 @@ function transitProxy(): Plugin {
   }
 }
 
+/**
+ * Vite plugin: BART API logging proxy for dev mode.
+ *
+ * Routes /bart-api/* to api.bart.gov so requests appear in the terminal.
+ * The client fetches /bart-api/... instead of api.bart.gov directly in dev mode.
+ */
+function bartProxy(): Plugin {
+  return {
+    name: 'bart-proxy',
+    configureServer(server) {
+      server.middlewares.use('/bart-api', async (req, res) => {
+        const upstream = `https://api.bart.gov/api${req.url}`
+
+        console.log(`[bart-api] GET → ${req.url}`)
+
+        try {
+          const resp = await fetch(upstream)
+          const text = await resp.text()
+
+          // Parse to count arrivals for logging
+          try {
+            const data = JSON.parse(text)
+            const etds = data?.root?.station?.[0]?.etd || []
+            const total = etds.reduce(
+              (n: number, e: any) => n + (e.estimate?.length || 0), 0
+            )
+            console.log(`[bart-api] ← ${resp.status} (${total} arrivals)`)
+          } catch {
+            console.log(`[bart-api] ← ${resp.status} (${text.length} bytes)`)
+          }
+
+          res.writeHead(resp.status, {
+            'Content-Type': resp.headers.get('content-type') || 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          })
+          res.end(text)
+        } catch (err) {
+          console.error('[bart-api] Upstream error:', err)
+          res.writeHead(502, { 'Content-Type': 'application/json' })
+          res.end(JSON.stringify({
+            error: 'Proxy error',
+            message: err instanceof Error ? err.message : String(err),
+          }))
+        }
+      })
+    },
+  }
+}
+
 export default defineConfig({
-  plugins: [react(), tailwindcss(), transitProxy()],
+  plugins: [react(), tailwindcss(), transitProxy(), bartProxy()],
   server: {
     host: true,
     port: 5174,

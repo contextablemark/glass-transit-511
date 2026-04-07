@@ -47,17 +47,14 @@ export async function fetchBartArrivals(
 
   const key = settings.bartApiKey
   if (!key) return null
-  const url = `https://api.bart.gov/api/etd.aspx?cmd=etd&orig=${station.bartAbbr}&key=${key}&json=y`
+  // In dev mode, route through Vite proxy for server-side logging
+  const url = import.meta.env.DEV
+    ? `/bart-api/etd.aspx?cmd=etd&orig=${station.bartAbbr}&key=${key}&json=y`
+    : `https://api.bart.gov/api/etd.aspx?cmd=etd&orig=${station.bartAbbr}&key=${key}&json=y`
 
   try {
-    if (import.meta.env.DEV) {
-      console.log(`[bart-api] GET ${station.bartAbbr}`)
-    }
     const resp = await fetch(url)
-    if (!resp.ok) {
-      if (import.meta.env.DEV) console.warn(`[bart-api] ${resp.status} for ${station.bartAbbr}`)
-      return null
-    }
+    if (!resp.ok) return null
     const data: BartEtdResponse = await resp.json()
 
     const stationData = data.root?.station?.[0]
@@ -101,11 +98,6 @@ export async function fetchBartArrivals(
       p.sort((a, b) => a.minutesAway - b.minutesAway)
     }
 
-    if (import.meta.env.DEV) {
-      const total = platforms.reduce((n, p) => n + p.length, 0)
-      console.log(`[bart-api] ← ${station.bartAbbr}: ${total} arrivals`)
-    }
-
     return {
       stationId: station.id,
       platforms,
@@ -113,7 +105,7 @@ export async function fetchBartArrivals(
       source: 'bart-api',
     }
   } catch (err) {
-    if (import.meta.env.DEV) console.warn('[bart-api] fetch failed:', err)
+    console.warn('[bart-api] fetch failed:', err)
     return null
   }
 }
