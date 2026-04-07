@@ -1,4 +1,4 @@
-# Glass Transit Proxy
+# Glass Transit 511 Proxy
 
 Cloudflare Worker that proxies requests to the 511.org transit API. Handles CORS and keeps the API key server-side.
 

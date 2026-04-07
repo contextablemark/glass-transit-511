@@ -1,24 +1,25 @@
 /**
- * Station search component — fuzzy search over bundled station data.
- * Debounced input with search results and add buttons.
+ * Station search — fuzzy search over bundled station data.
+ * Adding a station creates both direction entries by default.
  */
 
 import { useState, useRef, useCallback } from 'react'
 import { searchStations } from './search'
-import type { Station } from '../types'
+import type { Station, FavoriteEntry } from '../types'
+import { uniqueStationIds } from '../lib/storage'
 
 interface Props {
-  favoriteIds: string[]
-  onAdd: (id: string) => void
+  favorites: FavoriteEntry[]
+  onAdd: (stationId: string) => void
 }
 
 const DEBOUNCE_MS = 200
 
-export function StationSearch({ favoriteIds, onAdd }: Props) {
+export function StationSearch({ favorites, onAdd }: Props) {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<Station[]>([])
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const favSet = new Set(favoriteIds)
+  const savedIds = new Set(uniqueStationIds(favorites))
 
   const handleInput = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,7 +86,7 @@ export function StationSearch({ favoriteIds, onAdd }: Props) {
                   {station.routes.join(', ')}
                 </div>
               </div>
-              {favSet.has(station.id) ? (
+              {savedIds.has(station.id) ? (
                 <span style={{ color: '#666', fontSize: '1.2rem' }}>
                   &#x2713;
                 </span>

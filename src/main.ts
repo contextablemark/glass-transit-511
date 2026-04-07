@@ -1,5 +1,5 @@
 /**
- * Glass Transit — main entry point.
+ * Glass Transit 511 — main entry point.
  *
  * Dual-mode bootstrap (same pattern as SubwayLens):
  * - Phone screen: settings page (React) — always shown

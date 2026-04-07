@@ -1,12 +1,12 @@
 /**
- * Station manager — manages the active station list (favorites)
+ * Station manager — manages per-direction favorite pages
  * and coordinates feed fetching + arrival extraction.
  *
- * Adapted from SubwayLens stations.ts — simplified (no GPS nearby).
+ * Each page = one station + one direction (N or S).
  */
 
 import stationsData from '../data/stations.json'
-import type { Station, StationArrivals, Settings } from '../types'
+import type { Station, StationArrivals, Settings, FavoriteEntry } from '../types'
 import { getFavorites } from '../lib/storage'
 import { fetchAllFeeds, getStationArrivals } from '../transit/feeds'
 import { getCached, setCached } from '../transit/cache'
@@ -19,115 +19,115 @@ type FeedEntity = GtfsRealtimeBindings.transit_realtime.IFeedEntity
 const allStations = stationsData as Station[]
 const stationById = new Map(allStations.map((s) => [s.id, s]))
 
+export interface Page {
+  station: Station
+  direction: 'N' | 'S'
+}
+
 interface StationManagerState {
-  stations: Station[]
+  pages: Page[]
   currentIndex: number
   feedMap: Map<string, FeedEntity[]>
 }
 
 const state: StationManagerState = {
-  stations: [],
+  pages: [],
   currentIndex: 0,
   feedMap: new Map(),
 }
 
-/** Load stations from storage (favorites only). */
+/** Load pages from storage (per-direction favorites). */
 export async function loadStations(): Promise<void> {
-  const favIds = await getFavorites()
-  const favStations: Station[] = []
-  for (const id of favIds) {
-    const s = stationById.get(id)
-    if (s) favStations.push(s)
+  const favs = await getFavorites()
+  const pages: Page[] = []
+  for (const fav of favs) {
+    const station = stationById.get(fav.stationId)
+    if (station) {
+      pages.push({ station, direction: fav.direction })
+    }
   }
-  state.stations = favStations
+  state.pages = pages
 
-  // Clamp index
-  if (state.currentIndex >= state.stations.length) {
-    state.currentIndex = Math.max(0, state.stations.length - 1)
+  if (state.currentIndex >= state.pages.length) {
+    state.currentIndex = Math.max(0, state.pages.length - 1)
   }
 }
 
-/** Get current station or null if none. */
-export function currentStation(): Station | null {
-  return state.stations[state.currentIndex] ?? null
+/** Get current page or null if none. */
+export function currentPage(): Page | null {
+  return state.pages[state.currentIndex] ?? null
 }
 
-/** Navigate to next station (wraps). */
-export function nextStation(): void {
-  if (state.stations.length === 0) return
+/** Navigate to next page (wraps). */
+export function nextPage(): void {
+  if (state.pages.length === 0) return
+  state.currentIndex = (state.currentIndex + 1) % state.pages.length
+}
+
+/** Navigate to previous page (wraps). */
+export function prevPage(): void {
+  if (state.pages.length === 0) return
   state.currentIndex =
-    (state.currentIndex + 1) % state.stations.length
+    (state.currentIndex - 1 + state.pages.length) % state.pages.length
 }
 
-/** Navigate to previous station (wraps). */
-export function prevStation(): void {
-  if (state.stations.length === 0) return
-  state.currentIndex =
-    (state.currentIndex - 1 + state.stations.length) % state.stations.length
-}
-
-/** Check if a station is in the favorites list. */
-export function isFavorite(stationId: string): boolean {
-  return state.stations.some((s) => s.id === stationId)
-}
-
-/** Get current state (for display rendering). */
+/** Get current state for display rendering. */
 export function getState(): {
-  stations: Station[]
+  pages: Page[]
   currentIndex: number
 } {
-  return { stations: state.stations, currentIndex: state.currentIndex }
+  return { pages: state.pages, currentIndex: state.currentIndex }
 }
 
 /**
- * Refresh arrivals for the current station.
- * Fetches feeds for agencies that need refreshing, caches results.
+ * Refresh arrivals for the current page's station.
+ * Returns the full StationArrivals (both directions cached),
+ * caller picks the relevant direction.
  */
 export async function refreshCurrentArrivals(
   settings: Settings
 ): Promise<StationArrivals | null> {
-  const station = currentStation()
-  if (!station) return null
+  const page = currentPage()
+  if (!page) return null
 
   const maxAgeMs = settings.refreshInterval * 1000
 
-  // Check if we have fresh cached data
-  const cached = getCached(station.agency, maxAgeMs)
+  // Check fresh cache
+  const cached = getCached(page.station.agency, maxAgeMs)
   if (cached) {
-    state.feedMap.set(station.agency, cached)
-    return getStationArrivals(station, state.feedMap)
+    state.feedMap.set(page.station.agency, cached)
+    return getStationArrivals(page.station, state.feedMap)
   }
 
-  // Need to fetch — check rate limit
   if (!canFetch()) {
-    console.warn('Rate limit reached, using stale cache if available')
-    const stale = getCached(station.agency, Infinity)
+    const stale = getCached(page.station.agency, Infinity)
     if (stale) {
-      state.feedMap.set(station.agency, stale)
-      return getStationArrivals(station, state.feedMap)
+      state.feedMap.set(page.station.agency, stale)
+      return getStationArrivals(page.station, state.feedMap)
     }
     return {
-      stationId: station.id,
+      stationId: page.station.id,
       north: [],
       south: [],
       fetchedAt: Math.floor(Date.now() / 1000),
     }
   }
 
-  // Fetch feeds for all agencies that have saved stations
-  const agencies = agenciesForStations(state.stations)
+  // Collect all unique stations across pages for fetching
+  const uniqueStations = [
+    ...new Map(state.pages.map((p) => [p.station.id, p.station])).values(),
+  ]
+  const agencies = agenciesForStations(uniqueStations)
   const staleAgencies = agencies.filter((a) => !getCached(a, maxAgeMs))
 
-  for (const agency of staleAgencies) {
+  for (const _agency of staleAgencies) {
     recordRequest()
   }
 
   try {
     const freshFeeds = await fetchAllFeeds(
       settings,
-      state.stations.filter((s) =>
-        staleAgencies.includes(s.agency)
-      )
+      uniqueStations.filter((s) => staleAgencies.includes(s.agency))
     )
 
     for (const [agency, entities] of freshFeeds) {
@@ -138,5 +138,5 @@ export async function refreshCurrentArrivals(
     console.error('Feed fetch failed:', err)
   }
 
-  return getStationArrivals(station, state.feedMap)
+  return getStationArrivals(page.station, state.feedMap)
 }

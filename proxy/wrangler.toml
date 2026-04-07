@@ -1,4 +1,4 @@
-name = "glass-transit-proxy"
+name = "glass-transit-511-proxy"
 main = "src/index.ts"
 compatibility_date = "2025-01-01"
 

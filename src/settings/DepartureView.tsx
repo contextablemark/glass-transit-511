@@ -5,9 +5,9 @@
  */
 
 import { useState, useEffect, useRef } from 'react'
-import type { Station, StationArrivals, Settings } from '../types'
+import type { Station, StationArrivals, FavoriteEntry } from '../types'
 import { getStation } from './search'
-import { getSettings } from '../lib/storage'
+import { getSettings, uniqueStationIds } from '../lib/storage'
 import { buildFetchOptions, agenciesForStations } from '../data/feed-urls'
 import { extractArrivals } from '../transit/feeds'
 import { minutesUntil, isArrivingSoon } from '../lib/time'
@@ -16,10 +16,10 @@ import GtfsRealtimeBindings from 'gtfs-realtime-bindings'
 type FeedEntity = GtfsRealtimeBindings.transit_realtime.IFeedEntity
 
 interface Props {
-  favoriteIds: string[]
+  favorites: FavoriteEntry[]
 }
 
-export function DepartureView({ favoriteIds }: Props) {
+export function DepartureView({ favorites }: Props) {
   const [arrivals, setArrivals] = useState<
     Map<string, StationArrivals>
   >(new Map())
@@ -27,7 +27,8 @@ export function DepartureView({ favoriteIds }: Props) {
   const [error, setError] = useState<string>('')
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  const stations = favoriteIds
+  const stationIds = uniqueStationIds(favorites)
+  const stations = stationIds
     .map((id) => getStation(id))
     .filter((s): s is Station => !!s)
 
@@ -83,7 +84,7 @@ export function DepartureView({ favoriteIds }: Props) {
       if (timerRef.current) clearInterval(timerRef.current)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [favoriteIds.join(',')])
+  }, [favorites.map((f) => `${f.stationId}:${f.direction}`).join(',')])
 
   if (stations.length === 0) return null
 

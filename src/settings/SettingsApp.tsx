@@ -1,18 +1,19 @@
 /**
  * Root React component for the phone settings page.
- * Sections: My Stations, Add Station (search), Settings.
+ * Sections: Departures, My Stations, Add Station, Settings.
  */
 
 import { useState, useEffect, useCallback } from 'react'
 import {
   getFavorites,
   saveFavorites,
-  addFavorite,
+  addStation,
+  removeStation,
   removeFavorite,
   getSettings,
   saveSettings,
 } from '../lib/storage'
-import type { Settings } from '../types'
+import type { Settings, FavoriteEntry } from '../types'
 import { DEFAULT_SETTINGS } from '../types'
 import { FavoritesList } from './FavoritesList'
 import { StationSearch } from './StationSearch'
@@ -34,7 +35,7 @@ function SectionLabel({ children }: { children: string }) {
 }
 
 export function SettingsApp() {
-  const [favoriteIds, setFavoriteIds] = useState<string[]>([])
+  const [favorites, setFavorites] = useState<FavoriteEntry[]>([])
   const [settings, setSettings] = useState<Settings>({ ...DEFAULT_SETTINGS })
   const [loading, setLoading] = useState(true)
   const [toastMsg, setToastMsg] = useState('')
@@ -42,26 +43,49 @@ export function SettingsApp() {
   useEffect(() => {
     async function load() {
       const [favs, s] = await Promise.all([getFavorites(), getSettings()])
-      setFavoriteIds(favs)
+      setFavorites(favs)
       setSettings(s)
       setLoading(false)
     }
     load()
   }, [])
 
-  const handleReorder = useCallback(async (ids: string[]) => {
-    setFavoriteIds(ids)
-    await saveFavorites(ids)
+  const handleReorder = useCallback(async (entries: FavoriteEntry[]) => {
+    setFavorites(entries)
+    await saveFavorites(entries)
   }, [])
 
-  const handleRemove = useCallback(async (id: string) => {
-    const next = await removeFavorite(id)
-    setFavoriteIds(next)
+  const handleRemoveDirection = useCallback(async (
+    stationId: string,
+    direction: 'N' | 'S'
+  ) => {
+    const next = await removeFavorite(stationId, direction)
+    setFavorites(next)
   }, [])
 
-  const handleAdd = useCallback(async (id: string) => {
-    const next = await addFavorite(id)
-    setFavoriteIds(next)
+  const handleRemoveStation = useCallback(async (stationId: string) => {
+    const next = await removeStation(stationId)
+    setFavorites(next)
+  }, [])
+
+  const handleAddStation = useCallback(async (stationId: string) => {
+    const next = await addStation(stationId)
+    setFavorites(next)
+  }, [])
+
+  const handleAddDirection = useCallback(async (
+    stationId: string,
+    direction: 'N' | 'S'
+  ) => {
+    const favs = await getFavorites()
+    const exists = favs.some(
+      (f) => f.stationId === stationId && f.direction === direction
+    )
+    if (!exists) {
+      favs.push({ stationId, direction })
+      await saveFavorites(favs)
+      setFavorites(favs)
+    }
   }, [])
 
   const handleSettingsChange = useCallback(async (next: Settings) => {
@@ -85,45 +109,41 @@ export function SettingsApp() {
 
   return (
     <div style={{ paddingBottom: '5rem' }}>
-      {/* Header */}
       <div style={{ marginBottom: '0.5rem' }}>
-        <h1 style={{ fontSize: '1.5rem', margin: 0 }}>Glass Transit</h1>
+        <h1 style={{ fontSize: '1.5rem', margin: 0 }}>Glass Transit 511</h1>
         <p style={{ color: '#999', margin: '0.25rem 0 0', fontSize: '0.875rem' }}>
           BART &amp; Muni departures for G2
         </p>
       </div>
 
-      {/* Departures */}
-      {favoriteIds.length > 0 && (
+      {favorites.length > 0 && (
         <>
           <SectionLabel>Departures</SectionLabel>
-          <DepartureView favoriteIds={favoriteIds} />
+          <DepartureView favorites={favorites} />
         </>
       )}
 
-      {/* My Stations */}
       <SectionLabel>My Stations</SectionLabel>
       <FavoritesList
-        favoriteIds={favoriteIds}
+        favorites={favorites}
         onReorder={handleReorder}
-        onRemove={handleRemove}
+        onRemoveDirection={handleRemoveDirection}
+        onAddDirection={handleAddDirection}
+        onRemoveStation={handleRemoveStation}
       />
 
-      {/* Add Station */}
       <SectionLabel>Add Station</SectionLabel>
       <StationSearch
-        favoriteIds={favoriteIds}
-        onAdd={handleAdd}
+        favorites={favorites}
+        onAdd={handleAddStation}
       />
 
-      {/* Settings */}
       <SectionLabel>Settings</SectionLabel>
       <SettingsPanel
         settings={settings}
         onChange={handleSettingsChange}
       />
 
-      {/* Send to Glasses */}
       <div style={{
         position: 'fixed',
         bottom: 0,
@@ -151,7 +171,6 @@ export function SettingsApp() {
         </button>
       </div>
 
-      {/* Toast */}
       {toastMsg && (
         <div style={{
           position: 'fixed',
@@ -175,7 +194,7 @@ export function SettingsApp() {
         fontSize: '0.7rem',
         marginTop: '2rem',
       }}>
-        v0.1.0 &middot; Changes auto-save
+        v0.2.0 &middot; Changes auto-save
       </p>
     </div>
   )

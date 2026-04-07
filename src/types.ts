@@ -28,6 +28,12 @@ export interface StationArrivals {
   fetchedAt: number      // Unix timestamp (seconds)
 }
 
+/** A favorited station direction — each becomes one page on glasses */
+export interface FavoriteEntry {
+  stationId: string
+  direction: 'N' | 'S'
+}
+
 /** User settings */
 export interface Settings {
   proxyBaseUrl: string   // transit proxy URL (empty = relative, for dev)

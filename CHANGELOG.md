@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.2.0] - 2026-04-07
+
+### Changed
+
+- **Renamed** from "Glass Transit" to "Glass Transit 511" (repo: glass-transit-511)
+- **Per-direction favorites**: Each direction is now its own glasses page. Adding a station favorites both directions by default; each can be toggled independently on the phone UI. This gives more room per page (6 trains vs 3) and eliminates the direction separator.
+- **Single-direction glasses pages**: Each page shows one direction with up to 6 trains, direction arrow in header, and compact progress bar
+- **Compact progress bar**: Fixed progress bar to fit on one line (was wrapping to two)
+
+### Added
+
+- Phone departure view: live departures for all saved stations with auto-refresh
+- Per-direction toggle buttons in favorites list (★/☆ per direction)
+- Diagnostic logging in Vite transit proxy (key load status, request/response)
+- Old favorites format auto-migration (string[] → FavoriteEntry[])
+
+### Fixed
+
+- Favorites not persisting across refreshes in Even App WebView (storage timing)
+- CORS OPTIONS handler ordering in Vite proxy (was unreachable)
+
 ## [0.1.0] - 2026-04-07
 
 ### Added
