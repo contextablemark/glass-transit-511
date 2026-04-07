@@ -1,11 +1,14 @@
 /**
- * Station manager — manages per-platform favorite pages
- * and coordinates feed fetching + arrival extraction.
+ * Station manager — manages per-platform favorite pages.
+ *
+ * For BART stations: tries legacy API first (richer data), falls back to GTFS-RT.
+ * For Muni stations: uses GTFS-RT via proxy.
  */
 
 import stationsData from '../data/stations.json'
 import type { Station, StationArrivals, Settings, FavoriteEntry } from '../types'
 import { getFavorites } from '../lib/storage'
+import { fetchBartArrivals } from '../transit/bart-api'
 import { fetchAllFeeds, getStationArrivals } from '../transit/feeds'
 import { getCached, setCached } from '../transit/cache'
 import { canFetch, recordRequest } from '../transit/rate-limiter'
@@ -19,7 +22,7 @@ const stationById = new Map(allStations.map((s) => [s.id, s]))
 
 export interface Page {
   station: Station
-  platform: number // index into station.platformLabels / arrivals.platforms
+  platform: number
 }
 
 interface StationManagerState {
@@ -68,32 +71,64 @@ export function getState() {
   return { pages: state.pages, currentIndex: state.currentIndex }
 }
 
-export async function refreshCurrentArrivals(
+/**
+ * Fetch arrivals for a BART station.
+ * Tries legacy API first, falls back to GTFS-RT if proxy is configured.
+ */
+async function fetchBartStation(
+  station: Station,
   settings: Settings
-): Promise<StationArrivals | null> {
-  const page = currentPage()
-  if (!page) return null
+): Promise<StationArrivals> {
+  // Try BART legacy API first
+  const bartResult = await fetchBartArrivals(station, settings)
+  if (bartResult && bartResult.platforms.some((p) => p.length > 0)) {
+    return bartResult
+  }
 
-  const maxAgeMs = settings.refreshInterval * 1000
-  const cached = getCached(page.station.agency, maxAgeMs)
+  // Fall back to GTFS-RT if proxy is configured
+  if (settings.proxyBaseUrl) {
+    return fetchViaGtfsRt(station, settings)
+  }
+
+  // No data available
+  return {
+    stationId: station.id,
+    platforms: station.platformLabels.map(() => []),
+    fetchedAt: Math.floor(Date.now() / 1000),
+    source: 'bart-api',
+  }
+}
+
+/**
+ * Fetch arrivals via GTFS-RT (for Muni, or BART fallback).
+ */
+async function fetchViaGtfsRt(
+  station: Station,
+  settings: Settings
+): Promise<StationArrivals> {
+  const maxAgeMs = settings.gtfsRefreshSec * 1000
+
+  const cached = getCached(station.agency, maxAgeMs)
   if (cached) {
-    state.feedMap.set(page.station.agency, cached)
-    return getStationArrivals(page.station, state.feedMap)
+    state.feedMap.set(station.agency, cached)
+    return getStationArrivals(station, state.feedMap)
   }
 
   if (!canFetch()) {
-    const stale = getCached(page.station.agency, Infinity)
+    const stale = getCached(station.agency, Infinity)
     if (stale) {
-      state.feedMap.set(page.station.agency, stale)
-      return getStationArrivals(page.station, state.feedMap)
+      state.feedMap.set(station.agency, stale)
+      return getStationArrivals(station, state.feedMap)
     }
     return {
-      stationId: page.station.id,
-      platforms: page.station.platformLabels.map(() => []),
+      stationId: station.id,
+      platforms: station.platformLabels.map(() => []),
       fetchedAt: Math.floor(Date.now() / 1000),
+      source: 'gtfs-rt',
     }
   }
 
+  // Fetch for all agencies that need it
   const uniqueStations = [
     ...new Map(state.pages.map((p) => [p.station.id, p.station])).values(),
   ]
@@ -111,8 +146,33 @@ export async function refreshCurrentArrivals(
       state.feedMap.set(agency, entities)
     }
   } catch (err) {
-    console.error('Feed fetch failed:', err)
+    console.error('GTFS-RT fetch failed:', err)
   }
 
-  return getStationArrivals(page.station, state.feedMap)
+  return getStationArrivals(station, state.feedMap)
+}
+
+/**
+ * Refresh arrivals for the current page.
+ */
+export async function refreshCurrentArrivals(
+  settings: Settings
+): Promise<StationArrivals | null> {
+  const page = currentPage()
+  if (!page) return null
+
+  if (page.station.agency === 'BA') {
+    return fetchBartStation(page.station, settings)
+  } else {
+    if (!settings.proxyBaseUrl && !settings.gtfsApiKey) {
+      // No GTFS-RT config — can't fetch Muni
+      return {
+        stationId: page.station.id,
+        platforms: page.station.platformLabels.map(() => []),
+        fetchedAt: Math.floor(Date.now() / 1000),
+        source: 'gtfs-rt',
+      }
+    }
+    return fetchViaGtfsRt(page.station, settings)
+  }
 }

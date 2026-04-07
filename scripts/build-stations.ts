@@ -24,6 +24,7 @@ interface Station {
   lng: number
   platformLabels: string[]
   platformMap: Record<string, number>
+  bartAbbr?: string
 }
 
 // ── CSV parser (minimal, no dependency) ──
@@ -241,6 +242,10 @@ function buildBartStations(files: Map<string, string>): {
     // Label platforms as "Platform 1" and "Platform 2"
     const platformLabels = ['Platform 1', 'Platform 2']
 
+    // Extract BART abbreviation from stop_url (e.g. "https://www.bart.gov/stations/mont" → "MONT")
+    const urlMatch = (p.stop_url || '').match(/\/stations\/(\w+)/)
+    const bartAbbr = urlMatch ? urlMatch[1].toUpperCase() : undefined
+
     stations.push({
       id: `bart-${p.stop_id}`,
       name: p.stop_name,
@@ -251,6 +256,7 @@ function buildBartStations(files: Map<string, string>): {
       lng: parseFloat(p.stop_lon),
       platformLabels,
       platformMap,
+      ...(bartAbbr ? { bartAbbr } : {}),
     })
   }
 

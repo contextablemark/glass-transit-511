@@ -1,34 +1,23 @@
 /**
  * GTFS-RT feed fetcher and protobuf decoder.
  *
- * Groups arrivals by platform stop_id (not direction_id) — at BART,
- * different routes at the same platform go the same geographic direction
- * despite having different direction_ids.
- *
- * Terminal names come from GTFS static route_long_name (not last stopTimeUpdate,
- * which may be incomplete).
+ * Used for Muni stations and as BART fallback when the legacy API is unavailable.
+ * Groups arrivals by platform stop_id (not direction_id).
+ * Terminal names come from GTFS static route_long_name.
  */
 
 import GtfsRealtimeBindings from 'gtfs-realtime-bindings'
 import { buildFetchOptions, agenciesForStations } from '../data/feed-urls'
 import routeTerminals from '../data/route-terminals.json'
 import type { Station, TrainArrival, StationArrivals, Settings } from '../types'
+import { minutesUntil } from '../lib/time'
 
 const terminals = routeTerminals as Record<string, string>
 
-/**
- * Strip BART direction suffix from route_id for display.
- * "Red-N" → "Red", "Blue-S" → "Blue". Muni routes pass through unchanged.
- */
 function displayRoute(routeId: string): string {
   return routeId.replace(/-[NS]$/, '')
 }
 
-/**
- * Get terminal name for a route from GTFS static data.
- * Tries "route_id:direction_id" first (Muni), then "route_id" (BART).
- * Falls back to display route name.
- */
 function getTerminal(routeId: string, directionId: number): string {
   return (
     terminals[`${routeId}:${directionId}`] ||
@@ -39,9 +28,6 @@ function getTerminal(routeId: string, directionId: number): string {
 
 type FeedEntity = GtfsRealtimeBindings.transit_realtime.IFeedEntity
 
-/**
- * Fetch and decode a GTFS-RT feed from the transit proxy.
- */
 async function fetchFeed(
   settings: Settings,
   agency: string
@@ -63,9 +49,6 @@ async function fetchFeed(
 
 /**
  * Extract arrivals for a station, grouped by platform.
- *
- * Uses station.platformMap to assign each arrival to a platform index
- * based on which stop_id the train uses (not direction_id).
  */
 export function extractArrivals(
   station: Station,
@@ -99,23 +82,20 @@ export function extractArrivals(
           route: displayRoute(routeId),
           stopId: fullStopId,
           arrivalTime: arrTime,
+          minutesAway: minutesUntil(arrTime, now),
           terminal,
         })
       }
     }
   }
 
-  // Sort each platform by arrival time
   for (const p of platforms) {
     p.sort((a, b) => a.arrivalTime - b.arrivalTime)
   }
 
-  return { stationId: station.id, platforms, fetchedAt: now }
+  return { stationId: station.id, platforms, fetchedAt: now, source: 'gtfs-rt' }
 }
 
-/**
- * Fetch all feeds needed for a set of stations.
- */
 export async function fetchAllFeeds(
   settings: Settings,
   savedStations: Station[]
@@ -142,9 +122,6 @@ export async function fetchAllFeeds(
   return feedMap
 }
 
-/**
- * Get arrivals for a station from cached feed entities.
- */
 export function getStationArrivals(
   station: Station,
   feedMap: Map<string, FeedEntity[]>

@@ -2,12 +2,12 @@
  * Glasses display renderer.
  *
  * Each page shows ONE platform for one station.
- * Platforms are labeled "Platform 1"/"Platform 2" (BART)
- * or "Outbound"/"Inbound" (Muni).
+ * Format: "▶[Red] Richmond | 9    3m"
+ *          marker route terminal cars  time (right-padded)
  */
 
 import type { Station, TrainArrival } from '../types'
-import { formatArrival, isArrivingSoon } from '../lib/time'
+import { isArrivingSoon } from '../lib/time'
 
 const MAX_TRAINS = 6
 const CHARS_PER_LINE = 38
@@ -30,20 +30,41 @@ export function renderHeader(
   return name + suffix
 }
 
-function formatTrainLine(arrival: TrainArrival, now: number): string {
+/**
+ * Format a single train line.
+ * With cars:    "▶[Red] Richmond | 9    3m"
+ * Without cars: "▶[N] Ocean Beach        3m"
+ */
+function formatTrainLine(arrival: TrainArrival): string {
   const badge = `[${arrival.route}]`
-  const time = formatArrival(arrival.arrivalTime, now)
-  const terminal =
-    arrival.terminal.length > 19
-      ? arrival.terminal.slice(0, 18) + '.'
-      : arrival.terminal
+  const time = arrival.minutesAway === 0 ? 'now' : `${arrival.minutesAway}m`
+  // Pad time to 4 chars for alignment (e.g. " 3m", "now", "12m")
+  const timePadded = time.padStart(4)
 
-  const soon = isArrivingSoon(arrival.arrivalTime, now)
+  const soon = isArrivingSoon(arrival.arrivalTime)
   const marker = soon ? '\u25B6' : ' '
 
-  const left = `${marker}${badge} ${terminal}`
-  const gap = Math.max(1, CHARS_PER_LINE - left.length - time.length)
-  return left + ' '.repeat(gap) + time
+  let middle: string
+  if (arrival.cars) {
+    // Truncate terminal shorter to make room for " | N"
+    const maxTerm = CHARS_PER_LINE - marker.length - badge.length - 1 - 4 - timePadded.length - 1
+    // " | N" = 4 chars
+    const termLen = maxTerm - 4
+    const terminal = arrival.terminal.length > termLen
+      ? arrival.terminal.slice(0, termLen - 1) + '.'
+      : arrival.terminal
+    middle = `${terminal} | ${arrival.cars}`
+  } else {
+    const maxTerm = CHARS_PER_LINE - marker.length - badge.length - 1 - timePadded.length - 1
+    const terminal = arrival.terminal.length > maxTerm
+      ? arrival.terminal.slice(0, maxTerm - 1) + '.'
+      : arrival.terminal
+    middle = terminal
+  }
+
+  const left = `${marker}${badge} ${middle}`
+  const gap = Math.max(1, CHARS_PER_LINE - left.length - timePadded.length)
+  return left + ' '.repeat(gap) + timePadded
 }
 
 /**
@@ -56,7 +77,6 @@ export function renderBody(
   pageIndex: number,
   totalPages: number
 ): string {
-  const now = Math.floor(Date.now() / 1000)
   const lines: string[] = []
 
   const label = station.platformLabels[platform] || `Platform ${platform + 1}`
@@ -67,7 +87,7 @@ export function renderBody(
     lines.push('  No live data')
   } else {
     for (const t of display) {
-      lines.push(formatTrainLine(t, now))
+      lines.push(formatTrainLine(t))
     }
   }
 

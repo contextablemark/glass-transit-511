@@ -170,9 +170,14 @@ async function refreshInPlace(): Promise<void> {
 async function startAutoRefresh(): Promise<void> {
   stopAutoRefresh()
   const settings = await getSettings()
+  // Use the appropriate interval based on current page's agency
+  const page = currentPage()
+  const intervalSec = page?.station.agency === 'BA' && settings.bartApiKey
+    ? settings.bartRefreshSec
+    : settings.gtfsRefreshSec
   refreshTimer = setInterval(() => {
     refreshInPlace()
-  }, settings.refreshInterval * 1000)
+  }, intervalSec * 1000)
 }
 
 function stopAutoRefresh(): void {
@@ -215,10 +220,12 @@ export async function startGlassesMode(b: EvenAppBridge): Promise<void> {
     onScrollDown: () => {
       nextPage()
       displayCurrentPage(true)
+      startAutoRefresh() // restart timer — new page may have different interval
     },
     onScrollUp: () => {
       prevPage()
       displayCurrentPage(true)
+      startAutoRefresh()
     },
     onTap: () => {
       refreshInPlace()

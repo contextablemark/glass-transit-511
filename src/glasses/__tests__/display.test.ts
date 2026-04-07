@@ -54,8 +54,8 @@ describe('renderHeader', () => {
 describe('renderBody', () => {
   it('shows trains for a single platform', () => {
     const trains: TrainArrival[] = [
-      { route: 'Red', stopId: '901201', arrivalTime: now + 180, terminal: 'Richmond' },
-      { route: 'Yellow', stopId: '901201', arrivalTime: now + 600, terminal: 'Antioch' },
+      { route: 'Red', stopId: '901201', arrivalTime: now + 180, minutesAway: 3, terminal: 'Richmond' },
+      { route: 'Yellow', stopId: '901201', arrivalTime: now + 600, minutesAway: 10, terminal: 'Antioch' },
     ]
     const body = renderBody(bartStation, 0, trains, 0, 3)
     expect(body).toContain('Platform 1')
@@ -66,7 +66,7 @@ describe('renderBody', () => {
 
   it('shows arriving soon marker', () => {
     const trains: TrainArrival[] = [
-      { route: 'Red', stopId: '901201', arrivalTime: now + 120, terminal: 'Richmond' },
+      { route: 'Red', stopId: '901201', arrivalTime: now + 120, minutesAway: 2, terminal: 'Richmond' },
     ]
     const body = renderBody(bartStation, 0, trains, 0, 1)
     expect(body).toContain('\u25B6')
@@ -86,7 +86,7 @@ describe('renderBody', () => {
   it('limits to MAX_TRAINS (6)', () => {
     const trains: TrainArrival[] = Array.from({ length: 10 }, (_, i) => ({
       route: 'Red', stopId: '901201',
-      arrivalTime: now + (i + 1) * 300, terminal: 'Richmond',
+      arrivalTime: now + (i + 1) * 300, minutesAway: (i + 1) * 5, terminal: 'Richmond',
     }))
     const body = renderBody(bartStation, 0, trains, 0, 1)
     const lines = body.split('\n').filter((l) => l.includes('[Red]'))

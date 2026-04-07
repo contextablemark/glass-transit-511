@@ -37,14 +37,14 @@ export function buildFetchOptions(
 ): { url: string; init: RequestInit } {
   const base = settings.proxyBaseUrl.replace(/\/+$/, '')
 
-  if (settings.apiKey) {
+  if (settings.gtfsApiKey) {
     // BYOK: POST with key in body
     return {
       url: `${base}/transit/tripupdates`,
       init: {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ agency, apiKey: settings.apiKey }),
+        body: JSON.stringify({ agency, apiKey: settings.gtfsApiKey }),
       },
     }
   }

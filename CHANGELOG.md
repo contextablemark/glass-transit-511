@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.4.0] - 2026-04-07
+
+### Added
+
+- **BART Legacy API support**: Uses api.bart.gov for BART stations — richer data including car count, platform number, proper destination names, and line colors. No CORS proxy needed. Falls back to GTFS-RT if unavailable or key not set.
+- **Car count display**: Shows train length on glasses (`[Red] Richmond | 9    3m`) and phone UI for BART trains.
+- **Separate refresh intervals**: BART API (default 30s) and GTFS-RT (default 60s) poll independently.
+- **Restructured settings**: BART API key (optional but recommended) is its own field. GTFS-RT proxy/key under collapsible "Advanced" section.
+
+### Changed
+
+- **No baked-in API keys**: BART demo key is not included in the code. Users register their own at api.bart.gov. Without a BART key, BART stations fall back to GTFS-RT (requires proxy).
+- **Simplified time format**: Glasses display shows compact "5m" / "now" instead of "5 min - 3:42".
+- **Right-aligned times**: Time values padded to consistent width for visual alignment on G2 display.
+
 ## [0.3.0] - 2026-04-07
 
 ### Changed

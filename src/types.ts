@@ -8,20 +8,25 @@ export interface Station {
   lat: number
   lng: number
   /** Platform labels — index corresponds to platform group (0-based). */
-  platformLabels: string[]  // e.g. ["Platform 1", "Platform 2"] or ["Outbound", "Inbound"]
+  platformLabels: string[]
   /**
    * Map each stop_id to a platform index (0, 1, ...).
    * Trains at the same platform go the same geographic direction.
    */
   platformMap: Record<string, number>
+  /** BART station abbreviation for legacy API (e.g. "MONT"). Only for agency=BA. */
+  bartAbbr?: string
 }
 
 /** A single upcoming train arrival */
 export interface TrainArrival {
   route: string          // display route name (e.g. "N", "Red")
-  stopId: string         // full stop_id from feed
-  arrivalTime: number    // Unix timestamp (seconds)
-  terminal: string       // route terminal name (from GTFS static route_long_name)
+  stopId: string         // full stop_id from feed (or platform number for BART API)
+  arrivalTime: number    // Unix timestamp (seconds) — 0 for "Leaving"
+  minutesAway: number    // minutes until arrival (0 = now/leaving)
+  terminal: string       // destination name
+  cars?: number          // train car count (BART legacy API only)
+  color?: string         // line color name (BART legacy API only)
 }
 
 /** Arrivals grouped by platform for a station */
@@ -29,6 +34,7 @@ export interface StationArrivals {
   stationId: string
   platforms: TrainArrival[][] // platforms[0] = trains at platform 0, etc.
   fetchedAt: number
+  source: 'bart-api' | 'gtfs-rt'
 }
 
 /**
@@ -42,13 +48,20 @@ export interface FavoriteEntry {
 
 /** User settings */
 export interface Settings {
-  proxyBaseUrl: string   // transit proxy URL (empty = relative, for dev)
-  apiKey: string         // optional BYOK key (empty = community GET mode)
-  refreshInterval: number // seconds (30, 60, 120)
+  // BART legacy API (optional but recommended)
+  bartApiKey: string         // default: demo key
+  bartRefreshSec: number     // default: 30
+
+  // GTFS-RT via proxy (optional — needed for Muni + BART fallback)
+  proxyBaseUrl: string
+  gtfsApiKey: string         // 511.org BYOK key (empty = community GET)
+  gtfsRefreshSec: number     // default: 60
 }
 
 export const DEFAULT_SETTINGS: Settings = {
+  bartApiKey: '',
+  bartRefreshSec: 30,
   proxyBaseUrl: '',
-  apiKey: '',
-  refreshInterval: 60,
+  gtfsApiKey: '',
+  gtfsRefreshSec: 60,
 }

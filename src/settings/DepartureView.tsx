@@ -1,15 +1,18 @@
 /**
  * Phone-side departure display.
- * Shows real-time departures grouped by platform for each saved station.
+ *
+ * BART stations: tries legacy API first (if key set), falls back to GTFS-RT.
+ * Muni stations: GTFS-RT via proxy.
  */
 
 import { useState, useEffect, useRef } from 'react'
 import type { Station, StationArrivals, FavoriteEntry } from '../types'
 import { getStation } from './search'
 import { getSettings, uniqueStationIds } from '../lib/storage'
+import { fetchBartArrivals } from '../transit/bart-api'
 import { buildFetchOptions, agenciesForStations } from '../data/feed-urls'
 import { extractArrivals } from '../transit/feeds'
-import { minutesUntil, isArrivingSoon } from '../lib/time'
+import { isArrivingSoon } from '../lib/time'
 import GtfsRealtimeBindings from 'gtfs-realtime-bindings'
 
 type FeedEntity = GtfsRealtimeBindings.transit_realtime.IFeedEntity
@@ -22,6 +25,8 @@ export function DepartureView({ favorites }: Props) {
   const [arrivals, setArrivals] = useState<Map<string, StationArrivals>>(new Map())
   const [lastUpdate, setLastUpdate] = useState<string>('')
   const [error, setError] = useState<string>('')
+  const bartTimerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const gtfsTimerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   const stationIds = uniqueStationIds(favorites)
   const stations = stationIds.map((id) => getStation(id)).filter((s): s is Station => !!s)
@@ -31,16 +36,48 @@ export function DepartureView({ favorites }: Props) {
     if (stations.length === 0) return
     let cancelled = false
 
-    async function refresh() {
+    const bartStations = stations.filter((s) => s.agency === 'BA')
+    const muniStations = stations.filter((s) => s.agency === 'SF')
+
+    async function refreshBart() {
       try {
         const settings = await getSettings()
-        const agencies = agenciesForStations(stations)
+        if (!settings.bartApiKey || bartStations.length === 0) return
+
+        for (const station of bartStations) {
+          if (cancelled) return
+          const result = await fetchBartArrivals(station, settings)
+          if (result && !cancelled) {
+            setArrivals((prev) => {
+              const next = new Map(prev)
+              next.set(station.id, result)
+              return next
+            })
+          }
+        }
+        if (!cancelled) setLastUpdate(new Date().toLocaleTimeString())
+      } catch (err) {
+        if (!cancelled) console.error('[DepartureView] BART fetch failed:', err)
+      }
+    }
+
+    async function refreshGtfs() {
+      try {
+        const settings = await getSettings()
+        // GTFS-RT for Muni + BART stations without BART API key
+        const gtfsStations = [
+          ...muniStations,
+          ...(settings.bartApiKey ? [] : bartStations),
+        ]
+        if (gtfsStations.length === 0 || (!settings.proxyBaseUrl && !settings.gtfsApiKey)) return
+
+        const agencies = agenciesForStations(gtfsStations)
         const feedMap = new Map<string, FeedEntity[]>()
 
         for (const agency of agencies) {
           const { url, init } = buildFetchOptions(settings, agency)
           const resp = await fetch(url, init)
-          if (!resp.ok) throw new Error(`HTTP ${resp.status} from ${url}`)
+          if (!resp.ok) throw new Error(`HTTP ${resp.status}`)
           const buffer = await resp.arrayBuffer()
           let bytes = new Uint8Array(buffer)
           if (bytes[0] === 0xef && bytes[1] === 0xbb && bytes[2] === 0xbf) bytes = bytes.slice(3)
@@ -49,24 +86,47 @@ export function DepartureView({ favorites }: Props) {
         }
         if (cancelled) return
 
-        const newArrivals = new Map<string, StationArrivals>()
-        for (const station of stations) {
+        for (const station of gtfsStations) {
           const entities = feedMap.get(station.agency) || []
-          newArrivals.set(station.id, extractArrivals(station, entities))
+          const result = extractArrivals(station, entities)
+          setArrivals((prev) => {
+            const next = new Map(prev)
+            next.set(station.id, result)
+            return next
+          })
         }
-        setArrivals(newArrivals)
-        setError('')
-        setLastUpdate(new Date().toLocaleTimeString())
+        if (!cancelled) {
+          setError('')
+          setLastUpdate(new Date().toLocaleTimeString())
+        }
       } catch (err) {
-        if (cancelled) return
-        console.error('[DepartureView] fetch failed:', err)
-        setError(err instanceof Error ? err.message : String(err))
+        if (!cancelled) {
+          console.error('[DepartureView] GTFS-RT fetch failed:', err)
+          setError(err instanceof Error ? err.message : String(err))
+        }
       }
     }
 
-    refresh()
-    const timer = setInterval(refresh, 60_000)
-    return () => { cancelled = true; clearInterval(timer) }
+    // Initial fetch
+    refreshBart()
+    refreshGtfs()
+
+    // Separate timers
+    getSettings().then((settings) => {
+      if (cancelled) return
+      if (settings.bartApiKey && bartStations.length > 0) {
+        bartTimerRef.current = setInterval(refreshBart, settings.bartRefreshSec * 1000)
+      }
+      if (muniStations.length > 0 || (!settings.bartApiKey && bartStations.length > 0)) {
+        gtfsTimerRef.current = setInterval(refreshGtfs, settings.gtfsRefreshSec * 1000)
+      }
+    })
+
+    return () => {
+      cancelled = true
+      if (bartTimerRef.current) clearInterval(bartTimerRef.current)
+      if (gtfsTimerRef.current) clearInterval(gtfsTimerRef.current)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [favKey])
 
@@ -81,12 +141,9 @@ export function DepartureView({ favorites }: Props) {
         }}>{error}</div>
       )}
 
-      {stations.map((station) => {
-        const stationArrivals = arrivals.get(station.id)
-        return (
-          <StationCard key={station.id} station={station} arrivals={stationArrivals} />
-        )
-      })}
+      {stations.map((station) => (
+        <StationCard key={station.id} station={station} arrivals={arrivals.get(station.id)} />
+      ))}
 
       {lastUpdate && (
         <div style={{ fontSize: '0.7rem', color: '#666', textAlign: 'center', marginTop: '0.5rem' }}>
@@ -99,7 +156,6 @@ export function DepartureView({ favorites }: Props) {
 
 function StationCard({ station, arrivals }: { station: Station; arrivals?: StationArrivals }) {
   const agency = station.agency === 'BA' ? 'BART' : 'Muni'
-  const now = Math.floor(Date.now() / 1000)
 
   return (
     <div style={{
@@ -113,6 +169,11 @@ function StationCard({ station, arrivals }: { station: Station; arrivals?: Stati
           color: '#fff', padding: '0 0.3rem', borderRadius: '0.2rem',
           marginLeft: '0.5rem', fontSize: '0.65rem', fontWeight: 600,
         }}>{agency}</span>
+        {arrivals?.source && (
+          <span style={{
+            color: '#666', fontSize: '0.6rem', marginLeft: '0.3rem',
+          }}>via {arrivals.source}</span>
+        )}
       </div>
 
       {!arrivals ? (
@@ -124,7 +185,6 @@ function StationCard({ station, arrivals }: { station: Station; arrivals?: Stati
             <PlatformGroup
               label={label}
               trains={arrivals.platforms[platIdx] || []}
-              now={now}
             />
           </div>
         ))
@@ -134,11 +194,10 @@ function StationCard({ station, arrivals }: { station: Station; arrivals?: Stati
 }
 
 function PlatformGroup({
-  label, trains, now,
+  label, trains,
 }: {
   label: string
   trains: import('../types').TrainArrival[]
-  now: number
 }) {
   const display = trains.slice(0, 5)
 
@@ -149,8 +208,7 @@ function PlatformGroup({
         <div style={{ fontSize: '0.8rem', color: '#666', paddingLeft: '0.5rem' }}>No live data</div>
       ) : (
         display.map((t, i) => {
-          const mins = minutesUntil(t.arrivalTime, now)
-          const soon = isArrivingSoon(t.arrivalTime, now)
+          const soon = isArrivingSoon(t.arrivalTime)
           return (
             <div key={`${t.route}-${t.arrivalTime}-${i}`} style={{
               display: 'flex', justifyContent: 'space-between',
@@ -161,9 +219,12 @@ function PlatformGroup({
                   [{t.route}]
                 </span>
                 {' '}{t.terminal}
+                {t.cars != null && (
+                  <span style={{ color: '#888' }}> | {t.cars}</span>
+                )}
               </span>
               <span style={{ color: soon ? '#ffcc00' : '#999', fontWeight: soon ? 600 : 400 }}>
-                {mins === 0 ? 'now' : `${mins}m`}
+                {t.minutesAway === 0 ? 'now' : `${t.minutesAway}m`}
               </span>
             </div>
           )
