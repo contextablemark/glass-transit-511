@@ -66,6 +66,7 @@ export function DepartureView({ favoriteIds }: Props) {
         setError('')
         setLastUpdate(new Date().toLocaleTimeString())
       } catch (err) {
+        console.error('[DepartureView] fetch failed:', err)
         setError(err instanceof Error ? err.message : String(err))
       }
     }

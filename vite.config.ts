@@ -22,9 +22,26 @@ function transitProxy(): Plugin {
       // Load .env without VITE_ prefix requirement
       const env = loadEnv(config.mode, config.root, '')
       apiKey = env.API_511_KEY || ''
+      if (apiKey) {
+        console.log('[transit-proxy] API key loaded from .env')
+      } else {
+        console.warn('[transit-proxy] WARNING: No API_511_KEY in .env — proxy will reject requests')
+      }
     },
     configureServer(server) {
+      // Single handler for all /transit/* requests (including OPTIONS)
       server.middlewares.use('/transit', async (req, res) => {
+        // CORS preflight
+        if (req.method === 'OPTIONS') {
+          res.writeHead(204, {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type',
+          })
+          res.end()
+          return
+        }
+
         let key = apiKey
         let agency = ''
 
@@ -40,6 +57,7 @@ function transitProxy(): Plugin {
         }
 
         if (!key) {
+          console.error('[transit-proxy] No API key — set API_511_KEY in .env')
           res.writeHead(401, { 'Content-Type': 'application/json' })
           res.end(JSON.stringify({ error: 'No API key. Set API_511_KEY in .env' }))
           return
@@ -51,9 +69,12 @@ function transitProxy(): Plugin {
         upstream.searchParams.set('api_key', key)
         if (agency) upstream.searchParams.set('agency', agency)
 
+        console.log(`[transit-proxy] ${req.method} → ${upstream.pathname}?agency=${agency}`)
+
         try {
           const resp = await fetch(upstream.toString())
           const buffer = await resp.arrayBuffer()
+          console.log(`[transit-proxy] ← ${resp.status} (${buffer.byteLength} bytes)`)
           res.writeHead(resp.status, {
             'Content-Type':
               resp.headers.get('content-type') || 'application/octet-stream',
@@ -61,6 +82,7 @@ function transitProxy(): Plugin {
           })
           res.end(Buffer.from(buffer))
         } catch (err) {
+          console.error('[transit-proxy] Upstream error:', err)
           res.writeHead(502, { 'Content-Type': 'application/json' })
           res.end(
             JSON.stringify({
@@ -69,20 +91,6 @@ function transitProxy(): Plugin {
             })
           )
         }
-      })
-
-      // Handle CORS preflight for POST requests
-      server.middlewares.use('/transit', (req, res, next) => {
-        if (req.method === 'OPTIONS') {
-          res.writeHead(204, {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type',
-          })
-          res.end()
-          return
-        }
-        next()
       })
     },
   }
