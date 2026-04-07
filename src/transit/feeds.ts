@@ -1,41 +1,35 @@
 /**
  * GTFS-RT feed fetcher and protobuf decoder.
  *
- * Adapted from SubwayLens mta-feeds.ts for 511.org.
- * Key differences:
- *   - 511.org has one feed per agency (not per route group)
- *   - Direction from direction_id (0/1), not stop_id suffix
- *   - Requests go through transit proxy (CORS + API key injection)
- *   - 511.org may prepend UTF-8 BOM to responses
+ * Groups arrivals by platform stop_id (not direction_id) — at BART,
+ * different routes at the same platform go the same geographic direction
+ * despite having different direction_ids.
+ *
+ * Terminal names come from GTFS static route_long_name (not last stopTimeUpdate,
+ * which may be incomplete).
  */
 
 import GtfsRealtimeBindings from 'gtfs-realtime-bindings'
 import { buildFetchOptions, agenciesForStations } from '../data/feed-urls'
-import stationsData from '../data/stations.json'
+import routeTerminals from '../data/route-terminals.json'
 import type { Station, TrainArrival, StationArrivals, Settings } from '../types'
 
-const stations = stationsData as Station[]
-
-// stop_id → station name lookup
-const stopIdToName = new Map<string, string>()
-for (const s of stations) {
-  for (const sid of s.stops) {
-    stopIdToName.set(sid, s.name)
-  }
-}
-
-/** Resolve a stop_id to a human-readable station name. */
-function resolveStopName(stopId: string): string {
-  return stopIdToName.get(stopId) || stopId
-}
+const terminals = routeTerminals as Record<string, string>
 
 /**
  * Strip BART direction suffix from route_id for display.
- * "Red-N" → "Red", "Blue-S" → "Blue"
- * Muni route_ids don't have suffixes, so this is a no-op for them.
+ * "Red-N" → "Red", "Blue-S" → "Blue". Muni routes pass through unchanged.
  */
 function displayRoute(routeId: string): string {
   return routeId.replace(/-[NS]$/, '')
+}
+
+/**
+ * Get terminal name for a route from GTFS static data.
+ * Falls back to display route name if no terminal defined.
+ */
+function getTerminal(routeId: string): string {
+  return terminals[routeId] || displayRoute(routeId)
 }
 
 type FeedEntity = GtfsRealtimeBindings.transit_realtime.IFeedEntity
@@ -52,7 +46,6 @@ async function fetchFeed(
   if (!response.ok) throw new Error(`Feed ${response.status}: ${agency}`)
   const buffer = await response.arrayBuffer()
 
-  // 511.org may prepend UTF-8 BOM — strip before protobuf decode
   let bytes = new Uint8Array(buffer)
   if (bytes[0] === 0xef && bytes[1] === 0xbb && bytes[2] === 0xbf) {
     bytes = bytes.slice(3)
@@ -64,7 +57,10 @@ async function fetchFeed(
 }
 
 /**
- * Extract arrivals for a specific station from feed entities.
+ * Extract arrivals for a station, grouped by platform.
+ *
+ * Uses station.platformMap to assign each arrival to a platform index
+ * based on which stop_id the train uses (not direction_id).
  */
 export function extractArrivals(
   station: Station,
@@ -72,24 +68,17 @@ export function extractArrivals(
 ): StationArrivals {
   const stationStopIds = new Set(station.stops)
   const now = Math.floor(Date.now() / 1000)
-  const north: TrainArrival[] = []
-  const south: TrainArrival[] = []
+  const numPlatforms = station.platformLabels.length
+  const platforms: TrainArrival[][] = Array.from({ length: numPlatforms }, () => [])
 
   for (const entity of entities) {
     const tu = entity.tripUpdate
     if (!tu?.trip || !tu.stopTimeUpdate) continue
 
     const routeId = (tu.trip.routeId as string) || ''
-    const directionId = tu.trip.directionId ?? 0
+    const terminal = getTerminal(routeId)
 
-    // Terminal = last stop in trip
-    const updates = tu.stopTimeUpdate
-    const lastStop = updates[updates.length - 1]
-    const terminalName = lastStop?.stopId
-      ? resolveStopName(lastStop.stopId as string)
-      : displayRoute(routeId)
-
-    for (const stu of updates) {
+    for (const stu of tu.stopTimeUpdate) {
       const fullStopId = stu.stopId as string
       if (!fullStopId || !stationStopIds.has(fullStopId)) continue
 
@@ -98,30 +87,28 @@ export function extractArrivals(
       )
       if (arrTime === 0 || arrTime < now - 30) continue
 
-      const arrival: TrainArrival = {
-        route: displayRoute(routeId),
-        direction: directionId === 0 ? 'N' : 'S',
-        stopId: fullStopId,
-        arrivalTime: arrTime,
-        terminal: terminalName,
-      }
-
-      if (directionId === 0) {
-        north.push(arrival)
-      } else {
-        south.push(arrival)
+      const platformIndex = station.platformMap[fullStopId] ?? 0
+      if (platformIndex < numPlatforms) {
+        platforms[platformIndex].push({
+          route: displayRoute(routeId),
+          stopId: fullStopId,
+          arrivalTime: arrTime,
+          terminal,
+        })
       }
     }
   }
 
-  north.sort((a, b) => a.arrivalTime - b.arrivalTime)
-  south.sort((a, b) => a.arrivalTime - b.arrivalTime)
+  // Sort each platform by arrival time
+  for (const p of platforms) {
+    p.sort((a, b) => a.arrivalTime - b.arrivalTime)
+  }
 
-  return { stationId: station.id, north, south, fetchedAt: now }
+  return { stationId: station.id, platforms, fetchedAt: now }
 }
 
 /**
- * Fetch all feeds needed for a set of stations, returning cached entities per agency.
+ * Fetch all feeds needed for a set of stations.
  */
 export async function fetchAllFeeds(
   settings: Settings,

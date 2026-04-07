@@ -6,7 +6,7 @@
 import stationsData from '../data/stations.json'
 import type { Station } from '../types'
 
-const allStations = stationsData as Station[]
+const allStations = stationsData as unknown as Station[]
 
 /**
  * Search aliases — common names that differ from official GTFS names.

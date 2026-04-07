@@ -3,15 +3,15 @@ import { extractArrivals } from '../feeds'
 import type { Station } from '../../types'
 
 const station: Station = {
-  id: 'bart-901209',
-  name: 'Montgomery Street',
-  stops: ['901201', '901202'],
+  id: 'bart-902409',
+  name: 'San Leandro',
+  stops: ['902401', '902402'],
   agency: 'BA',
-  routes: ['Blue', 'Green', 'Red', 'Yellow'],
-  lat: 37.789,
-  lng: -122.401,
-  north: 'Richmond',
-  south: 'Daly City',
+  routes: ['Blue', 'Green', 'Orange'],
+  lat: 37.722,
+  lng: -122.161,
+  platformLabels: ['Platform 1', 'Platform 2'],
+  platformMap: { '902401': 0, '902402': 1 },
 }
 
 const now = Math.floor(Date.now() / 1000)
@@ -38,104 +38,85 @@ function makeTripEntity(opts: {
 }
 
 describe('extractArrivals', () => {
-  it('extracts arrivals matching station stop IDs', () => {
+  it('groups by platform stop_id, not direction_id', () => {
     const entities = [
+      // Blue-N (dir=0) at platform 902401 (platform 0)
       makeTripEntity({
-        routeId: 'Red-N',
-        directionId: 0,
-        stops: [
-          { stopId: '901201', arrivalTime: now + 180 },
-          { stopId: '900101', arrivalTime: now + 600 }, // different station
-        ],
+        routeId: 'Blue-N', directionId: 0,
+        stops: [{ stopId: '902401', arrivalTime: now + 180 }],
+      }),
+      // Orange-S (dir=1) at platform 902401 (also platform 0 — same geographic direction)
+      makeTripEntity({
+        routeId: 'Orange-S', directionId: 1,
+        stops: [{ stopId: '902401', arrivalTime: now + 300 }],
+      }),
+      // Blue-S (dir=1) at platform 902402 (platform 1)
+      makeTripEntity({
+        routeId: 'Blue-S', directionId: 1,
+        stops: [{ stopId: '902402', arrivalTime: now + 240 }],
       }),
     ]
 
     const result = extractArrivals(station, entities)
-    expect(result.north).toHaveLength(1)
-    expect(result.north[0].route).toBe('Red')
-    expect(result.north[0].direction).toBe('N')
-    expect(result.south).toHaveLength(0)
+    // Platform 0 should have both Blue-N and Orange-S (different direction_ids, same platform)
+    expect(result.platforms[0]).toHaveLength(2)
+    expect(result.platforms[0][0].route).toBe('Blue')
+    expect(result.platforms[0][1].route).toBe('Orange')
+    // Platform 1 should have Blue-S
+    expect(result.platforms[1]).toHaveLength(1)
+    expect(result.platforms[1][0].route).toBe('Blue')
   })
 
-  it('separates north and south by direction_id', () => {
+  it('uses route terminal from GTFS static data', () => {
     const entities = [
       makeTripEntity({
-        routeId: 'Red-N',
-        directionId: 0,
-        stops: [{ stopId: '901201', arrivalTime: now + 180 }],
-      }),
-      makeTripEntity({
-        routeId: 'Red-S',
-        directionId: 1,
-        stops: [{ stopId: '901202', arrivalTime: now + 300 }],
+        routeId: 'Orange-N', directionId: 0,
+        stops: [{ stopId: '902402', arrivalTime: now + 180 }],
       }),
     ]
-
     const result = extractArrivals(station, entities)
-    expect(result.north).toHaveLength(1)
-    expect(result.south).toHaveLength(1)
+    // Orange-N terminal should be "Richmond" from route-terminals.json
+    expect(result.platforms[1][0].terminal).toBe('Richmond')
+  })
+
+  it('strips BART direction suffix from route display name', () => {
+    const entities = [
+      makeTripEntity({
+        routeId: 'Green-S', directionId: 1,
+        stops: [{ stopId: '902402', arrivalTime: now + 120 }],
+      }),
+    ]
+    const result = extractArrivals(station, entities)
+    expect(result.platforms[1][0].route).toBe('Green')
   })
 
   it('filters out past arrivals', () => {
     const entities = [
       makeTripEntity({
-        routeId: 'Red-N',
-        directionId: 0,
+        routeId: 'Blue-N', directionId: 0,
         stops: [
-          { stopId: '901201', arrivalTime: now - 60 }, // past
-          { stopId: '901201', arrivalTime: now + 180 }, // future
+          { stopId: '902401', arrivalTime: now - 60 },
+          { stopId: '902401', arrivalTime: now + 180 },
         ],
       }),
     ]
-
     const result = extractArrivals(station, entities)
-    expect(result.north).toHaveLength(1)
-    expect(result.north[0].arrivalTime).toBe(now + 180)
+    expect(result.platforms[0]).toHaveLength(1)
   })
 
-  it('strips BART direction suffix from route_id', () => {
+  it('sorts by arrival time within each platform', () => {
     const entities = [
       makeTripEntity({
-        routeId: 'Blue-S',
-        directionId: 1,
-        stops: [{ stopId: '901202', arrivalTime: now + 120 }],
-      }),
-    ]
-
-    const result = extractArrivals(station, entities)
-    expect(result.south[0].route).toBe('Blue')
-  })
-
-  it('sorts by arrival time', () => {
-    const entities = [
-      makeTripEntity({
-        routeId: 'Red-N',
-        directionId: 0,
-        stops: [{ stopId: '901201', arrivalTime: now + 600 }],
+        routeId: 'Blue-N', directionId: 0,
+        stops: [{ stopId: '902401', arrivalTime: now + 600 }],
       }),
       makeTripEntity({
-        routeId: 'Blue-N',
-        directionId: 0,
-        stops: [{ stopId: '901201', arrivalTime: now + 180 }],
+        routeId: 'Green-N', directionId: 0,
+        stops: [{ stopId: '902401', arrivalTime: now + 180 }],
       }),
     ]
-
     const result = extractArrivals(station, entities)
-    expect(result.north[0].route).toBe('Blue')
-    expect(result.north[1].route).toBe('Red')
-  })
-
-  it('returns empty for unmatched stops', () => {
-    const entities = [
-      makeTripEntity({
-        routeId: 'Red-N',
-        directionId: 0,
-        stops: [{ stopId: '999999', arrivalTime: now + 180 }],
-      }),
-    ]
-
-    const result = extractArrivals(station, entities)
-    expect(result.north).toHaveLength(0)
-    expect(result.south).toHaveLength(0)
+    expect(result.platforms[0][0].route).toBe('Green')
+    expect(result.platforms[0][1].route).toBe('Blue')
   })
 })

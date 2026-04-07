@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.3.0] - 2026-04-07
+
+### Changed
+
+- **Platform-based grouping**: Arrivals are grouped by physical platform stop_id instead of GTFS `direction_id`. Fixes incorrect direction assignment at stations where different BART lines have different `direction_id` values but share the same platform (e.g. San Leandro: Blue-N + Orange-S both on Platform 1).
+- **BART platform labels**: Directions labeled "Platform 1" / "Platform 2" instead of destination names, since platforms serve multiple lines with different terminals.
+- **Terminal names from GTFS static data**: Route terminals now come from `route_long_name` in routes.txt (e.g. "Richmond", "Daly City") instead of the last `stopTimeUpdate` entry, which could be incomplete (e.g. showing "Milpitas" instead of "Berryessa").
+- **Favorites model v2**: `FavoriteEntry.direction` (N/S) replaced with `FavoriteEntry.platform` (number). New storage key (`-v2`) avoids conflicts with old data.
+- **Bundled route-terminals.json**: 82 route → terminal mappings for BART and Muni.
+
 ## [0.2.0] - 2026-04-07
 
 ### Changed

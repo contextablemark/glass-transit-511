@@ -33,9 +33,9 @@ async function getItem(key: string): Promise<string | null> {
   try { return window.localStorage.getItem(key) } catch { return null }
 }
 
-// ── Favorites (per-direction entries) ──
+// ── Favorites (per-platform entries) ──
 
-const FAVORITES_KEY = 'glass-transit-511-favorites'
+const FAVORITES_KEY = 'glass-transit-511-favorites-v2'
 
 export async function getFavorites(): Promise<FavoriteEntry[]> {
   const raw = await getItem(FAVORITES_KEY)
@@ -43,16 +43,6 @@ export async function getFavorites(): Promise<FavoriteEntry[]> {
   try {
     const parsed = JSON.parse(raw)
     if (!Array.isArray(parsed)) return []
-    // Migration: if old format (string[]), convert to FavoriteEntry[]
-    if (parsed.length > 0 && typeof parsed[0] === 'string') {
-      const migrated: FavoriteEntry[] = []
-      for (const id of parsed as string[]) {
-        migrated.push({ stationId: id, direction: 'N' })
-        migrated.push({ stationId: id, direction: 'S' })
-      }
-      await saveFavorites(migrated)
-      return migrated
-    }
     return parsed as FavoriteEntry[]
   } catch {
     return []
@@ -63,24 +53,29 @@ export async function saveFavorites(entries: FavoriteEntry[]): Promise<void> {
   await setItem(FAVORITES_KEY, JSON.stringify(entries))
 }
 
-/** Add a station — creates both direction entries by default. */
-export async function addStation(stationId: string): Promise<FavoriteEntry[]> {
+/** Add a station — creates entries for all platforms by default. */
+export async function addStation(
+  stationId: string,
+  numPlatforms: number
+): Promise<FavoriteEntry[]> {
   const favs = await getFavorites()
-  const hasN = favs.some((f) => f.stationId === stationId && f.direction === 'N')
-  const hasS = favs.some((f) => f.stationId === stationId && f.direction === 'S')
-  if (!hasN) favs.push({ stationId, direction: 'N' })
-  if (!hasS) favs.push({ stationId, direction: 'S' })
+  for (let i = 0; i < numPlatforms; i++) {
+    const exists = favs.some(
+      (f) => f.stationId === stationId && f.platform === i
+    )
+    if (!exists) favs.push({ stationId, platform: i })
+  }
   await saveFavorites(favs)
   return favs
 }
 
-/** Remove a specific direction entry. */
+/** Remove a specific platform entry. */
 export async function removeFavorite(
   stationId: string,
-  direction: 'N' | 'S'
+  platform: number
 ): Promise<FavoriteEntry[]> {
   const favs = (await getFavorites()).filter(
-    (f) => !(f.stationId === stationId && f.direction === direction)
+    (f) => !(f.stationId === stationId && f.platform === platform)
   )
   await saveFavorites(favs)
   return favs
@@ -93,13 +88,13 @@ export async function removeStation(stationId: string): Promise<FavoriteEntry[]>
   return favs
 }
 
-/** Check if a specific direction is favorited. */
+/** Check if a specific platform is favorited. */
 export function isFavorited(
   favorites: FavoriteEntry[],
   stationId: string,
-  direction: 'N' | 'S'
+  platform: number
 ): boolean {
-  return favorites.some((f) => f.stationId === stationId && f.direction === direction)
+  return favorites.some((f) => f.stationId === stationId && f.platform === platform)
 }
 
 /** Get unique station IDs from favorites. */

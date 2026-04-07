@@ -1,8 +1,6 @@
 /**
- * Station manager — manages per-direction favorite pages
+ * Station manager — manages per-platform favorite pages
  * and coordinates feed fetching + arrival extraction.
- *
- * Each page = one station + one direction (N or S).
  */
 
 import stationsData from '../data/stations.json'
@@ -16,12 +14,12 @@ import GtfsRealtimeBindings from 'gtfs-realtime-bindings'
 
 type FeedEntity = GtfsRealtimeBindings.transit_realtime.IFeedEntity
 
-const allStations = stationsData as Station[]
+const allStations = stationsData as unknown as Station[]
 const stationById = new Map(allStations.map((s) => [s.id, s]))
 
 export interface Page {
   station: Station
-  direction: 'N' | 'S'
+  platform: number // index into station.platformLabels / arrivals.platforms
 }
 
 interface StationManagerState {
@@ -36,54 +34,40 @@ const state: StationManagerState = {
   feedMap: new Map(),
 }
 
-/** Load pages from storage (per-direction favorites). */
 export async function loadStations(): Promise<void> {
   const favs = await getFavorites()
   const pages: Page[] = []
   for (const fav of favs) {
     const station = stationById.get(fav.stationId)
-    if (station) {
-      pages.push({ station, direction: fav.direction })
+    if (station && fav.platform < station.platformLabels.length) {
+      pages.push({ station, platform: fav.platform })
     }
   }
   state.pages = pages
-
   if (state.currentIndex >= state.pages.length) {
     state.currentIndex = Math.max(0, state.pages.length - 1)
   }
 }
 
-/** Get current page or null if none. */
 export function currentPage(): Page | null {
   return state.pages[state.currentIndex] ?? null
 }
 
-/** Navigate to next page (wraps). */
 export function nextPage(): void {
   if (state.pages.length === 0) return
   state.currentIndex = (state.currentIndex + 1) % state.pages.length
 }
 
-/** Navigate to previous page (wraps). */
 export function prevPage(): void {
   if (state.pages.length === 0) return
   state.currentIndex =
     (state.currentIndex - 1 + state.pages.length) % state.pages.length
 }
 
-/** Get current state for display rendering. */
-export function getState(): {
-  pages: Page[]
-  currentIndex: number
-} {
+export function getState() {
   return { pages: state.pages, currentIndex: state.currentIndex }
 }
 
-/**
- * Refresh arrivals for the current page's station.
- * Returns the full StationArrivals (both directions cached),
- * caller picks the relevant direction.
- */
 export async function refreshCurrentArrivals(
   settings: Settings
 ): Promise<StationArrivals | null> {
@@ -91,8 +75,6 @@ export async function refreshCurrentArrivals(
   if (!page) return null
 
   const maxAgeMs = settings.refreshInterval * 1000
-
-  // Check fresh cache
   const cached = getCached(page.station.agency, maxAgeMs)
   if (cached) {
     state.feedMap.set(page.station.agency, cached)
@@ -107,29 +89,23 @@ export async function refreshCurrentArrivals(
     }
     return {
       stationId: page.station.id,
-      north: [],
-      south: [],
+      platforms: page.station.platformLabels.map(() => []),
       fetchedAt: Math.floor(Date.now() / 1000),
     }
   }
 
-  // Collect all unique stations across pages for fetching
   const uniqueStations = [
     ...new Map(state.pages.map((p) => [p.station.id, p.station])).values(),
   ]
   const agencies = agenciesForStations(uniqueStations)
   const staleAgencies = agencies.filter((a) => !getCached(a, maxAgeMs))
-
-  for (const _agency of staleAgencies) {
-    recordRequest()
-  }
+  for (const _ of staleAgencies) recordRequest()
 
   try {
     const freshFeeds = await fetchAllFeeds(
       settings,
       uniqueStations.filter((s) => staleAgencies.includes(s.agency))
     )
-
     for (const [agency, entities] of freshFeeds) {
       setCached(agency, entities)
       state.feedMap.set(agency, entities)

@@ -1,8 +1,6 @@
 /**
- * Favorites list — shows saved stations grouped, with per-direction toggles.
- *
- * Each station shows both directions with toggle buttons.
- * Favorited directions become pages on the glasses.
+ * Favorites list — shows saved stations with per-platform toggles.
+ * Each toggled-on platform becomes a page on the glasses.
  */
 
 import type { FavoriteEntry } from '../types'
@@ -12,16 +10,16 @@ import { uniqueStationIds, isFavorited } from '../lib/storage'
 interface Props {
   favorites: FavoriteEntry[]
   onReorder: (entries: FavoriteEntry[]) => void
-  onRemoveDirection: (stationId: string, direction: 'N' | 'S') => void
-  onAddDirection: (stationId: string, direction: 'N' | 'S') => void
+  onRemovePlatform: (stationId: string, platform: number) => void
+  onAddPlatform: (stationId: string, platform: number) => void
   onRemoveStation: (stationId: string) => void
 }
 
 export function FavoritesList({
   favorites,
   onReorder,
-  onRemoveDirection,
-  onAddDirection,
+  onRemovePlatform,
+  onAddPlatform,
   onRemoveStation,
 }: Props) {
   const stationIds = uniqueStationIds(favorites)
@@ -45,7 +43,6 @@ export function FavoritesList({
     if (index === 0) return
     const ids = [...stationIds]
     ;[ids[index - 1], ids[index]] = [ids[index], ids[index - 1]]
-    // Rebuild favorites in new station order
     const reordered: FavoriteEntry[] = []
     for (const id of ids) {
       for (const fav of favorites) {
@@ -73,95 +70,67 @@ export function FavoritesList({
       {stationIds.map((stationId, index) => {
         const station = getStation(stationId)
         if (!station) return null
-
-        const hasN = isFavorited(favorites, stationId, 'N')
-        const hasS = isFavorited(favorites, stationId, 'S')
         const agency = station.agency === 'BA' ? 'BART' : 'Muni'
 
         return (
-          <div
-            key={stationId}
-            style={{
-              background: '#252540',
-              borderRadius: '0.5rem',
-              padding: '0.6rem 0.75rem',
-              marginBottom: '0.375rem',
-            }}
-          >
-            {/* Station header row */}
+          <div key={stationId} style={{
+            background: '#252540',
+            borderRadius: '0.5rem',
+            padding: '0.6rem 0.75rem',
+            marginBottom: '0.375rem',
+          }}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-              {/* Reorder */}
-              <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                marginRight: '0.5rem',
-                gap: '0.1rem',
-              }}>
-                <button
-                  onClick={() => moveUp(index)}
-                  disabled={index === 0}
-                  style={arrowStyle(index === 0)}
-                >&#x25B2;</button>
-                <button
-                  onClick={() => moveDown(index)}
-                  disabled={index >= stationIds.length - 1}
-                  style={arrowStyle(index >= stationIds.length - 1)}
-                >&#x25BC;</button>
+              <div style={{ display: 'flex', flexDirection: 'column', marginRight: '0.5rem', gap: '0.1rem' }}>
+                <button onClick={() => moveUp(index)} disabled={index === 0}
+                  style={arrowStyle(index === 0)}>&#x25B2;</button>
+                <button onClick={() => moveDown(index)} disabled={index >= stationIds.length - 1}
+                  style={arrowStyle(index >= stationIds.length - 1)}>&#x25BC;</button>
               </div>
-
-              {/* Station name + agency */}
               <div style={{ flex: 1 }}>
                 <span style={{ fontSize: '0.9rem' }}>{station.name}</span>
                 <span style={{
                   background: station.agency === 'BA' ? '#0066cc' : '#cc3333',
-                  color: '#fff',
-                  padding: '0 0.3rem',
-                  borderRadius: '0.2rem',
-                  marginLeft: '0.4rem',
-                  fontSize: '0.65rem',
-                  fontWeight: 600,
+                  color: '#fff', padding: '0 0.3rem', borderRadius: '0.2rem',
+                  marginLeft: '0.4rem', fontSize: '0.65rem', fontWeight: 600,
                 }}>{agency}</span>
               </div>
-
-              {/* Delete station */}
-              <button
-                onClick={() => onRemoveStation(stationId)}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  color: '#cc3333',
-                  cursor: 'pointer',
-                  fontSize: '1.1rem',
-                  padding: '0 0.2rem',
-                }}
-              >&#x2715;</button>
+              <button onClick={() => onRemoveStation(stationId)} style={{
+                background: 'none', border: 'none', color: '#cc3333',
+                cursor: 'pointer', fontSize: '1.1rem', padding: '0 0.2rem',
+              }}>&#x2715;</button>
             </div>
 
-            {/* Direction toggles */}
-            <div style={{
-              display: 'flex',
-              gap: '0.5rem',
-              marginTop: '0.4rem',
-              paddingLeft: '1.5rem',
-            }}>
-              <DirectionToggle
-                label={`▲ ${station.north}`}
-                active={hasN}
-                onToggle={() =>
-                  hasN
-                    ? onRemoveDirection(stationId, 'N')
-                    : onAddDirection(stationId, 'N')
-                }
-              />
-              <DirectionToggle
-                label={`▼ ${station.south}`}
-                active={hasS}
-                onToggle={() =>
-                  hasS
-                    ? onRemoveDirection(stationId, 'S')
-                    : onAddDirection(stationId, 'S')
-                }
-              />
+            {/* Platform toggles */}
+            <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.4rem', paddingLeft: '1.5rem' }}>
+              {station.platformLabels.map((label, platIdx) => {
+                const active = isFavorited(favorites, stationId, platIdx)
+                return (
+                  <button
+                    key={platIdx}
+                    onClick={() =>
+                      active
+                        ? onRemovePlatform(stationId, platIdx)
+                        : onAddPlatform(stationId, platIdx)
+                    }
+                    style={{
+                      flex: 1,
+                      padding: '0.35rem 0.5rem',
+                      fontSize: '0.75rem',
+                      background: active ? '#334' : '#1a1a2e',
+                      color: active ? '#e0e0e0' : '#666',
+                      border: `1px solid ${active ? '#556' : '#333'}`,
+                      borderRadius: '0.375rem',
+                      cursor: 'pointer',
+                      textAlign: 'left',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {active ? '\u2605 ' : '\u2606 '}{label}
+                  </button>
+                )
+              })}
             </div>
           </div>
         )
@@ -170,46 +139,11 @@ export function FavoritesList({
   )
 }
 
-function DirectionToggle({
-  label,
-  active,
-  onToggle,
-}: {
-  label: string
-  active: boolean
-  onToggle: () => void
-}) {
-  return (
-    <button
-      onClick={onToggle}
-      style={{
-        flex: 1,
-        padding: '0.35rem 0.5rem',
-        fontSize: '0.75rem',
-        background: active ? '#334' : '#1a1a2e',
-        color: active ? '#e0e0e0' : '#666',
-        border: `1px solid ${active ? '#556' : '#333'}`,
-        borderRadius: '0.375rem',
-        cursor: 'pointer',
-        textAlign: 'left',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-      }}
-    >
-      {active ? '★ ' : '☆ '}{label}
-    </button>
-  )
-}
-
 function arrowStyle(disabled: boolean): React.CSSProperties {
   return {
-    background: 'none',
-    border: 'none',
+    background: 'none', border: 'none',
     color: disabled ? '#444' : '#999',
     cursor: disabled ? 'default' : 'pointer',
-    fontSize: '0.7rem',
-    padding: '0 0.2rem',
-    lineHeight: 1,
+    fontSize: '0.7rem', padding: '0 0.2rem', lineHeight: 1,
   }
 }

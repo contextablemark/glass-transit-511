@@ -1,7 +1,6 @@
 /**
  * Phone-side departure display.
- * Shows real-time departures for the first saved station,
- * auto-refreshes on the configured interval.
+ * Shows real-time departures grouped by platform for each saved station.
  */
 
 import { useState, useEffect, useRef } from 'react'
@@ -20,24 +19,16 @@ interface Props {
 }
 
 export function DepartureView({ favorites }: Props) {
-  const [arrivals, setArrivals] = useState<
-    Map<string, StationArrivals>
-  >(new Map())
+  const [arrivals, setArrivals] = useState<Map<string, StationArrivals>>(new Map())
   const [lastUpdate, setLastUpdate] = useState<string>('')
   const [error, setError] = useState<string>('')
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   const stationIds = uniqueStationIds(favorites)
-  const stations = stationIds
-    .map((id) => getStation(id))
-    .filter((s): s is Station => !!s)
-
-  // Stable key for effect dependency
-  const favKey = favorites.map((f) => `${f.stationId}:${f.direction}`).join(',')
+  const stations = stationIds.map((id) => getStation(id)).filter((s): s is Station => !!s)
+  const favKey = favorites.map((f) => `${f.stationId}:${f.platform}`).join(',')
 
   useEffect(() => {
     if (stations.length === 0) return
-
     let cancelled = false
 
     async function refresh() {
@@ -51,17 +42,11 @@ export function DepartureView({ favorites }: Props) {
           const resp = await fetch(url, init)
           if (!resp.ok) throw new Error(`HTTP ${resp.status} from ${url}`)
           const buffer = await resp.arrayBuffer()
-
           let bytes = new Uint8Array(buffer)
-          if (bytes[0] === 0xef && bytes[1] === 0xbb && bytes[2] === 0xbf) {
-            bytes = bytes.slice(3)
-          }
-
-          const feed =
-            GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(bytes)
+          if (bytes[0] === 0xef && bytes[1] === 0xbb && bytes[2] === 0xbf) bytes = bytes.slice(3)
+          const feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(bytes)
           feedMap.set(agency, feed.entity || [])
         }
-
         if (cancelled) return
 
         const newArrivals = new Map<string, StationArrivals>()
@@ -69,7 +54,6 @@ export function DepartureView({ favorites }: Props) {
           const entities = feedMap.get(station.agency) || []
           newArrivals.set(station.id, extractArrivals(station, entities))
         }
-
         setArrivals(newArrivals)
         setError('')
         setLastUpdate(new Date().toLocaleTimeString())
@@ -80,17 +64,9 @@ export function DepartureView({ favorites }: Props) {
       }
     }
 
-    // Initial fetch
     refresh()
-
-    // Auto-refresh timer — use a fixed interval, re-read settings each cycle
-    const REFRESH_MS = 60_000
-    const timer = setInterval(refresh, REFRESH_MS)
-
-    return () => {
-      cancelled = true
-      clearInterval(timer)
-    }
+    const timer = setInterval(refresh, 60_000)
+    return () => { cancelled = true; clearInterval(timer) }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [favKey])
 
@@ -100,35 +76,20 @@ export function DepartureView({ favorites }: Props) {
     <div>
       {error && (
         <div style={{
-          padding: '0.5rem 0.75rem',
-          background: '#3a1a1a',
-          borderRadius: '0.375rem',
-          color: '#ff6666',
-          fontSize: '0.8rem',
-          marginBottom: '0.5rem',
-        }}>
-          {error}
-        </div>
+          padding: '0.5rem 0.75rem', background: '#3a1a1a',
+          borderRadius: '0.375rem', color: '#ff6666', fontSize: '0.8rem', marginBottom: '0.5rem',
+        }}>{error}</div>
       )}
 
       {stations.map((station) => {
         const stationArrivals = arrivals.get(station.id)
         return (
-          <StationCard
-            key={station.id}
-            station={station}
-            arrivals={stationArrivals}
-          />
+          <StationCard key={station.id} station={station} arrivals={stationArrivals} />
         )
       })}
 
       {lastUpdate && (
-        <div style={{
-          fontSize: '0.7rem',
-          color: '#666',
-          textAlign: 'center',
-          marginTop: '0.5rem',
-        }}>
+        <div style={{ fontSize: '0.7rem', color: '#666', textAlign: 'center', marginTop: '0.5rem' }}>
           Last updated: {lastUpdate}
         </div>
       )}
@@ -136,70 +97,44 @@ export function DepartureView({ favorites }: Props) {
   )
 }
 
-function StationCard({
-  station,
-  arrivals,
-}: {
-  station: Station
-  arrivals?: StationArrivals
-}) {
+function StationCard({ station, arrivals }: { station: Station; arrivals?: StationArrivals }) {
   const agency = station.agency === 'BA' ? 'BART' : 'Muni'
   const now = Math.floor(Date.now() / 1000)
 
   return (
     <div style={{
-      background: '#252540',
-      borderRadius: '0.5rem',
-      padding: '0.75rem',
-      marginBottom: '0.5rem',
+      background: '#252540', borderRadius: '0.5rem',
+      padding: '0.75rem', marginBottom: '0.5rem',
     }}>
-      <div style={{
-        fontSize: '0.95rem',
-        fontWeight: 600,
-        marginBottom: '0.5rem',
-      }}>
+      <div style={{ fontSize: '0.95rem', fontWeight: 600, marginBottom: '0.5rem' }}>
         {station.name}
         <span style={{
           background: station.agency === 'BA' ? '#0066cc' : '#cc3333',
-          color: '#fff',
-          padding: '0 0.3rem',
-          borderRadius: '0.2rem',
-          marginLeft: '0.5rem',
-          fontSize: '0.65rem',
-          fontWeight: 600,
-        }}>
-          {agency}
-        </span>
+          color: '#fff', padding: '0 0.3rem', borderRadius: '0.2rem',
+          marginLeft: '0.5rem', fontSize: '0.65rem', fontWeight: 600,
+        }}>{agency}</span>
       </div>
 
       {!arrivals ? (
         <div style={{ color: '#999', fontSize: '0.8rem' }}>Loading...</div>
       ) : (
-        <>
-          <DirectionGroup
-            label={`▲ ${station.north}`}
-            trains={arrivals.north}
-            now={now}
-          />
-          <div style={{
-            borderTop: '1px solid #333',
-            margin: '0.4rem 0',
-          }} />
-          <DirectionGroup
-            label={`▼ ${station.south}`}
-            trains={arrivals.south}
-            now={now}
-          />
-        </>
+        station.platformLabels.map((label, platIdx) => (
+          <div key={platIdx}>
+            {platIdx > 0 && <div style={{ borderTop: '1px solid #333', margin: '0.4rem 0' }} />}
+            <PlatformGroup
+              label={label}
+              trains={arrivals.platforms[platIdx] || []}
+              now={now}
+            />
+          </div>
+        ))
       )}
     </div>
   )
 }
 
-function DirectionGroup({
-  label,
-  trains,
-  now,
+function PlatformGroup({
+  label, trains, now,
 }: {
   label: string
   trains: import('../types').TrainArrival[]
@@ -209,40 +144,25 @@ function DirectionGroup({
 
   return (
     <div>
-      <div style={{ fontSize: '0.75rem', color: '#999', marginBottom: '0.25rem' }}>
-        {label}
-      </div>
+      <div style={{ fontSize: '0.75rem', color: '#999', marginBottom: '0.25rem' }}>{label}</div>
       {display.length === 0 ? (
-        <div style={{ fontSize: '0.8rem', color: '#666', paddingLeft: '0.5rem' }}>
-          No live data
-        </div>
+        <div style={{ fontSize: '0.8rem', color: '#666', paddingLeft: '0.5rem' }}>No live data</div>
       ) : (
         display.map((t, i) => {
           const mins = minutesUntil(t.arrivalTime, now)
           const soon = isArrivingSoon(t.arrivalTime, now)
           return (
-            <div
-              key={`${t.route}-${t.arrivalTime}-${i}`}
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                padding: '0.15rem 0 0.15rem 0.5rem',
-                fontSize: '0.85rem',
-              }}
-            >
+            <div key={`${t.route}-${t.arrivalTime}-${i}`} style={{
+              display: 'flex', justifyContent: 'space-between',
+              padding: '0.15rem 0 0.15rem 0.5rem', fontSize: '0.85rem',
+            }}>
               <span>
-                <span style={{
-                  fontWeight: 600,
-                  color: soon ? '#ffcc00' : '#e0e0e0',
-                }}>
+                <span style={{ fontWeight: 600, color: soon ? '#ffcc00' : '#e0e0e0' }}>
                   [{t.route}]
                 </span>
                 {' '}{t.terminal}
               </span>
-              <span style={{
-                color: soon ? '#ffcc00' : '#999',
-                fontWeight: soon ? 600 : 400,
-              }}>
+              <span style={{ color: soon ? '#ffcc00' : '#999', fontWeight: soon ? 600 : 400 }}>
                 {mins === 0 ? 'now' : `${mins}m`}
               </span>
             </div>

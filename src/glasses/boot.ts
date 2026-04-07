@@ -128,7 +128,7 @@ async function displayCurrentPage(useRebuild: boolean): Promise<void> {
     return
   }
 
-  const headerText = renderHeader(page.station, page.direction)
+  const headerText = renderHeader(page.station, page.platform)
 
   if (useRebuild) {
     await rebuildDisplay(headerText, renderLoading())
@@ -140,9 +140,9 @@ async function displayCurrentPage(useRebuild: boolean): Promise<void> {
   const arrivals = await refreshCurrentArrivals(settings)
   if (!arrivals) return
 
-  const trains = page.direction === 'N' ? arrivals.north : arrivals.south
+  const trains = arrivals.platforms[page.platform] || []
   const bodyText = renderBody(
-    page.station, page.direction, trains,
+    page.station, page.platform, trains,
     currentIndex, pages.length
   )
   await updateBody(bodyText)
@@ -157,9 +157,9 @@ async function refreshInPlace(): Promise<void> {
   if (!arrivals) return
 
   const { pages, currentIndex } = getState()
-  const trains = page.direction === 'N' ? arrivals.north : arrivals.south
+  const trains = arrivals.platforms[page.platform] || []
   const bodyText = renderBody(
-    page.station, page.direction, trains,
+    page.station, page.platform, trains,
     currentIndex, pages.length
   )
   await updateBody(bodyText)
@@ -192,7 +192,7 @@ export async function startGlassesMode(b: EvenAppBridge): Promise<void> {
   const page = currentPage()
   if (page) {
     await createInitialPage(
-      renderHeader(page.station, page.direction),
+      renderHeader(page.station, page.platform),
       renderLoading()
     )
   } else {
@@ -204,9 +204,9 @@ export async function startGlassesMode(b: EvenAppBridge): Promise<void> {
     const arrivals = await refreshCurrentArrivals(settings)
     if (arrivals) {
       const { pages, currentIndex } = getState()
-      const trains = page.direction === 'N' ? arrivals.north : arrivals.south
+      const trains = arrivals.platforms[page.platform] || []
       await updateBody(
-        renderBody(page.station, page.direction, trains, currentIndex, pages.length)
+        renderBody(page.station, page.platform, trains, currentIndex, pages.length)
       )
     }
   }

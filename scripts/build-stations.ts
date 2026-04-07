@@ -1,8 +1,5 @@
 /**
- * Build stations.json from 511.org GTFS static data.
- *
- * Downloads BART and Muni GTFS feeds, parses stops/routes/stop_times,
- * and generates a bundled station database for the app.
+ * Build stations.json and route-terminals.json from 511.org GTFS static data.
  *
  * Usage:
  *   API_511_KEY=your-key npx tsx scripts/build-stations.ts
@@ -25,14 +22,13 @@ interface Station {
   routes: string[]
   lat: number
   lng: number
-  north: string
-  south: string
+  platformLabels: string[]
+  platformMap: Record<string, number>
 }
 
 // ── CSV parser (minimal, no dependency) ──
 
 function parseCsv(text: string): Record<string, string>[] {
-  // Strip UTF-8 BOM
   if (text.charCodeAt(0) === 0xfeff) text = text.slice(1)
   const lines = text.split('\n').filter((l) => l.trim())
   const headers = lines[0].split(',').map((h) => h.trim())
@@ -59,58 +55,35 @@ function parseCsv(text: string): Record<string, string>[] {
 
 // ── Download + unzip GTFS ──
 
-async function downloadGtfs(
-  agencyId: string
-): Promise<Map<string, string>> {
+async function downloadGtfs(agencyId: string): Promise<Map<string, string>> {
   const url = `http://api.511.org/transit/datafeeds?api_key=${API_KEY}&operator_id=${agencyId}`
   console.log(`Downloading GTFS for ${agencyId}...`)
   const resp = await fetch(url)
   if (!resp.ok) throw new Error(`HTTP ${resp.status} for ${agencyId}`)
   const buffer = await resp.arrayBuffer()
-
-  // Use Node's built-in zlib + manual zip parsing isn't worth it — use unzipper approach
-  // Write to temp, shell out to unzip
   const { execSync } = await import('child_process')
   const { tmpdir } = await import('os')
   const tmp = join(tmpdir(), `gtfs-${agencyId}`)
   const zipPath = `${tmp}.zip`
-
   writeFileSync(zipPath, Buffer.from(buffer))
   execSync(`rm -rf ${tmp} && mkdir -p ${tmp} && unzip -o -q ${zipPath} -d ${tmp}`)
-
-  // Read relevant files
   const { readFileSync } = await import('fs')
   const files = new Map<string, string>()
-  for (const name of [
-    'stops.txt',
-    'routes.txt',
-    'trips.txt',
-    'stop_times.txt',
-  ]) {
-    try {
-      files.set(name, readFileSync(join(tmp, name), 'utf-8'))
-    } catch {
-      console.warn(`  Missing ${name} for ${agencyId}`)
-    }
+  for (const name of ['stops.txt', 'routes.txt', 'trips.txt', 'stop_times.txt']) {
+    try { files.set(name, readFileSync(join(tmp, name), 'utf-8')) } catch {}
   }
   return files
 }
 
 // ── Build stop → routes mapping ──
 
-function buildStopRoutes(
-  tripsText: string,
-  stopTimesText: string
-): Map<string, Set<string>> {
+function buildStopRoutes(tripsText: string, stopTimesText: string): Map<string, Set<string>> {
   const trips = parseCsv(tripsText)
   const tripToRoute = new Map<string, string>()
-  for (const t of trips) {
-    tripToRoute.set(t.trip_id, t.route_id)
-  }
+  for (const t of trips) tripToRoute.set(t.trip_id, t.route_id)
 
   const stopRoutes = new Map<string, Set<string>>()
-  const stopTimes = parseCsv(stopTimesText)
-  for (const st of stopTimes) {
+  for (const st of parseCsv(stopTimesText)) {
     const route = tripToRoute.get(st.trip_id)
     if (!route) continue
     const routes = stopRoutes.get(st.stop_id) || new Set()
@@ -120,27 +93,32 @@ function buildStopRoutes(
   return stopRoutes
 }
 
+// ── Build route → terminal mapping ──
+
+function buildRouteTerminals(routesText: string): Record<string, string> {
+  const terminals: Record<string, string> = {}
+  for (const r of parseCsv(routesText)) {
+    const name = r.route_long_name || ''
+    const parts = name.split(/\s+to\s+/i)
+    if (parts.length === 2) {
+      terminals[r.route_id] = parts[1].trim()
+    } else if (r.route_short_name) {
+      terminals[r.route_id] = r.route_short_name
+    }
+  }
+  return terminals
+}
+
 // ── BART station builder ──
 
-function buildBartStations(files: Map<string, string>): Station[] {
+function buildBartStations(files: Map<string, string>): {
+  stations: Station[]
+  routeTerminals: Record<string, string>
+} {
   const stops = parseCsv(files.get('stops.txt')!)
-  const stopRoutes = buildStopRoutes(
-    files.get('trips.txt')!,
-    files.get('stop_times.txt')!
-  )
-  const routes = parseCsv(files.get('routes.txt')!)
+  const stopRoutes = buildStopRoutes(files.get('trips.txt')!, files.get('stop_times.txt')!)
+  const routeTerminals = buildRouteTerminals(files.get('routes.txt')!)
 
-  // Route direction labels from route_long_name
-  // e.g. "Berryessa/North San Jose to Richmond" → northLabel="Richmond"
-  const routeInfo = new Map<string, { color: string; longName: string }>()
-  for (const r of routes) {
-    routeInfo.set(r.route_id, {
-      color: r.route_color || '',
-      longName: r.route_long_name || '',
-    })
-  }
-
-  // Group: parent stations (location_type=1) with child platforms (location_type=0)
   const parents = stops.filter((s) => s.location_type === '1')
   const childByParent = new Map<string, string[]>()
   for (const s of stops) {
@@ -151,98 +129,84 @@ function buildBartStations(files: Map<string, string>): Station[] {
     }
   }
 
+  // Determine platform grouping from trip data:
+  // Two stops are on the same platform group if they serve overlapping route sets.
+  // At BART, platform 01 and 02 serve different directions.
+  const tripToStops = new Map<string, string[]>()
+  for (const st of parseCsv(files.get('stop_times.txt')!)) {
+    const stops = tripToStops.get(st.trip_id) || []
+    stops.push(st.stop_id)
+    tripToStops.set(st.trip_id, stops)
+  }
+
+  // For each station, group child stops by which routes they share
   const stations: Station[] = []
   for (const p of parents) {
-    const children = childByParent.get(p.stop_id) || []
+    const children = (childByParent.get(p.stop_id) || []).sort()
     if (children.length === 0) continue
 
-    // Collect routes from all child platforms, strip direction suffix
+    // Collect routes from all child platforms
     const allRoutes = new Set<string>()
     for (const kid of children) {
       const rs = stopRoutes.get(kid)
-      if (rs) {
-        for (const r of rs) {
-          allRoutes.add(r.replace(/-[NS]$/, ''))
-        }
-      }
+      if (rs) for (const r of rs) allRoutes.add(r.replace(/-[NS]$/, ''))
     }
 
-    // Determine direction labels from route long names
-    // Pattern: "X to Y" — for -N routes Y is the north terminal, for -S routes Y is south
-    let northLabel = 'Northbound'
-    let southLabel = 'Southbound'
-    for (const r of routes) {
-      if (!r.route_id.endsWith('-N')) continue
-      const base = r.route_id.replace(/-N$/, '')
-      if (!allRoutes.has(base)) continue
-      const match = r.route_long_name?.match(/to\s+(.+)$/i)
-      if (match) {
-        northLabel = match[1].trim()
-        break
-      }
+    // Group platforms: stops that share routes go in the same group
+    // Simple heuristic for BART: odd-suffix stops (01) = group 0, even-suffix (02) = group 1
+    // This works because BART consistently uses 01 for one direction and 02 for the other
+    const platformMap: Record<string, number> = {}
+    const groups: string[][] = [[], []]
+    for (const kid of children) {
+      const lastDigit = parseInt(kid.slice(-1))
+      const group = lastDigit % 2 === 1 ? 0 : 1
+      platformMap[kid] = group
+      groups[group].push(kid)
     }
-    for (const r of routes) {
-      if (!r.route_id.endsWith('-S')) continue
-      const base = r.route_id.replace(/-S$/, '')
-      if (!allRoutes.has(base)) continue
-      const match = r.route_long_name?.match(/to\s+(.+)$/i)
-      if (match) {
-        southLabel = match[1].trim()
-        break
-      }
-    }
+
+    // Label platforms as "Platform 1" and "Platform 2"
+    const platformLabels = ['Platform 1', 'Platform 2']
 
     stations.push({
       id: `bart-${p.stop_id}`,
       name: p.stop_name,
-      stops: children.sort(),
+      stops: children,
       agency: 'BA',
       routes: [...allRoutes].sort(),
       lat: parseFloat(p.stop_lat),
       lng: parseFloat(p.stop_lon),
-      north: northLabel,
-      south: southLabel,
+      platformLabels,
+      platformMap,
     })
   }
 
-  return stations.sort((a, b) => a.name.localeCompare(b.name))
+  return {
+    stations: stations.sort((a, b) => a.name.localeCompare(b.name)),
+    routeTerminals,
+  }
 }
 
 // ── Muni station builder ──
 
-function buildMuniStations(files: Map<string, string>): Station[] {
+function buildMuniStations(files: Map<string, string>): {
+  stations: Station[]
+  routeTerminals: Record<string, string>
+} {
   const stops = parseCsv(files.get('stops.txt')!)
-  const stopRoutes = buildStopRoutes(
-    files.get('trips.txt')!,
-    files.get('stop_times.txt')!
-  )
+  const stopRoutes = buildStopRoutes(files.get('trips.txt')!, files.get('stop_times.txt')!)
+  const routeTerminals = buildRouteTerminals(files.get('routes.txt')!)
 
   const RAIL_ROUTES = new Set(['N', 'J', 'K', 'L', 'M', 'T', 'F', 'CA', 'PH', 'PM'])
 
-  // Muni has no parent station hierarchy. Group stops by proximity + name.
-  // Strategy:
-  //   1. Metro underground stations: group by base name (strip Downtown/Outbound/etc)
-  //   2. Surface rail stops: group by name (opposite-direction pairs at same intersection)
-  //   3. Only include stops served by rail routes (skip bus-only for v1)
-
-  // Find stops served by at least one rail route
   const railStops = stops.filter((s) => {
     const routes = stopRoutes.get(s.stop_id)
     if (!routes) return false
     return [...routes].some((r) => RAIL_ROUTES.has(r))
   })
 
-  // Group Metro stations by base name
-  // "Metro Embarcadero Station" + "Metro Embarcadero Station" → one station
-  // "Metro Church Station/Downtown" + "Metro Church Station/Outbound" → one station
-  const metroStops = railStops.filter((s) =>
-    s.stop_name.startsWith('Metro ')
-  )
-  const surfaceStops = railStops.filter(
-    (s) => !s.stop_name.startsWith('Metro ')
-  )
+  const metroStops = railStops.filter((s) => s.stop_name.startsWith('Metro '))
+  const surfaceStops = railStops.filter((s) => !s.stop_name.startsWith('Metro '))
 
-  // Normalize Metro name: strip "Metro " prefix and /Downtown, /Outbound, /Downtn, /Outbd suffixes
   function metroBaseName(name: string): string {
     return name
       .replace(/^Metro\s+/, '')
@@ -251,7 +215,6 @@ function buildMuniStations(files: Map<string, string>): Station[] {
       .trim()
   }
 
-  // Group metro stops by base name
   const metroGroups = new Map<string, typeof metroStops>()
   for (const s of metroStops) {
     const base = metroBaseName(s.stop_name)
@@ -262,12 +225,10 @@ function buildMuniStations(files: Map<string, string>): Station[] {
 
   const stations: Station[] = []
 
-  // Build metro stations
   for (const [baseName, group] of metroGroups) {
     const allRoutes = new Set<string>()
     const stopIds: string[] = []
-    let lat = 0
-    let lng = 0
+    let lat = 0, lng = 0
     for (const s of group) {
       stopIds.push(s.stop_id)
       const routes = stopRoutes.get(s.stop_id)
@@ -278,25 +239,28 @@ function buildMuniStations(files: Map<string, string>): Station[] {
     lat /= group.length
     lng /= group.length
 
+    // For Muni metro, "Downtown" stops = inbound (platform 0), "Outbound" = platform 1
+    const platformMap: Record<string, number> = {}
+    for (const s of group) {
+      const isOutbound = /outbound|outbd/i.test(s.stop_name)
+      platformMap[s.stop_id] = isOutbound ? 1 : 0
+    }
+
     stations.push({
       id: `muni-metro-${baseName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
       name: baseName,
       stops: stopIds.sort(),
       agency: 'SF',
       routes: [...allRoutes].filter((r) => RAIL_ROUTES.has(r)).sort(),
-      lat,
-      lng,
-      north: 'Outbound',
-      south: 'Inbound',
+      lat, lng,
+      platformLabels: ['Inbound', 'Outbound'],
+      platformMap,
     })
   }
 
-  // Group surface stops by normalized name (group nearby same-name stops)
+  // Surface stops — group by name
   function normalizeStopName(name: string): string {
-    return name
-      .replace(/\s+/g, ' ')
-      .trim()
-      .toLowerCase()
+    return name.replace(/\s+/g, ' ').trim().toLowerCase()
   }
 
   const surfaceGroups = new Map<string, typeof surfaceStops>()
@@ -310,8 +274,7 @@ function buildMuniStations(files: Map<string, string>): Station[] {
   for (const [, group] of surfaceGroups) {
     const allRoutes = new Set<string>()
     const stopIds: string[] = []
-    let lat = 0
-    let lng = 0
+    let lat = 0, lng = 0
     for (const s of group) {
       stopIds.push(s.stop_id)
       const routes = stopRoutes.get(s.stop_id)
@@ -322,23 +285,27 @@ function buildMuniStations(files: Map<string, string>): Station[] {
     lat /= group.length
     lng /= group.length
 
-    // Use the original-case name from the first stop
-    const displayName = group[0].stop_name
+    // For surface stops, assign platforms by index (0, 1, ...)
+    const platformMap: Record<string, number> = {}
+    const sorted = [...stopIds].sort()
+    sorted.forEach((sid, i) => { platformMap[sid] = Math.min(i, 1) })
 
     stations.push({
-      id: `muni-${stopIds.sort().join('-')}`,
-      name: displayName,
-      stops: stopIds,
+      id: `muni-${sorted.join('-')}`,
+      name: group[0].stop_name,
+      stops: sorted,
       agency: 'SF',
       routes: [...allRoutes].filter((r) => RAIL_ROUTES.has(r)).sort(),
-      lat,
-      lng,
-      north: 'Outbound',
-      south: 'Inbound',
+      lat, lng,
+      platformLabels: ['Outbound', 'Inbound'],
+      platformMap,
     })
   }
 
-  return stations.sort((a, b) => a.name.localeCompare(b.name))
+  return {
+    stations: stations.sort((a, b) => a.name.localeCompare(b.name)),
+    routeTerminals,
+  }
 }
 
 // ── Main ──
@@ -347,23 +314,22 @@ async function main() {
   const bartFiles = await downloadGtfs('BA')
   const muniFiles = await downloadGtfs('SF')
 
-  const bartStations = buildBartStations(bartFiles)
-  const muniStations = buildMuniStations(muniFiles)
+  const bart = buildBartStations(bartFiles)
+  const muni = buildMuniStations(muniFiles)
 
-  const all = [...bartStations, ...muniStations]
+  const allStations = [...bart.stations, ...muni.stations]
+  const allTerminals = { ...bart.routeTerminals, ...muni.routeTerminals }
 
-  console.log(
-    `\nGenerated ${all.length} stations (${bartStations.length} BART, ${muniStations.length} Muni rail)`
-  )
+  console.log(`\nGenerated ${allStations.length} stations (${bart.stations.length} BART, ${muni.stations.length} Muni rail)`)
+  console.log(`Route terminals: ${Object.keys(allTerminals).length}`)
 
   const outDir = join(import.meta.dirname, '..', 'src', 'data')
   mkdirSync(outDir, { recursive: true })
-  const outPath = join(outDir, 'stations.json')
-  writeFileSync(outPath, JSON.stringify(all, null, 2) + '\n')
-  console.log(`Written to ${outPath}`)
+
+  writeFileSync(join(outDir, 'stations.json'), JSON.stringify(allStations, null, 2) + '\n')
+  writeFileSync(join(outDir, 'route-terminals.json'), JSON.stringify(allTerminals, null, 2) + '\n')
+
+  console.log(`Written to ${outDir}/stations.json and route-terminals.json`)
 }
 
-main().catch((err) => {
-  console.error(err)
-  process.exit(1)
-})
+main().catch((err) => { console.error(err); process.exit(1) })

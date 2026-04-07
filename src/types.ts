@@ -4,34 +4,40 @@ export interface Station {
   name: string
   stops: string[]       // GTFS stop_id values for all platforms at this station
   agency: 'BA' | 'SF'   // BART or SFMTA
-  routes: string[]       // route_ids serving this station (e.g. ["N", "J"] or ["Red", "Blue"])
+  routes: string[]       // display route names (e.g. ["N", "J"] or ["Red", "Blue"])
   lat: number
   lng: number
-  north: string          // direction label (e.g. "Richmond" or "Outbound")
-  south: string          // direction label (e.g. "Millbrae/SFO" or "Inbound")
+  /** Platform labels — index corresponds to platform group (0-based). */
+  platformLabels: string[]  // e.g. ["Platform 1", "Platform 2"] or ["Outbound", "Inbound"]
+  /**
+   * Map each stop_id to a platform index (0, 1, ...).
+   * Trains at the same platform go the same geographic direction.
+   */
+  platformMap: Record<string, number>
 }
 
-/** A single upcoming train/bus arrival */
+/** A single upcoming train arrival */
 export interface TrainArrival {
-  route: string          // display route name (e.g. "N", "Red") — stripped of direction suffix
-  direction: 'N' | 'S'  // from direction_id: 0='N', 1='S'
+  route: string          // display route name (e.g. "N", "Red")
   stopId: string         // full stop_id from feed
   arrivalTime: number    // Unix timestamp (seconds)
-  terminal: string       // last stop name in trip
+  terminal: string       // route terminal name (from GTFS static route_long_name)
 }
 
-/** Arrivals grouped by direction for a station */
+/** Arrivals grouped by platform for a station */
 export interface StationArrivals {
   stationId: string
-  north: TrainArrival[]  // sorted by arrivalTime
-  south: TrainArrival[]
-  fetchedAt: number      // Unix timestamp (seconds)
+  platforms: TrainArrival[][] // platforms[0] = trains at platform 0, etc.
+  fetchedAt: number
 }
 
-/** A favorited station direction — each becomes one page on glasses */
+/**
+ * A favorited station platform — each becomes one page on glasses.
+ * `platform` is the platform index (0, 1, ...).
+ */
 export interface FavoriteEntry {
   stationId: string
-  direction: 'N' | 'S'
+  platform: number
 }
 
 /** User settings */
