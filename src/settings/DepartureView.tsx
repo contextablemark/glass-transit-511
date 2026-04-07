@@ -32,8 +32,13 @@ export function DepartureView({ favorites }: Props) {
     .map((id) => getStation(id))
     .filter((s): s is Station => !!s)
 
+  // Stable key for effect dependency
+  const favKey = favorites.map((f) => `${f.stationId}:${f.direction}`).join(',')
+
   useEffect(() => {
     if (stations.length === 0) return
+
+    let cancelled = false
 
     async function refresh() {
       try {
@@ -44,7 +49,7 @@ export function DepartureView({ favorites }: Props) {
         for (const agency of agencies) {
           const { url, init } = buildFetchOptions(settings, agency)
           const resp = await fetch(url, init)
-          if (!resp.ok) throw new Error(`HTTP ${resp.status}`)
+          if (!resp.ok) throw new Error(`HTTP ${resp.status} from ${url}`)
           const buffer = await resp.arrayBuffer()
 
           let bytes = new Uint8Array(buffer)
@@ -57,6 +62,8 @@ export function DepartureView({ favorites }: Props) {
           feedMap.set(agency, feed.entity || [])
         }
 
+        if (cancelled) return
+
         const newArrivals = new Map<string, StationArrivals>()
         for (const station of stations) {
           const entities = feedMap.get(station.agency) || []
@@ -67,24 +74,25 @@ export function DepartureView({ favorites }: Props) {
         setError('')
         setLastUpdate(new Date().toLocaleTimeString())
       } catch (err) {
+        if (cancelled) return
         console.error('[DepartureView] fetch failed:', err)
         setError(err instanceof Error ? err.message : String(err))
       }
     }
 
+    // Initial fetch
     refresh()
 
-    // Auto-refresh
-    getSettings().then((settings) => {
-      if (timerRef.current) clearInterval(timerRef.current)
-      timerRef.current = setInterval(refresh, settings.refreshInterval * 1000)
-    })
+    // Auto-refresh timer — use a fixed interval, re-read settings each cycle
+    const REFRESH_MS = 60_000
+    const timer = setInterval(refresh, REFRESH_MS)
 
     return () => {
-      if (timerRef.current) clearInterval(timerRef.current)
+      cancelled = true
+      clearInterval(timer)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [favorites.map((f) => `${f.stationId}:${f.direction}`).join(',')])
+  }, [favKey])
 
   if (stations.length === 0) return null
 
