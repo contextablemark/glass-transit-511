@@ -128,18 +128,23 @@ async function fetchViaGtfsRt(
     }
   }
 
-  // Fetch for all agencies that need it
-  const uniqueStations = [
-    ...new Map(state.pages.map((p) => [p.station.id, p.station])).values(),
+  // Only fetch GTFS-RT for stations that need it
+  // (exclude BART stations when BART API key is configured)
+  const gtfsStations = [
+    ...new Map(
+      state.pages
+        .filter((p) => !(p.station.agency === 'BA' && settings.bartApiKey))
+        .map((p) => [p.station.id, p.station])
+    ).values(),
   ]
-  const agencies = agenciesForStations(uniqueStations)
+  const agencies = agenciesForStations(gtfsStations)
   const staleAgencies = agencies.filter((a) => !getCached(a, maxAgeMs))
   for (const _ of staleAgencies) recordRequest()
 
   try {
     const freshFeeds = await fetchAllFeeds(
       settings,
-      uniqueStations.filter((s) => staleAgencies.includes(s.agency))
+      gtfsStations.filter((s) => staleAgencies.includes(s.agency))
     )
     for (const [agency, entities] of freshFeeds) {
       setCached(agency, entities)

@@ -2,8 +2,11 @@
  * Glasses display renderer.
  *
  * Each page shows ONE platform for one station.
- * Format: "▶[Red] Richmond | 9    3m"
- *          marker route terminal cars  time (right-padded)
+ *
+ * Format with cars:    "▶[Red] Richmond      3m | 9 car"
+ * Format without cars: "▶[N] Ocean Beach          3m"
+ *
+ * Times are right-aligned. Car count appears after time with " | ".
  */
 
 import type { Station, TrainArrival } from '../types'
@@ -12,9 +15,6 @@ import { isArrivingSoon } from '../lib/time'
 const MAX_TRAINS = 6
 const CHARS_PER_LINE = 38
 
-/**
- * Render the header: station name + agency + platform label.
- */
 export function renderHeader(
   station: Station,
   platform: number
@@ -31,45 +31,40 @@ export function renderHeader(
 }
 
 /**
- * Format a single train line.
- * With cars:    "▶[Red] Richmond | 9    3m"
- * Without cars: "▶[N] Ocean Beach        3m"
+ * Format a single train line with right-aligned time.
+ *
+ * Layout: "{marker}{badge} {terminal}{padding}{time}{ | N car}"
+ *
+ * The time + car suffix is a fixed-width block at the right edge.
+ * Terminal is truncated to fill the remaining space.
  */
 function formatTrainLine(arrival: TrainArrival): string {
-  const badge = `[${arrival.route}]`
-  const time = arrival.minutesAway === 0 ? 'now' : `${arrival.minutesAway}m`
-  // Pad time to 4 chars for alignment (e.g. " 3m", "now", "12m")
-  const timePadded = time.padStart(4)
-
   const soon = isArrivingSoon(arrival.arrivalTime)
   const marker = soon ? '\u25B6' : ' '
+  const badge = `[${arrival.route}]`
 
-  let middle: string
-  if (arrival.cars) {
-    // Truncate terminal shorter to make room for " | N"
-    const maxTerm = CHARS_PER_LINE - marker.length - badge.length - 1 - 4 - timePadded.length - 1
-    // " | N" = 4 chars
-    const termLen = maxTerm - 4
-    const terminal = arrival.terminal.length > termLen
-      ? arrival.terminal.slice(0, termLen - 1) + '.'
-      : arrival.terminal
-    middle = `${terminal} | ${arrival.cars}`
-  } else {
-    const maxTerm = CHARS_PER_LINE - marker.length - badge.length - 1 - timePadded.length - 1
-    const terminal = arrival.terminal.length > maxTerm
-      ? arrival.terminal.slice(0, maxTerm - 1) + '.'
-      : arrival.terminal
-    middle = terminal
-  }
+  // Build right-side: time + optional car count
+  const timeStr = arrival.minutesAway === 0 ? 'Now' : `${arrival.minutesAway}m`
+  const carStr = arrival.cars != null ? ` | ${arrival.cars} car` : ''
+  const rightSide = timeStr + carStr
+  // Pad right side so time column aligns (pad timeStr to 4 chars before car suffix)
+  const timePadded = arrival.minutesAway === 0 ? ' Now' : `${arrival.minutesAway}m`.padStart(4)
+  const rightAligned = timePadded + carStr
 
-  const left = `${marker}${badge} ${middle}`
-  const gap = Math.max(1, CHARS_PER_LINE - left.length - timePadded.length)
-  return left + ' '.repeat(gap) + timePadded
+  // Left side: marker + badge + space
+  const leftPrefix = `${marker}${badge} `
+
+  // Terminal gets whatever space remains
+  const availForTerminal = CHARS_PER_LINE - leftPrefix.length - rightAligned.length - 1
+  const terminal = arrival.terminal.length > availForTerminal
+    ? arrival.terminal.slice(0, Math.max(1, availForTerminal - 1)) + '.'
+    : arrival.terminal
+
+  const left = leftPrefix + terminal
+  const gap = Math.max(1, CHARS_PER_LINE - left.length - rightAligned.length)
+  return left + ' '.repeat(gap) + rightAligned
 }
 
-/**
- * Render the body for a single platform's trains.
- */
 export function renderBody(
   station: Station,
   platform: number,

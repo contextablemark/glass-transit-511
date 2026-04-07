@@ -15,6 +15,11 @@
 - **Simplified time format**: Glasses display shows compact "5m" / "now" instead of "5 min - 3:42".
 - **Right-aligned times**: Time values padded to consistent width for visual alignment on G2 display.
 
+### Fixed
+
+- **Redundant BART GTFS-RT fetches**: When BART API key is set, no longer fetches BART data via GTFS-RT. Only Muni triggers GTFS-RT requests.
+- **Dev mode GTFS-RT**: Empty `proxyBaseUrl` in dev mode no longer blocks GTFS-RT fetches (Vite dev proxy handles `/transit/...` automatically).
+
 ## [0.3.0] - 2026-04-07
 
 ### Changed

@@ -223,12 +223,16 @@ function PlatformGroup({
                   [{t.route}]
                 </span>
                 {' '}{t.terminal}
-                {t.cars != null && (
-                  <span style={{ color: '#888' }}> | {t.cars}</span>
-                )}
               </span>
-              <span style={{ color: soon ? '#ffcc00' : '#999', fontWeight: soon ? 600 : 400 }}>
-                {t.minutesAway === 0 ? 'now' : `${t.minutesAway}m`}
+              <span style={{
+                color: soon ? '#ffcc00' : '#999',
+                fontWeight: soon ? 600 : 400,
+                whiteSpace: 'nowrap',
+              }}>
+                {t.minutesAway === 0 ? 'Now' : `${t.minutesAway}m`}
+                {t.cars != null && (
+                  <span style={{ color: '#888', fontWeight: 400 }}>{' | '}{t.cars} car</span>
+                )}
               </span>
             </div>
           )
