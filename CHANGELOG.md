@@ -8,7 +8,11 @@
 - **BART platform labels**: Directions labeled "Platform 1" / "Platform 2" instead of destination names, since platforms serve multiple lines with different terminals.
 - **Terminal names from GTFS static data**: Route terminals now come from `route_long_name` in routes.txt (e.g. "Richmond", "Daly City") instead of the last `stopTimeUpdate` entry, which could be incomplete (e.g. showing "Milpitas" instead of "Berryessa").
 - **Favorites model v2**: `FavoriteEntry.direction` (N/S) replaced with `FavoriteEntry.platform` (number). New storage key (`-v2`) avoids conflicts with old data.
-- **Bundled route-terminals.json**: 82 route → terminal mappings for BART and Muni.
+- **Bundled route-terminals.json**: 82 → 147 route terminal mappings for BART and Muni.
+
+### Fixed
+
+- **Muni terminal names**: Muni routes don't have "X to Y" in `route_long_name`, so terminals were showing the route letter (e.g. "[N] N"). Now derives terminals from the most common last stop per route+direction in GTFS static trip data (e.g. "[N] Ocean Beach", "[N] King St & 4th St").
 
 ## [0.2.0] - 2026-04-07
 
