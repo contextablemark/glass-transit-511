@@ -5,6 +5,12 @@
  * Scroll to cycle pages, tap to refresh, double-tap to exit.
  */
 
+function devLog(msg: string) {
+  if (import.meta.env.DEV) {
+    fetch('/dev-log', { method: 'POST', body: JSON.stringify({ msg: `[glasses] ${msg}` }) }).catch(() => {})
+  }
+}
+
 import {
   CreateStartUpPageContainer,
   TextContainerProperty,
@@ -192,27 +198,38 @@ function stopAutoRefresh(): void {
 export async function startGlassesMode(b: EvenAppBridge): Promise<void> {
   bridge = b
 
+  devLog('loading stations...')
   await loadStations()
 
   const page = currentPage()
+  const { pages } = getState()
+  devLog(`loaded ${pages.length} pages, current: ${page ? page.station.name + ' P' + page.platform : 'none'}`)
+
   if (page) {
+    devLog('creating initial page...')
     await createInitialPage(
       renderHeader(page.station, page.platform),
       renderLoading()
     )
+    devLog('initial page created')
   } else {
+    devLog('no stations — showing empty state')
     await createInitialPage('Glass Transit 511', renderNoStations())
   }
 
   if (page) {
+    devLog('fetching arrivals...')
     const settings = await getSettings()
     const arrivals = await refreshCurrentArrivals(settings)
     if (arrivals) {
       const { pages, currentIndex } = getState()
       const trains = arrivals.platforms[page.platform] || []
+      devLog(`got ${trains.length} trains for ${page.station.name} P${page.platform}, source=${arrivals.source}`)
       await updateBody(
         renderBody(page.station, page.platform, trains, currentIndex, pages.length)
       )
+    } else {
+      devLog('no arrivals returned')
     }
   }
 
@@ -246,6 +263,11 @@ export async function startGlassesMode(b: EvenAppBridge): Promise<void> {
   await startAutoRefresh()
 
   window.addEventListener('glass-transit:sync', () => {
-    loadStations().then(() => displayCurrentPage(true))
+    devLog('sync event received — reloading stations')
+    loadStations().then(() => {
+      const { pages } = getState()
+      devLog(`reloaded ${pages.length} pages`)
+      displayCurrentPage(true)
+    })
   })
 }
