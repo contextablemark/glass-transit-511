@@ -96,6 +96,17 @@ npm run qr -- --ip 192.168.1.100
 npm run pack
 ```
 
+### Web Demo (Vercel)
+
+The phone UI works as a standalone web app — no glasses required. BART data loads directly in any browser (CORS supported).
+
+```bash
+# Deploy to Vercel
+npx vercel
+```
+
+Or connect the GitHub repo to Vercel for automatic deploys on push. Enter your BART API key in Settings to see live departures. Muni requires the CORS proxy (see below).
+
 ### CORS Proxy (Production — Muni only)
 
 A CORS proxy is required **only for Muni stations** (and BART GTFS-RT fallback). BART stations work without any proxy via the BART Legacy API.

@@ -27,6 +27,10 @@
 
 - **README rewrite**: Thoroughly updated to reflect dual data source architecture (BART Legacy API + GTFS-RT), per-platform model, API key requirements, proxy-only-for-Muni, and current display format.
 
+### Deployment
+
+- **Vercel support**: Added `vercel.json` for static site deployment. The phone UI works as a web demo — BART data loads directly (CORS supported), no glasses required.
+
 ## [0.4.0] - 2026-04-07
 
 ### Added
