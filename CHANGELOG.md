@@ -23,6 +23,10 @@
 
 - **Client-to-terminal log relay**: `devLog()` helper sends client-side messages to the Vite terminal via `/dev-log` endpoint. Used for glasses boot diagnostics (hasFlutter, bridge status).
 
+### Docs
+
+- **README rewrite**: Thoroughly updated to reflect dual data source architecture (BART Legacy API + GTFS-RT), per-platform model, API key requirements, proxy-only-for-Muni, and current display format.
+
 ## [0.4.0] - 2026-04-07
 
 ### Added
