@@ -19,6 +19,10 @@
 
 - **"Send to Glasses" button**: Replaced by automatic sync on every favorites change.
 
+### Developer
+
+- **Client-to-terminal log relay**: `devLog()` helper sends client-side messages to the Vite terminal via `/dev-log` endpoint. Used for glasses boot diagnostics (hasFlutter, bridge status).
+
 ## [0.4.0] - 2026-04-07
 
 ### Added

@@ -12,22 +12,32 @@
 import { initStorage } from './lib/storage'
 import { initSettingsPage } from './settings/settings-mount'
 
+/** Send a log message to the Vite dev server terminal. */
+function devLog(msg: string) {
+  if (import.meta.env.DEV) {
+    fetch('/dev-log', {
+      method: 'POST',
+      body: JSON.stringify({ msg }),
+    }).catch(() => {})
+  }
+}
+
 async function main(): Promise<void> {
   // Check if inside Even App WebView
   const hasFlutter =
     !!(window as any).flutter_inappwebview ||
     !!(window as any).webkit?.messageHandlers?.callHandler
 
-  console.log('[main] hasFlutter:', hasFlutter)
+  devLog(`hasFlutter: ${hasFlutter}`)
 
   if (hasFlutter) {
     try {
-      console.log('[main] waiting for bridge...')
+      devLog('waiting for bridge...')
       const { waitForEvenAppBridge } = await import(
         '@evenrealities/even_hub_sdk'
       )
       const bridge = await waitForEvenAppBridge()
-      console.log('[main] bridge ready, starting glasses mode')
+      devLog('bridge ready, starting glasses mode')
 
       // Init storage BEFORE mounting settings so favorites load from bridge
       initStorage(bridge)
@@ -40,7 +50,7 @@ async function main(): Promise<void> {
       await startGlassesMode(bridge)
     } catch {
       // Bridge failed — fall back to browser-only mode
-      console.warn('[main] Glasses mode failed, settings page still available')
+      devLog('Glasses mode FAILED, settings page still available')
       initSettingsPage()
     }
   } else {
