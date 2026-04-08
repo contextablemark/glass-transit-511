@@ -13,6 +13,16 @@ import { fetchBartArrivals } from '../transit/bart-api'
 import { buildFetchOptions, agenciesForStations } from '../data/feed-urls'
 import { extractArrivals } from '../transit/feeds'
 import { isArrivingSoon } from '../lib/time'
+
+/** BART line color name → hex for colored square indicator */
+const BART_COLORS: Record<string, string> = {
+  Red: '#ff0000',
+  Orange: '#ff9933',
+  Yellow: '#ffff33',
+  Green: '#339933',
+  Blue: '#0099cc',
+  Grey: '#b0bec7',
+}
 import GtfsRealtimeBindings from 'gtfs-realtime-bindings'
 
 type FeedEntity = GtfsRealtimeBindings.transit_realtime.IFeedEntity
@@ -234,11 +244,22 @@ function PlatformGroup({
               display: 'flex', justifyContent: 'space-between',
               padding: '0.15rem 0 0.15rem 0.5rem', fontSize: '0.85rem',
             }}>
-              <span>
-                <span style={{ fontWeight: 600, color: soon ? '#ffcc00' : '#e0e0e0' }}>
-                  [{t.route}]
-                </span>
-                {' '}{t.terminal}
+              <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                {BART_COLORS[t.route] ? (
+                  <span style={{
+                    display: 'inline-block',
+                    width: '0.7rem',
+                    height: '0.7rem',
+                    borderRadius: '0.15rem',
+                    background: BART_COLORS[t.route],
+                    flexShrink: 0,
+                  }} />
+                ) : (
+                  <span style={{ fontWeight: 600, color: '#e0e0e0' }}>
+                    [{t.route}]
+                  </span>
+                )}
+                <span>{t.terminal}</span>
               </span>
               <span style={{
                 color: soon ? '#ffcc00' : '#999',

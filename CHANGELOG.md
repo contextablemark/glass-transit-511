@@ -31,6 +31,7 @@
 
 - **Vercel support**: Added `vercel.json` for static site deployment. The phone UI works as a web demo — BART data loads directly (CORS supported), no glasses required.
 - **URL query param for BART key**: Launch with `?BART_API_KEY=your-key` to pre-populate the API key field. Makes it easy to share demo links without baking the key into the app.
+- **Colored line indicators**: BART departures on the phone UI show a colored square (matching BART line colors) instead of `[Orange]`, `[Blue]`, etc. Muni routes keep the text badge.
 
 ## [0.4.0] - 2026-04-07
 
