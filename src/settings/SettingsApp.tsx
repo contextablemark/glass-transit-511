@@ -1,5 +1,6 @@
 /**
  * Root React component for the phone settings page.
+ * Tabbed UI: Departures | My Stations | Settings
  */
 
 import { useState, useEffect, useCallback } from 'react'
@@ -20,16 +21,16 @@ import { SettingsPanel } from './SettingsPanel'
 import { DepartureView } from './DepartureView'
 import { getStation } from './search'
 
-function SectionLabel({ children }: { children: string }) {
-  return (
-    <div style={{
-      fontSize: '1.1rem', fontWeight: 600,
-      marginTop: '1.5rem', marginBottom: '0.75rem', color: '#e0e0e0',
-    }}>{children}</div>
-  )
-}
+type Tab = 'departures' | 'stations' | 'settings'
+
+const TABS: Array<{ id: Tab; label: string }> = [
+  { id: 'departures', label: 'Departures' },
+  { id: 'stations', label: 'My Stations' },
+  { id: 'settings', label: 'Settings' },
+]
 
 export function SettingsApp() {
+  const [tab, setTab] = useState<Tab>('departures')
   const [favorites, setFavorites] = useState<FavoriteEntry[]>([])
   const [settings, setSettings] = useState<Settings>({ ...DEFAULT_SETTINGS })
   const [loading, setLoading] = useState(true)
@@ -93,58 +94,120 @@ export function SettingsApp() {
   }
 
   return (
-    <div style={{ paddingBottom: '5rem' }}>
-      <div style={{ marginBottom: '0.5rem' }}>
-        <h1 style={{ fontSize: '1.5rem', margin: 0 }}>Glass Transit 511</h1>
-        <p style={{ color: '#999', margin: '0.25rem 0 0', fontSize: '0.875rem' }}>
-          BART &amp; Muni departures for G2
-        </p>
-      </div>
-
-      {favorites.length > 0 && (
-        <>
-          <SectionLabel>Departures</SectionLabel>
-          <DepartureView favorites={favorites} />
-        </>
-      )}
-
-      <SectionLabel>My Stations</SectionLabel>
-      <FavoritesList
-        favorites={favorites}
-        onReorder={handleReorder}
-        onRemovePlatform={handleRemovePlatform}
-        onAddPlatform={handleAddPlatform}
-        onRemoveStation={handleRemoveStation}
-      />
-
-      <SectionLabel>Add Station</SectionLabel>
-      <StationSearch favorites={favorites} onAdd={handleAddStation} />
-
-      <SectionLabel>Settings</SectionLabel>
-      <SettingsPanel settings={settings} onChange={handleSettingsChange} />
-
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100dvh' }}>
+      {/* Tab bar */}
       <div style={{
-        position: 'fixed', bottom: 0, left: 0, right: 0,
-        padding: '1rem', background: '#1a1a2e', borderTop: '1px solid #333',
+        display: 'flex',
+        borderBottom: '1px solid #333',
+        background: '#1a1a2e',
+        position: 'sticky',
+        top: 0,
+        zIndex: 10,
       }}>
-        <button onClick={handleSync} style={{
-          width: '100%', padding: '0.75rem', fontSize: '1rem', fontWeight: 600,
-          background: '#e0e0e0', color: '#1a1a2e', border: 'none',
-          borderRadius: '0.5rem', cursor: 'pointer',
-        }}>Send to Glasses</button>
+        {TABS.map(({ id, label }) => (
+          <button
+            key={id}
+            onClick={() => setTab(id)}
+            style={{
+              flex: 1,
+              padding: '0.7rem 0',
+              fontSize: '0.85rem',
+              fontWeight: tab === id ? 600 : 400,
+              color: tab === id ? '#e0e0e0' : '#666',
+              background: 'none',
+              border: 'none',
+              borderBottom: tab === id ? '2px solid #e0e0e0' : '2px solid transparent',
+              cursor: 'pointer',
+            }}
+          >
+            {label}
+          </button>
+        ))}
       </div>
 
+      {/* Tab content */}
+      <div style={{ flex: 1, overflow: 'auto', padding: '0.75rem' }}>
+        {tab === 'departures' && (
+          favorites.length > 0 ? (
+            <DepartureView favorites={favorites} />
+          ) : (
+            <div style={{ color: '#666', textAlign: 'center', padding: '2rem 0', fontSize: '0.875rem' }}>
+              No stations saved. Go to My Stations to add some.
+            </div>
+          )
+        )}
+
+        {tab === 'stations' && (
+          <div style={{ paddingBottom: '5rem' }}>
+            <FavoritesList
+              favorites={favorites}
+              onReorder={handleReorder}
+              onRemovePlatform={handleRemovePlatform}
+              onAddPlatform={handleAddPlatform}
+              onRemoveStation={handleRemoveStation}
+            />
+
+            <div style={{
+              fontSize: '1rem',
+              fontWeight: 600,
+              marginTop: '1.5rem',
+              marginBottom: '0.75rem',
+              color: '#e0e0e0',
+            }}>
+              Add Station
+            </div>
+            <StationSearch favorites={favorites} onAdd={handleAddStation} />
+
+            {/* Send to Glasses */}
+            <div style={{
+              position: 'fixed',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              padding: '1rem',
+              background: '#1a1a2e',
+              borderTop: '1px solid #333',
+            }}>
+              <button onClick={handleSync} style={{
+                width: '100%',
+                padding: '0.75rem',
+                fontSize: '1rem',
+                fontWeight: 600,
+                background: '#e0e0e0',
+                color: '#1a1a2e',
+                border: 'none',
+                borderRadius: '0.5rem',
+                cursor: 'pointer',
+              }}>
+                Send to Glasses
+              </button>
+            </div>
+          </div>
+        )}
+
+        {tab === 'settings' && (
+          <SettingsPanel settings={settings} onChange={handleSettingsChange} />
+        )}
+      </div>
+
+      {/* Toast */}
       {toastMsg && (
         <div style={{
-          position: 'fixed', bottom: '5rem', left: '1rem', right: '1rem',
-          padding: '0.75rem', background: '#333', color: '#e0e0e0',
-          borderRadius: '0.5rem', textAlign: 'center', fontSize: '0.875rem',
-        }}>{toastMsg}</div>
+          position: 'fixed',
+          bottom: tab === 'stations' ? '5rem' : '1rem',
+          left: '1rem',
+          right: '1rem',
+          padding: '0.75rem',
+          background: '#333',
+          color: '#e0e0e0',
+          borderRadius: '0.5rem',
+          textAlign: 'center',
+          fontSize: '0.875rem',
+          zIndex: 20,
+        }}>
+          {toastMsg}
+        </div>
       )}
-
-      <p style={{ color: '#666', textAlign: 'center', fontSize: '0.7rem', marginTop: '2rem' }}>
-        v0.3.0 &middot; Changes auto-save
-      </p>
     </div>
   )
 }

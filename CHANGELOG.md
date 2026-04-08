@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.5.0] - 2026-04-08
+
+### Changed
+
+- **Tabbed phone UI**: Replaced single-page layout with three tabs — Departures (default), My Stations, Settings. Tab bar is sticky at top.
+- **Removed title bar**: "Glass Transit 511" header removed from phone UI — the Even App already shows the app name.
+- **"Send to Glasses" moved**: Only appears on the My Stations tab (not globally).
+- **"Add Station" moved**: Search is now under the favorites list on the My Stations tab.
+
+### Added
+
+- **Server-side BART API logging**: In dev mode, BART API requests route through Vite proxy for terminal-visible logging alongside GTFS-RT logs.
+
 ## [0.4.0] - 2026-04-07
 
 ### Added
