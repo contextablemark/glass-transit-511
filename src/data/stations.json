@@ -2204,8 +2204,8 @@
     "lat": 37.762651500000004,
     "lng": -122.43526,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "S Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "15728": 1,
@@ -2248,8 +2248,8 @@
     "lat": 37.767260500000006,
     "lng": -122.42924450000001,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "S Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "15726": 1,
@@ -2506,8 +2506,8 @@
     "lat": 37.779476,
     "lng": -122.413785,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "15727": 1,
@@ -2638,8 +2638,8 @@
     "lat": 37.792922000000004,
     "lng": -122.39679050000001,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "S Caltrain"
     ],
     "platformMap": {
       "16992": 1,
@@ -2681,8 +2681,8 @@
     "lat": 37.748351,
     "lng": -122.458623,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "S Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "15730": 1
@@ -4493,8 +4493,8 @@
     "lat": 37.789005,
     "lng": -122.40173899999999,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "15731": 1,
@@ -4729,8 +4729,8 @@
     "lat": 37.7844765,
     "lng": -122.407454,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "15417": 1,
@@ -6388,8 +6388,8 @@
     "lat": 37.775127,
     "lng": -122.419252,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "15419": 1

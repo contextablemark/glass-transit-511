@@ -311,6 +311,130 @@ function buildMuniStations(files: Map<string, string>): {
     return counts.d0 >= counts.d1 ? 0 : 1
   }
 
+  // ── Terminal name cleanup for human-readable labels ──
+  const TERMINAL_CLEANUP: Record<string, string> = {
+    'Judah/La Playa/Ocean Beach': 'Ocean Beach',
+    '47th Ave & Cutler Ave': 'Taraval/46th',
+    'San Jose Ave & Niagra Ave': 'Balboa Park',
+    'Balboa Park': 'Balboa Park',
+    'King St & 4th St': 'Caltrain',
+    'Jones St & Beach St': "Fisherman's Wharf",
+    '17th St & Castro St': 'Castro',
+    'Chinatown - Rose Pak': 'Chinatown',
+    'Bayshore Blvd & Sunnydale Ave': 'Bayshore',
+    'Embarcadero': 'Embarcadero',
+  }
+
+  function cleanTerminal(raw: string): string {
+    return TERMINAL_CLEANUP[raw] || raw
+  }
+
+  // ── Terminal coordinates for compass bearing ──
+  const TERMINAL_COORDS: Record<string, { lat: number; lng: number }> = {
+    'Ocean Beach': { lat: 37.7604, lng: -122.5089 },
+    'Taraval/46th': { lat: 37.7370, lng: -122.5054 },
+    'Balboa Park': { lat: 37.7218, lng: -122.4474 },
+    'Caltrain': { lat: 37.7763, lng: -122.3941 },
+    "Fisherman's Wharf": { lat: 37.8071, lng: -122.4173 },
+    'Castro': { lat: 37.7626, lng: -122.4350 },
+    'Chinatown': { lat: 37.7948, lng: -122.4081 },
+    'Bayshore': { lat: 37.7090, lng: -122.4051 },
+    'Embarcadero': { lat: 37.7931, lng: -122.3967 },
+  }
+
+  /** Compute compass bearing from point A to point B, return cardinal/intercardinal label */
+  function compassBearing(
+    fromLat: number, fromLng: number,
+    toLat: number, toLng: number
+  ): string {
+    const toRad = (d: number) => (d * Math.PI) / 180
+    const dLng = toRad(toLng - fromLng)
+    const lat1 = toRad(fromLat)
+    const lat2 = toRad(toLat)
+    const y = Math.sin(dLng) * Math.cos(lat2)
+    const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLng)
+    const bearing = ((Math.atan2(y, x) * 180) / Math.PI + 360) % 360
+
+    // 8-point compass
+    if (bearing < 22.5 || bearing >= 337.5) return 'N'
+    if (bearing < 67.5) return 'NE'
+    if (bearing < 112.5) return 'E'
+    if (bearing < 157.5) return 'SE'
+    if (bearing < 202.5) return 'S'
+    if (bearing < 247.5) return 'SW'
+    if (bearing < 292.5) return 'W'
+    return 'NW'
+  }
+
+  /**
+   * Build platform labels for a Muni Metro station.
+   * Platform 0 = outbound (dir=0), Platform 1 = inbound (dir=1).
+   * Label format: "W Ocean Beach", "E Embarcadero"
+   */
+  function buildMuniPlatformLabels(
+    stationName: string,
+    stationLat: number,
+    stationLng: number,
+    routes: string[],
+    routeTerminals: Record<string, string>
+  ): [string, string] {
+    const labels: [string, string] = ['Outbound', 'Inbound'] // fallback
+
+    for (let dirId = 0; dirId < 2; dirId++) {
+      // Collect terminals for this direction, count by route
+      const termCounts = new Map<string, number>()
+      for (const route of routes) {
+        const raw = routeTerminals[`${route}:${dirId}`]
+        if (!raw) continue
+        const clean = cleanTerminal(raw)
+        termCounts.set(clean, (termCounts.get(clean) || 0) + 1)
+      }
+
+      // Pick the best terminal: prefer well-known landmarks, break ties by distance
+      const TERMINAL_PRIORITY: Record<string, number> = {
+        'Ocean Beach': 10,
+        'Embarcadero': 10,
+        'Caltrain': 9,
+        'Chinatown': 9,
+        'Balboa Park': 8,
+        "Fisherman's Wharf": 8,
+        'Bayshore': 7,
+        'Castro': 6,
+        'Taraval/46th': 5,
+      }
+
+      let bestTerm = ''
+      let bestScore = -1
+      for (const [term] of termCounts) {
+        // Skip if terminal name matches the station itself
+        if (term.toLowerCase() === stationName.toLowerCase()) continue
+        const priority = TERMINAL_PRIORITY[term] ?? 3
+        const coords = TERMINAL_COORDS[term]
+        const dist = coords
+          ? Math.sqrt((coords.lat - stationLat) ** 2 + (coords.lng - stationLng) ** 2)
+          : 0
+        const score = priority + dist * 10
+        if (score > bestScore) {
+          bestTerm = term
+          bestScore = score
+        }
+      }
+
+      if (!bestTerm) continue
+
+      // Compute compass bearing to terminal
+      const coords = TERMINAL_COORDS[bestTerm]
+      if (coords) {
+        const compass = compassBearing(stationLat, stationLng, coords.lat, coords.lng)
+        labels[dirId] = `${compass} ${bestTerm}`
+      } else {
+        labels[dirId] = bestTerm
+      }
+    }
+
+    return labels
+  }
+
   const metroStops = railStops.filter((s) => s.stop_name.startsWith('Metro '))
   const surfaceStops = railStops.filter((s) => !s.stop_name.startsWith('Metro '))
 
@@ -362,6 +486,11 @@ function buildMuniStations(files: Map<string, string>): {
       }
     }
 
+    // Build compass+terminal platform labels
+    const platformLabels = buildMuniPlatformLabels(
+      baseName, lat, lng, [...allRoutes].filter((r) => RAIL_ROUTES.has(r)), routeTerminals
+    )
+
     stations.push({
       id: `muni-metro-${baseName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
       name: baseName,
@@ -369,7 +498,7 @@ function buildMuniStations(files: Map<string, string>): {
       agency: 'SF',
       routes: [...allRoutes].filter((r) => RAIL_ROUTES.has(r)).sort(),
       lat, lng,
-      platformLabels: ['Outbound', 'Inbound'],
+      platformLabels,
       platformMap,
     })
   }
