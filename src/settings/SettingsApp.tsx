@@ -43,6 +43,15 @@ export function SettingsApp() {
   useEffect(() => {
     async function load() {
       const [favs, s] = await Promise.all([getFavorites(), getSettings()])
+
+      // Allow URL query params to pre-populate settings (e.g. ?BART_API_KEY=...)
+      const params = new URLSearchParams(window.location.search)
+      const bartKey = params.get('BART_API_KEY')
+      if (bartKey && !s.bartApiKey) {
+        s.bartApiKey = bartKey
+        await saveSettings(s)
+      }
+
       setFavorites(favs)
       setSettings(s)
       setLoading(false)
