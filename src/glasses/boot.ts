@@ -50,25 +50,30 @@ async function createInitialPage(
   bodyText: string
 ): Promise<void> {
   if (!bridge) return
-  await bridge.createStartUpPageContainer(
-    new CreateStartUpPageContainer({
-      containerTotalNum: 2,
-      textObject: [
-        new TextContainerProperty({
-          xPosition: 0, yPosition: 0, width: 576, height: 28,
-          borderWidth: 0, borderColor: 0, borderRadius: 0, paddingLength: 4,
-          containerID: HEADER_ID, containerName: HEADER_NAME,
-          content: headerText, isEventCapture: 0,
-        }),
-        new TextContainerProperty({
-          xPosition: 0, yPosition: 28, width: 576, height: 260,
-          borderWidth: 0, borderColor: 0, borderRadius: 0, paddingLength: 4,
-          containerID: BODY_ID, containerName: BODY_NAME,
-          content: bodyText, isEventCapture: 1,
-        }),
-      ],
-    })
-  )
+  try {
+    const result = await bridge.createStartUpPageContainer(
+      new CreateStartUpPageContainer({
+        containerTotalNum: 2,
+        textObject: [
+          new TextContainerProperty({
+            xPosition: 0, yPosition: 0, width: 576, height: 28,
+            borderWidth: 0, borderColor: 0, borderRadius: 0, paddingLength: 4,
+            containerID: HEADER_ID, containerName: HEADER_NAME,
+            content: headerText, isEventCapture: 0,
+          }),
+          new TextContainerProperty({
+            xPosition: 0, yPosition: 28, width: 576, height: 260,
+            borderWidth: 0, borderColor: 0, borderRadius: 0, paddingLength: 4,
+            containerID: BODY_ID, containerName: BODY_NAME,
+            content: bodyText, isEventCapture: 1,
+          }),
+        ],
+      })
+    )
+    devLog(`createStartUpPageContainer result: ${result}`)
+  } catch (err) {
+    devLog(`createStartUpPageContainer ERROR: ${err}`)
+  }
 }
 
 async function rebuildDisplay(
