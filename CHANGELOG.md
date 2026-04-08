@@ -33,6 +33,10 @@
 - **URL query param for BART key**: Launch with `?BART_API_KEY=your-key` to pre-populate the API key field. Makes it easy to share demo links without baking the key into the app.
 - **Colored line indicators**: BART departures on the phone UI show a colored square (matching BART line colors) instead of `[Orange]`, `[Blue]`, etc. Muni routes keep the text badge.
 
+### Fixed
+
+- **Muni Metro Embarcadero outbound**: Both Embarcadero Metro stops were mapped to platform 0 (Inbound) because neither stop name contains "Outbound" or "Downtown". Now falls back to GTFS `direction_id` from trip data when stop names don't indicate direction.
+
 ## [0.4.0] - 2026-04-07
 
 ### Added

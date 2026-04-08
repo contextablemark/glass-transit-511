@@ -289,6 +289,28 @@ function buildMuniStations(files: Map<string, string>): {
     return [...routes].some((r) => RAIL_ROUTES.has(r))
   })
 
+  // Build stop → dominant direction_id from trip data
+  // Used to assign platforms when stop names don't indicate direction
+  const tripDir = new Map<string, string>()
+  for (const t of parseCsv(files.get('trips.txt')!)) {
+    tripDir.set(t.trip_id, t.direction_id)
+  }
+  const stopDirCounts = new Map<string, { d0: number; d1: number }>()
+  for (const st of parseCsv(files.get('stop_times.txt')!)) {
+    const dir = tripDir.get(st.trip_id)
+    if (dir === undefined) continue
+    const counts = stopDirCounts.get(st.stop_id) || { d0: 0, d1: 0 }
+    if (dir === '0') counts.d0++
+    else counts.d1++
+    stopDirCounts.set(st.stop_id, counts)
+  }
+  /** Returns 0 for outbound (dir=0), 1 for inbound (dir=1), based on majority usage */
+  function dominantDirection(stopId: string): number {
+    const counts = stopDirCounts.get(stopId)
+    if (!counts) return 0
+    return counts.d0 >= counts.d1 ? 0 : 1
+  }
+
   const metroStops = railStops.filter((s) => s.stop_name.startsWith('Metro '))
   const surfaceStops = railStops.filter((s) => !s.stop_name.startsWith('Metro '))
 
@@ -324,11 +346,19 @@ function buildMuniStations(files: Map<string, string>): {
     lat /= group.length
     lng /= group.length
 
-    // For Muni metro, "Downtown" stops = inbound (platform 0), "Outbound" = platform 1
+    // Assign platforms: use name suffix if available, otherwise direction_id from trip data
+    // Inbound (dir=1) = platform 0, Outbound (dir=0) = platform 1
     const platformMap: Record<string, number> = {}
     for (const s of group) {
-      const isOutbound = /outbound|outbd/i.test(s.stop_name)
-      platformMap[s.stop_id] = isOutbound ? 1 : 0
+      if (/outbound|outbd/i.test(s.stop_name)) {
+        platformMap[s.stop_id] = 1 // Outbound
+      } else if (/downtown|downtn|inbound/i.test(s.stop_name)) {
+        platformMap[s.stop_id] = 0 // Inbound
+      } else {
+        // No direction in name — use dominant direction_id from trip data
+        const dir = dominantDirection(s.stop_id)
+        platformMap[s.stop_id] = dir === 0 ? 1 : 0 // dir=0 is outbound → platform 1
+      }
     }
 
     stations.push({
