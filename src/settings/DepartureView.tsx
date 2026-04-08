@@ -145,9 +145,19 @@ export function DepartureView({ favorites }: Props) {
         }}>{error}</div>
       )}
 
-      {stations.map((station) => (
-        <StationCard key={station.id} station={station} arrivals={arrivals.get(station.id)} />
-      ))}
+      {stations.map((station) => {
+        const activePlatforms = favorites
+          .filter((f) => f.stationId === station.id)
+          .map((f) => f.platform)
+        return (
+          <StationCard
+            key={station.id}
+            station={station}
+            arrivals={arrivals.get(station.id)}
+            platforms={activePlatforms}
+          />
+        )
+      })}
 
       {lastUpdate && (
         <div style={{ fontSize: '0.7rem', color: '#666', textAlign: 'center', marginTop: '0.5rem' }}>
@@ -158,7 +168,13 @@ export function DepartureView({ favorites }: Props) {
   )
 }
 
-function StationCard({ station, arrivals }: { station: Station; arrivals?: StationArrivals }) {
+function StationCard({
+  station, arrivals, platforms,
+}: {
+  station: Station
+  arrivals?: StationArrivals
+  platforms: number[]  // which platform indices to show
+}) {
   const agency = station.agency === 'BA' ? 'BART' : 'Muni'
 
   return (
@@ -183,11 +199,11 @@ function StationCard({ station, arrivals }: { station: Station; arrivals?: Stati
       {!arrivals ? (
         <div style={{ color: '#999', fontSize: '0.8rem' }}>Loading...</div>
       ) : (
-        station.platformLabels.map((label, platIdx) => (
+        platforms.map((platIdx, i) => (
           <div key={platIdx}>
-            {platIdx > 0 && <div style={{ borderTop: '1px solid #333', margin: '0.4rem 0' }} />}
+            {i > 0 && <div style={{ borderTop: '1px solid #333', margin: '0.4rem 0' }} />}
             <PlatformGroup
-              label={label}
+              label={station.platformLabels[platIdx] || `Platform ${platIdx + 1}`}
               trains={arrivals.platforms[platIdx] || []}
             />
           </div>
