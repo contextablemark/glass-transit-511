@@ -1237,8 +1237,8 @@
     "lat": 37.743124,
     "lng": -122.471297,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Taraval/46th",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "13266": 0
@@ -1257,8 +1257,8 @@
     "lat": 37.762576,
     "lng": -122.434979,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "NW Castro",
+      "N Fisherman's Wharf"
     ],
     "platformMap": {
       "13311": 0
@@ -1277,8 +1277,8 @@
     "lat": 37.762645,
     "lng": -122.432991,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Castro",
+      "N Fisherman's Wharf"
     ],
     "platformMap": {
       "13318": 0
@@ -1298,8 +1298,8 @@
     "lat": 37.721342,
     "lng": -122.4752105,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "E Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "13358": 0,
@@ -1319,8 +1319,8 @@
     "lat": 37.716889,
     "lng": -122.472275,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "E Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "13361": 0
@@ -1341,8 +1341,8 @@
     "lat": 37.715166333333336,
     "lng": -122.470639,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "E Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "13376": 0,
@@ -1364,8 +1364,8 @@
     "lat": 37.727106,
     "lng": -122.4748915,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "E Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "13403": 0,
@@ -1386,8 +1386,8 @@
     "lat": 37.742237,
     "lng": -122.4242415,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "13537": 0,
@@ -1407,8 +1407,8 @@
     "lat": 37.741685,
     "lng": -122.504534,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "S Taraval/46th",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "13599": 0
@@ -1428,8 +1428,8 @@
     "lat": 37.7399135,
     "lng": -122.504493,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "S Taraval/46th",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "13600": 0,
@@ -1450,8 +1450,8 @@
     "lat": 37.7380575,
     "lng": -122.504354,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Taraval/46th",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "13602": 0,
@@ -1471,8 +1471,8 @@
     "lat": 37.736991,
     "lng": -122.505413,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "NE Taraval/46th",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "17869": 0
@@ -1491,8 +1491,8 @@
     "lat": 37.778341,
     "lng": -122.396613,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "NW Chinatown",
+      "S Bayshore"
     ],
     "platformMap": {
       "17872": 0
@@ -1512,8 +1512,8 @@
     "lat": 37.7762065,
     "lng": -122.3938465,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "NW Chinatown",
+      "S Bayshore"
     ],
     "platformMap": {
       "17166": 0,
@@ -1533,8 +1533,8 @@
     "lat": 37.763307,
     "lng": -122.466344,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "17999": 0
@@ -1555,8 +1555,8 @@
     "lat": 37.721809,
     "lng": -122.447425,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SE Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "15418": 0
@@ -1575,8 +1575,8 @@
     "lat": 37.712226,
     "lng": -122.402339,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "N Chinatown",
+      "SW Bayshore"
     ],
     "platformMap": {
       "17399": 0
@@ -1595,8 +1595,8 @@
     "lat": 37.712253,
     "lng": -122.402316,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "N Chinatown",
+      "SW Bayshore"
     ],
     "platformMap": {
       "17395": 0
@@ -1616,8 +1616,8 @@
     "lat": 37.708957,
     "lng": -122.4050785,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "N Chinatown",
+      "N Bayshore"
     ],
     "platformMap": {
       "17396": 0,
@@ -1637,8 +1637,8 @@
     "lat": 37.807407,
     "lng": -122.414125,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "S Castro",
+      "W Fisherman's Wharf"
     ],
     "platformMap": {
       "13092": 0
@@ -1657,8 +1657,8 @@
     "lat": 37.807841,
     "lng": -122.41081,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "W Fisherman's Wharf"
     ],
     "platformMap": {
       "13095": 0
@@ -1678,8 +1678,8 @@
     "lat": 37.7131715,
     "lng": -122.45904,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "NE Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "13715": 0,
@@ -1699,8 +1699,8 @@
     "lat": 37.713178,
     "lng": -122.462331,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "NE Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "13717": 0
@@ -1720,8 +1720,8 @@
     "lat": 37.7131915,
     "lng": -122.4560535,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "NE Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "13718": 0,
@@ -1742,8 +1742,8 @@
     "lat": 37.7932115,
     "lng": -122.399956,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "California St & Van Ness Ave",
+      "California St & Drumm St"
     ],
     "platformMap": {
       "13849": 0,
@@ -1765,8 +1765,8 @@
     "lat": 37.793512,
     "lng": -122.397336,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "California St & Van Ness Ave",
+      "California St & Drumm St"
     ],
     "platformMap": {
       "13855": 0,
@@ -1787,7 +1787,7 @@
     "lat": 37.793678,
     "lng": -122.396373,
     "platformLabels": [
-      "Outbound",
+      "California St & Van Ness Ave",
       "Inbound"
     ],
     "platformMap": {
@@ -1808,8 +1808,8 @@
     "lat": 37.793354,
     "lng": -122.39878150000001,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "California St & Van Ness Ave",
+      "California St & Drumm St"
     ],
     "platformMap": {
       "13863": 0,
@@ -1830,8 +1830,8 @@
     "lat": 37.792441499999995,
     "lng": -122.4059465,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "California St & Van Ness Ave",
+      "California St & Drumm St"
     ],
     "platformMap": {
       "13865": 0,
@@ -1852,8 +1852,8 @@
     "lat": 37.79096,
     "lng": -122.4175485,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "California St & Van Ness Ave",
+      "California St & Drumm St"
     ],
     "platformMap": {
       "13867": 0,
@@ -1874,8 +1874,8 @@
     "lat": 37.7914095,
     "lng": -122.4141095,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "California St & Van Ness Ave",
+      "California St & Drumm St"
     ],
     "platformMap": {
       "13869": 0,
@@ -1896,8 +1896,8 @@
     "lat": 37.792655499999995,
     "lng": -122.4042615,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "California St & Van Ness Ave",
+      "California St & Drumm St"
     ],
     "platformMap": {
       "13871": 0,
@@ -1918,8 +1918,8 @@
     "lat": 37.790783000000005,
     "lng": -122.419025,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "California St & Van Ness Ave",
+      "California St & Drumm St"
     ],
     "platformMap": {
       "13873": 0,
@@ -1940,8 +1940,8 @@
     "lat": 37.791209,
     "lng": -122.41568000000001,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "California St & Van Ness Ave",
+      "California St & Drumm St"
     ],
     "platformMap": {
       "13877": 0,
@@ -1962,8 +1962,8 @@
     "lat": 37.7918095,
     "lng": -122.4109685,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "California St & Van Ness Ave",
+      "California St & Drumm St"
     ],
     "platformMap": {
       "13880": 0,
@@ -1984,8 +1984,8 @@
     "lat": 37.7928465,
     "lng": -122.40276499999999,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "California St & Van Ness Ave",
+      "California St & Drumm St"
     ],
     "platformMap": {
       "13882": 0,
@@ -2006,8 +2006,8 @@
     "lat": 37.7905765,
     "lng": -122.4206845,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "California St & Van Ness Ave",
+      "California St & Drumm St"
     ],
     "platformMap": {
       "13888": 0,
@@ -2028,8 +2028,8 @@
     "lat": 37.792010000000005,
     "lng": -122.40938,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "California St & Van Ness Ave",
+      "California St & Drumm St"
     ],
     "platformMap": {
       "13890": 0,
@@ -2050,8 +2050,8 @@
     "lat": 37.79306,
     "lng": -122.4011255,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "California St & Van Ness Ave",
+      "California St & Drumm St"
     ],
     "platformMap": {
       "13894": 0,
@@ -2072,8 +2072,8 @@
     "lat": 37.792246,
     "lng": -122.4075405,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "California St & Van Ness Ave",
+      "California St & Drumm St"
     ],
     "platformMap": {
       "13899": 0,
@@ -2094,8 +2094,8 @@
     "lat": 37.7916275,
     "lng": -122.4124645,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "California St & Van Ness Ave",
+      "California St & Drumm St"
     ],
     "platformMap": {
       "13901": 0,
@@ -2116,7 +2116,7 @@
     "lng": -122.422238,
     "platformLabels": [
       "Outbound",
-      "Inbound"
+      "California St & Drumm St"
     ],
     "platformMap": {
       "17142": 0
@@ -2136,8 +2136,8 @@
     "lat": 37.765804,
     "lng": -122.4499675,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "13909": 0,
@@ -2158,8 +2158,8 @@
     "lat": 37.7649675,
     "lng": -122.4565365,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "13912": 0,
@@ -2180,8 +2180,8 @@
     "lat": 37.765433,
     "lng": -122.452759,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "13914": 0,
@@ -2225,8 +2225,8 @@
     "lat": 37.794807,
     "lng": -122.408078,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Chinatown",
+      "S Bayshore"
     ],
     "platformMap": {
       "17876": 0
@@ -2270,8 +2270,8 @@
     "lat": 37.764501499999994,
     "lng": -122.4286655,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "S Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "13984": 0,
@@ -2291,8 +2291,8 @@
     "lat": 37.761467,
     "lng": -122.428416,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "S Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "13987": 0
@@ -2312,8 +2312,8 @@
     "lat": 37.754674,
     "lng": -122.427693,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "13994": 0,
@@ -2334,8 +2334,8 @@
     "lat": 37.7516955,
     "lng": -122.4274235,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "13995": 0,
@@ -2356,8 +2356,8 @@
     "lat": 37.7485095,
     "lng": -122.4271605,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "18155": 0,
@@ -2378,8 +2378,8 @@
     "lat": 37.7453115,
     "lng": -122.42684600000001,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "18157": 0,
@@ -2399,8 +2399,8 @@
     "lat": 37.743587,
     "lng": -122.426585,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "13999": 0
@@ -2419,8 +2419,8 @@
     "lat": 37.742222,
     "lng": -122.426459,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "14000": 0
@@ -2439,8 +2439,8 @@
     "lat": 37.742811,
     "lng": -122.426654,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "14004": 0
@@ -2459,8 +2459,8 @@
     "lat": 37.769302,
     "lng": -122.429087,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "S Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "14006": 0
@@ -2480,8 +2480,8 @@
     "lat": 37.7673975,
     "lng": -122.42899,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "S Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "17073": 0,
@@ -2528,8 +2528,8 @@
     "lat": 37.80312,
     "lng": -122.414282,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Taylor St & Bay St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "14104": 0,
@@ -2549,8 +2549,8 @@
     "lat": 37.802687,
     "lng": -122.413531,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Taylor St & Bay St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "14113": 0
@@ -2570,8 +2570,8 @@
     "lat": 37.793949,
     "lng": -122.3934965,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "NW Fisherman's Wharf"
     ],
     "platformMap": {
       "14726": 0,
@@ -2592,8 +2592,8 @@
     "lat": 37.7694405,
     "lng": -122.429404,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "14447": 0,
@@ -2613,8 +2613,8 @@
     "lat": 37.769357,
     "lng": -122.433557,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "17252": 0
@@ -2659,8 +2659,8 @@
     "lat": 37.805146,
     "lng": -122.403233,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "W Fisherman's Wharf"
     ],
     "platformMap": {
       "17281": 0
@@ -2703,8 +2703,8 @@
     "lat": 37.74817,
     "lng": -122.459192,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "S Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16993": 0
@@ -2723,8 +2723,8 @@
     "lat": 37.778403,
     "lng": -122.39659,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "NW Chinatown",
+      "S Bayshore"
     ],
     "platformMap": {
       "17879": 0
@@ -2744,8 +2744,8 @@
     "lat": 37.804786,
     "lng": -122.4201805,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15059": 0,
@@ -2767,7 +2767,7 @@
     "lng": -122.4208005,
     "platformLabels": [
       "Outbound",
-      "Inbound"
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15063": 0,
@@ -2788,8 +2788,8 @@
     "lat": 37.796420499999996,
     "lng": -122.4184865,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15061": 0,
@@ -2810,8 +2810,8 @@
     "lat": 37.802876,
     "lng": -122.4197915,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15066": 0,
@@ -2832,8 +2832,8 @@
     "lat": 37.8001905,
     "lng": -122.41924800000001,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15069": 0,
@@ -2854,8 +2854,8 @@
     "lat": 37.798325500000004,
     "lng": -122.41887,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15074": 0,
@@ -2876,8 +2876,8 @@
     "lat": 37.801002,
     "lng": -122.419408,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15072": 0,
@@ -2897,8 +2897,8 @@
     "lat": 37.794542,
     "lng": -122.418189,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15076": 0
@@ -2918,8 +2918,8 @@
     "lat": 37.8018855,
     "lng": -122.4196135,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15077": 0,
@@ -2940,8 +2940,8 @@
     "lat": 37.805669,
     "lng": -122.42036350000001,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15080": 0,
@@ -2962,8 +2962,8 @@
     "lat": 37.795377,
     "lng": -122.41828050000001,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15082": 0,
@@ -2984,8 +2984,8 @@
     "lat": 37.799209000000005,
     "lng": -122.419059,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15088": 0,
@@ -3006,8 +3006,8 @@
     "lat": 37.797423,
     "lng": -122.4187015,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15090": 0,
@@ -3027,8 +3027,8 @@
     "lat": 37.764441,
     "lng": -122.458643,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "15118": 0
@@ -3047,8 +3047,8 @@
     "lat": 37.764182,
     "lng": -122.462139,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "18031": 0
@@ -3067,8 +3067,8 @@
     "lat": 37.764244,
     "lng": -122.462987,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "18032": 0
@@ -3087,8 +3087,8 @@
     "lat": 37.764038,
     "lng": -122.465428,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "17996": 0
@@ -3107,8 +3107,8 @@
     "lat": 37.764366,
     "lng": -122.458024,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "15124": 0
@@ -3127,8 +3127,8 @@
     "lat": 37.79464,
     "lng": -122.417994,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15150": 0
@@ -3147,8 +3147,8 @@
     "lat": 37.795041,
     "lng": -122.414842,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15152": 0
@@ -3167,8 +3167,8 @@
     "lat": 37.794854,
     "lng": -122.416366,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15154": 0
@@ -3188,8 +3188,8 @@
     "lat": 37.79545,
     "lng": -122.411712,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15156": 0
@@ -3208,8 +3208,8 @@
     "lat": 37.795255,
     "lng": -122.413202,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15164": 0
@@ -3228,8 +3228,8 @@
     "lat": 37.808594,
     "lng": -122.413357,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "S Castro",
+      "SW Fisherman's Wharf"
     ],
     "platformMap": {
       "15174": 0
@@ -3248,8 +3248,8 @@
     "lat": 37.80832,
     "lng": -122.415514,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "S Castro",
+      "SW Fisherman's Wharf"
     ],
     "platformMap": {
       "15175": 0
@@ -3268,8 +3268,8 @@
     "lat": 37.807132,
     "lng": -122.417324,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "S Castro",
+      "SE Fisherman's Wharf"
     ],
     "platformMap": {
       "15184": 0
@@ -3289,8 +3289,8 @@
     "lat": 37.7620285,
     "lng": -122.469425,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "15195": 0,
@@ -3310,8 +3310,8 @@
     "lat": 37.761848,
     "lng": -122.472777,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "15197": 0
@@ -3330,8 +3330,8 @@
     "lat": 37.76194,
     "lng": -122.473632,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "15198": 0
@@ -3351,8 +3351,8 @@
     "lat": 37.761699,
     "lng": -122.4770575,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "15199": 0,
@@ -3372,8 +3372,8 @@
     "lat": 37.761534,
     "lng": -122.479855,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "15201": 0
@@ -3392,8 +3392,8 @@
     "lat": 37.761547,
     "lng": -122.481164,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "15202": 0
@@ -3413,8 +3413,8 @@
     "lat": 37.7614125,
     "lng": -122.48343,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "15203": 0,
@@ -3435,8 +3435,8 @@
     "lat": 37.761271,
     "lng": -122.4866365,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "15205": 0,
@@ -3457,8 +3457,8 @@
     "lat": 37.7611385,
     "lng": -122.4896095,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "15207": 0,
@@ -3479,8 +3479,8 @@
     "lat": 37.7609915,
     "lng": -122.4930645,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "15209": 0,
@@ -3501,8 +3501,8 @@
     "lat": 37.760711,
     "lng": -122.4992565,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "15211": 0,
@@ -3523,8 +3523,8 @@
     "lat": 37.760558,
     "lng": -122.50270649999999,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "15213": 0,
@@ -3545,8 +3545,8 @@
     "lat": 37.760442499999996,
     "lng": -122.50594799999999,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "15215": 0,
@@ -3567,8 +3567,8 @@
     "lat": 37.762183,
     "lng": -122.4665,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "15193": 0,
@@ -3589,8 +3589,8 @@
     "lat": 37.7620125,
     "lng": -122.4704505,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "15219": 0,
@@ -3611,8 +3611,8 @@
     "lat": 37.760881,
     "lng": -122.49573649999999,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "15224": 0,
@@ -3633,8 +3633,8 @@
     "lat": 37.7603265,
     "lng": -122.508433,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "15223": 0,
@@ -3655,8 +3655,8 @@
     "lat": 37.7314495,
     "lng": -122.4717625,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SE Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "17113": 0,
@@ -3677,8 +3677,8 @@
     "lat": 37.779670499999995,
     "lng": -122.389848,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "SW Caltrain"
     ],
     "platformMap": {
       "15234": 0,
@@ -3699,8 +3699,8 @@
     "lat": 37.776269,
     "lng": -122.3941275,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "NE Caltrain"
     ],
     "platformMap": {
       "15239": 0,
@@ -3720,8 +3720,8 @@
     "lat": 37.79094,
     "lng": -122.399195,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "NW Fisherman's Wharf"
     ],
     "platformMap": {
       "17264": 0
@@ -3740,8 +3740,8 @@
     "lat": 37.789353,
     "lng": -122.401306,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "NW Fisherman's Wharf"
     ],
     "platformMap": {
       "15639": 0
@@ -3760,8 +3760,8 @@
     "lat": 37.787525,
     "lng": -122.403519,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "NW Fisherman's Wharf"
     ],
     "platformMap": {
       "15640": 0
@@ -3780,8 +3780,8 @@
     "lat": 37.785705,
     "lng": -122.405847,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "NW Fisherman's Wharf"
     ],
     "platformMap": {
       "15643": 0
@@ -3801,8 +3801,8 @@
     "lat": 37.783984000000004,
     "lng": -122.40806649999999,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "N Fisherman's Wharf"
     ],
     "platformMap": {
       "15645": 0,
@@ -3822,8 +3822,8 @@
     "lat": 37.782102,
     "lng": -122.4104,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "N Fisherman's Wharf"
     ],
     "platformMap": {
       "15647": 0
@@ -3843,8 +3843,8 @@
     "lat": 37.780465500000005,
     "lng": -122.412527,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "N Fisherman's Wharf"
     ],
     "platformMap": {
       "15650": 0,
@@ -3864,8 +3864,8 @@
     "lat": 37.778606,
     "lng": -122.414826,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "N Fisherman's Wharf"
     ],
     "platformMap": {
       "15651": 0
@@ -3884,8 +3884,8 @@
     "lat": 37.77741,
     "lng": -122.41634,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "N Fisherman's Wharf"
     ],
     "platformMap": {
       "15652": 0
@@ -3904,8 +3904,8 @@
     "lat": 37.79111,
     "lng": -122.399069,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "NW Fisherman's Wharf"
     ],
     "platformMap": {
       "15657": 0
@@ -3924,8 +3924,8 @@
     "lat": 37.769786,
     "lng": -122.426149,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "N Fisherman's Wharf"
     ],
     "platformMap": {
       "15659": 0
@@ -3945,8 +3945,8 @@
     "lat": 37.7674775,
     "lng": -122.428996,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "N Fisherman's Wharf"
     ],
     "platformMap": {
       "15661": 0,
@@ -3966,8 +3966,8 @@
     "lat": 37.76888,
     "lng": -122.427103,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "N Fisherman's Wharf"
     ],
     "platformMap": {
       "15668": 0
@@ -3986,8 +3986,8 @@
     "lat": 37.793473,
     "lng": -122.396178,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "NW Fisherman's Wharf"
     ],
     "platformMap": {
       "15669": 0
@@ -4007,8 +4007,8 @@
     "lat": 37.773072,
     "lng": -122.4218795,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "N Fisherman's Wharf"
     ],
     "platformMap": {
       "15672": 0,
@@ -4028,8 +4028,8 @@
     "lat": 37.77057,
     "lng": -122.424971,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "N Fisherman's Wharf"
     ],
     "platformMap": {
       "15675": 0
@@ -4048,8 +4048,8 @@
     "lat": 37.779105,
     "lng": -122.414379,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "N Fisherman's Wharf"
     ],
     "platformMap": {
       "15676": 0
@@ -4068,8 +4068,8 @@
     "lat": 37.78773,
     "lng": -122.40337,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "NW Fisherman's Wharf"
     ],
     "platformMap": {
       "15678": 0
@@ -4088,8 +4088,8 @@
     "lat": 37.770953,
     "lng": -122.424666,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "N Fisherman's Wharf"
     ],
     "platformMap": {
       "15681": 0
@@ -4108,8 +4108,8 @@
     "lat": 37.777598,
     "lng": -122.416236,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "N Fisherman's Wharf"
     ],
     "platformMap": {
       "15680": 0
@@ -4128,8 +4128,8 @@
     "lat": 37.792984,
     "lng": -122.396627,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "NW Fisherman's Wharf"
     ],
     "platformMap": {
       "15682": 0
@@ -4148,8 +4148,8 @@
     "lat": 37.788613,
     "lng": -122.402163,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "NW Fisherman's Wharf"
     ],
     "platformMap": {
       "15685": 0
@@ -4169,8 +4169,8 @@
     "lat": 37.7642235,
     "lng": -122.43306749999999,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "N Fisherman's Wharf"
     ],
     "platformMap": {
       "15686": 0,
@@ -4191,8 +4191,8 @@
     "lat": 37.765908499999995,
     "lng": -122.4309615,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "N Fisherman's Wharf"
     ],
     "platformMap": {
       "15690": 0,
@@ -4212,8 +4212,8 @@
     "lat": 37.775056,
     "lng": -122.419321,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "N Fisherman's Wharf"
     ],
     "platformMap": {
       "15692": 0
@@ -4232,8 +4232,8 @@
     "lat": 37.785777,
     "lng": -122.405859,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "NW Fisherman's Wharf"
     ],
     "platformMap": {
       "15694": 0
@@ -4252,8 +4252,8 @@
     "lat": 37.782316,
     "lng": -122.410228,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "N Fisherman's Wharf"
     ],
     "platformMap": {
       "15695": 0
@@ -4272,8 +4272,8 @@
     "lat": 37.775198,
     "lng": -122.419252,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "N Fisherman's Wharf"
     ],
     "platformMap": {
       "15696": 0
@@ -4293,8 +4293,8 @@
     "lat": 37.7972795,
     "lng": -122.41191699999999,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Taylor St & Bay St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15355": 0,
@@ -4315,8 +4315,8 @@
     "lat": 37.8009335,
     "lng": -122.4126545,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Taylor St & Bay St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15358": 0,
@@ -4337,8 +4337,8 @@
     "lat": 37.79906,
     "lng": -122.4122775,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Taylor St & Bay St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15362": 0,
@@ -4359,8 +4359,8 @@
     "lat": 37.8018795,
     "lng": -122.4128495,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Taylor St & Bay St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15360": 0,
@@ -4381,8 +4381,8 @@
     "lat": 37.7955575,
     "lng": -122.411603,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Taylor St & Bay St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15364": 0,
@@ -4403,8 +4403,8 @@
     "lat": 37.79616,
     "lng": -122.41169400000001,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Taylor St & Bay St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15366": 0,
@@ -4425,8 +4425,8 @@
     "lat": 37.8000055,
     "lng": -122.41247150000001,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Taylor St & Bay St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15368": 0,
@@ -4447,8 +4447,8 @@
     "lat": 37.798221,
     "lng": -122.412106,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Taylor St & Bay St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15370": 0,
@@ -4468,8 +4468,8 @@
     "lat": 37.794504,
     "lng": -122.411059,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "15372": 0
@@ -4515,8 +4515,8 @@
     "lat": 37.728334000000004,
     "lng": -122.467716,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "E Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "15779": 0,
@@ -4536,8 +4536,8 @@
     "lat": 37.724957,
     "lng": -122.461059,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "E Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "15787": 0
@@ -4556,8 +4556,8 @@
     "lat": 37.726008,
     "lng": -122.464072,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "E Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "15788": 0
@@ -4576,8 +4576,8 @@
     "lat": 37.724955,
     "lng": -122.46139,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "E Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "15793": 0
@@ -4597,8 +4597,8 @@
     "lat": 37.723428,
     "lng": -122.454211,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "E Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "15794": 0,
@@ -4619,8 +4619,8 @@
     "lat": 37.7243245,
     "lng": -122.4581915,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "E Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "15797": 0,
@@ -4641,8 +4641,8 @@
     "lat": 37.729967,
     "lng": -122.46928600000001,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SE Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "15806": 0,
@@ -4662,8 +4662,8 @@
     "lat": 37.726029,
     "lng": -122.464337,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "E Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "15808": 0
@@ -4683,8 +4683,8 @@
     "lat": 37.7229935,
     "lng": -122.451157,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "E Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "15784": 0,
@@ -4704,8 +4704,8 @@
     "lat": 37.713328,
     "lng": -122.462585,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "NE Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "15825": 0
@@ -4752,8 +4752,8 @@
     "lat": 37.7901495,
     "lng": -122.40879100000001,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "16047": 0,
@@ -4775,8 +4775,8 @@
     "lat": 37.792255499999996,
     "lng": -122.4092195,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "16049": 0,
@@ -4798,8 +4798,8 @@
     "lat": 37.793795,
     "lng": -122.40954550000001,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "16051": 0,
@@ -4821,8 +4821,8 @@
     "lat": 37.7873655,
     "lng": -122.408225,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "16057": 0,
@@ -4843,8 +4843,8 @@
     "lat": 37.795405,
     "lng": -122.409763,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "16059": 0
@@ -4865,7 +4865,7 @@
     "lat": 37.7846665,
     "lng": -122.4077335,
     "platformLabels": [
-      "Outbound",
+      "Hyde St & Beach St",
       "Inbound"
     ],
     "platformMap": {
@@ -4888,8 +4888,8 @@
     "lat": 37.786415500000004,
     "lng": -122.40803600000001,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "16067": 0,
@@ -4911,8 +4911,8 @@
     "lat": 37.7910865,
     "lng": -122.4089855,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "16069": 0,
@@ -4934,8 +4934,8 @@
     "lat": 37.7882935,
     "lng": -122.408402,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "16071": 0,
@@ -4957,8 +4957,8 @@
     "lat": 37.792919999999995,
     "lng": -122.409351,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "16073": 0,
@@ -4980,8 +4980,8 @@
     "lat": 37.7890965,
     "lng": -122.4085675,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "16075": 0,
@@ -5002,8 +5002,8 @@
     "lat": 37.7142715,
     "lng": -122.4671,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "NE Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16172": 0,
@@ -5024,8 +5024,8 @@
     "lat": 37.714299,
     "lng": -122.4635335,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "NE Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16174": 0,
@@ -5045,8 +5045,8 @@
     "lat": 37.761192,
     "lng": -122.428184,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "S Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16213": 0
@@ -5066,8 +5066,8 @@
     "lat": 37.7582465,
     "lng": -122.42785950000001,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16214": 0,
@@ -5088,8 +5088,8 @@
     "lat": 37.7565395,
     "lng": -122.426872,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16216": 0,
@@ -5110,8 +5110,8 @@
     "lat": 37.7310885,
     "lng": -122.474358,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SE Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16219": 0,
@@ -5132,8 +5132,8 @@
     "lat": 37.757345,
     "lng": -122.42693299999999,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16221": 0,
@@ -5154,8 +5154,8 @@
     "lat": 37.731915,
     "lng": -122.47376700000001,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SE Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16223": 0,
@@ -5176,8 +5176,8 @@
     "lat": 37.714055,
     "lng": -122.4522145,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "NE Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16257": 0,
@@ -5201,8 +5201,8 @@
     "lat": 37.720655,
     "lng": -122.44665733333333,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "NW Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16262": 0,
@@ -5224,8 +5224,8 @@
     "lat": 37.7162065,
     "lng": -122.4504015,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "NE Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16265": 0,
@@ -5245,8 +5245,8 @@
     "lat": 37.719421,
     "lng": -122.447654,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "N Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16269": 0
@@ -5266,8 +5266,8 @@
     "lat": 37.722973499999995,
     "lng": -122.4447445,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16274": 0,
@@ -5288,8 +5288,8 @@
     "lat": 37.739563000000004,
     "lng": -122.4242385,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Balboa Park",
+      "N Embarcadero"
     ],
     "platformMap": {
       "16277": 0,
@@ -5310,8 +5310,8 @@
     "lat": 37.7289935,
     "lng": -122.43996899999999,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16284": 0,
@@ -5332,8 +5332,8 @@
     "lat": 37.725779,
     "lng": -122.44240049999999,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16287": 0,
@@ -5354,8 +5354,8 @@
     "lat": 37.732463,
     "lng": -122.4336355,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "14787": 0,
@@ -5375,8 +5375,8 @@
     "lat": 37.769285,
     "lng": -122.433511,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "E Caltrain"
     ],
     "platformMap": {
       "17318": 0
@@ -5395,8 +5395,8 @@
     "lat": 37.743131,
     "lng": -122.473306,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Taraval/46th",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16615": 0
@@ -5416,8 +5416,8 @@
     "lat": 37.7430405,
     "lng": -122.47563249999999,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Taraval/46th",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16616": 0,
@@ -5437,8 +5437,8 @@
     "lat": 37.74289,
     "lng": -122.478426,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Taraval/46th",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16619": 0
@@ -5457,8 +5457,8 @@
     "lat": 37.742872,
     "lng": -122.48045,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Taraval/46th",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16620": 0
@@ -5478,8 +5478,8 @@
     "lat": 37.742729999999995,
     "lng": -122.483234,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Taraval/46th",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16622": 0,
@@ -5500,8 +5500,8 @@
     "lat": 37.742541,
     "lng": -122.48750899999999,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Taraval/46th",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16626": 0,
@@ -5522,8 +5522,8 @@
     "lat": 37.7424465,
     "lng": -122.489653,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Taraval/46th",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16628": 0,
@@ -5544,8 +5544,8 @@
     "lat": 37.742057,
     "lng": -122.4981855,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Taraval/46th",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16632": 0,
@@ -5566,8 +5566,8 @@
     "lat": 37.741960500000005,
     "lng": -122.5003315,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Taraval/46th",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16634": 0,
@@ -5588,8 +5588,8 @@
     "lat": 37.741864,
     "lng": -122.502476,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Taraval/46th",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16636": 0,
@@ -5609,8 +5609,8 @@
     "lat": 37.741823,
     "lng": -122.50449,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "S Taraval/46th",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16638": 0
@@ -5630,8 +5630,8 @@
     "lat": 37.7422375,
     "lng": -122.49443550000001,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Taraval/46th",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16640": 0,
@@ -5653,7 +5653,7 @@
     "lng": -122.4152495,
     "platformLabels": [
       "Outbound",
-      "Inbound"
+      "Powell St & Market St"
     ],
     "platformMap": {
       "16642": 0,
@@ -5673,8 +5673,8 @@
     "lat": 37.803758,
     "lng": -122.414998,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Taylor St & Bay St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "16645": 0
@@ -5693,8 +5693,8 @@
     "lat": 37.804383,
     "lng": -122.414952,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Taylor St & Bay St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "16646": 0
@@ -5714,8 +5714,8 @@
     "lat": 37.806787,
     "lng": -122.406154,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "W Fisherman's Wharf"
     ],
     "platformMap": {
       "14501": 0,
@@ -5736,8 +5736,8 @@
     "lat": 37.784493,
     "lng": -122.3880575,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "SW Caltrain"
     ],
     "platformMap": {
       "14506": 0,
@@ -5758,8 +5758,8 @@
     "lat": 37.7992265,
     "lng": -122.3976515,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "NW Fisherman's Wharf"
     ],
     "platformMap": {
       "14503": 0,
@@ -5780,8 +5780,8 @@
     "lat": 37.794859,
     "lng": -122.39366100000001,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "NW Fisherman's Wharf"
     ],
     "platformMap": {
       "14513": 0,
@@ -5805,8 +5805,8 @@
     "lat": 37.790615,
     "lng": -122.38976650000001,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "NW Embarcadero"
     ],
     "platformMap": {
       "14509": 0,
@@ -5827,8 +5827,8 @@
     "lat": 37.8009345,
     "lng": -122.3991445,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "NW Fisherman's Wharf"
     ],
     "platformMap": {
       "14517": 0,
@@ -5849,8 +5849,8 @@
     "lat": 37.8031115,
     "lng": -122.401071,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "W Fisherman's Wharf"
     ],
     "platformMap": {
       "14515": 0,
@@ -5870,8 +5870,8 @@
     "lat": 37.805022,
     "lng": -122.403314,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "W Fisherman's Wharf"
     ],
     "platformMap": {
       "14529": 0
@@ -5890,8 +5890,8 @@
     "lat": 37.808351,
     "lng": -122.410287,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "W Fisherman's Wharf"
     ],
     "platformMap": {
       "14530": 0
@@ -5911,8 +5911,8 @@
     "lat": 37.79672,
     "lng": -122.39542549999999,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SW Castro",
+      "NW Fisherman's Wharf"
     ],
     "platformMap": {
       "14532": 0,
@@ -5933,8 +5933,8 @@
     "lat": 37.760442499999996,
     "lng": -122.3885755,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "NW Chinatown",
+      "S Bayshore"
     ],
     "platformMap": {
       "17355": 0,
@@ -5955,8 +5955,8 @@
     "lat": 37.7553385,
     "lng": -122.388024,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "N Chinatown",
+      "S Bayshore"
     ],
     "platformMap": {
       "17354": 0,
@@ -5977,8 +5977,8 @@
     "lat": 37.725365999999994,
     "lng": -122.394308,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "N Chinatown",
+      "SW Bayshore"
     ],
     "platformMap": {
       "17343": 0,
@@ -5999,8 +5999,8 @@
     "lat": 37.7427265,
     "lng": -122.387977,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "N Chinatown",
+      "S Bayshore"
     ],
     "platformMap": {
       "17352": 0,
@@ -6021,8 +6021,8 @@
     "lat": 37.7187245,
     "lng": -122.3975825,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "N Chinatown",
+      "SW Bayshore"
     ],
     "platformMap": {
       "17394": 0,
@@ -6043,8 +6043,8 @@
     "lat": 37.749048,
     "lng": -122.387485,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "N Chinatown",
+      "S Bayshore"
     ],
     "platformMap": {
       "17353": 0,
@@ -6065,8 +6065,8 @@
     "lat": 37.772908,
     "lng": -122.3897,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "NW Chinatown",
+      "S Bayshore"
     ],
     "platformMap": {
       "17358": 0,
@@ -6087,8 +6087,8 @@
     "lat": 37.729251000000005,
     "lng": -122.392644,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "N Chinatown",
+      "SW Bayshore"
     ],
     "platformMap": {
       "17345": 0,
@@ -6109,8 +6109,8 @@
     "lat": 37.722324,
     "lng": -122.395696,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "N Chinatown",
+      "SW Bayshore"
     ],
     "platformMap": {
       "17342": 0,
@@ -6131,8 +6131,8 @@
     "lat": 37.739925,
     "lng": -122.388907,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "N Chinatown",
+      "SW Bayshore"
     ],
     "platformMap": {
       "17390": 0,
@@ -6153,8 +6153,8 @@
     "lat": 37.7376455,
     "lng": -122.389711,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "N Chinatown",
+      "SW Bayshore"
     ],
     "platformMap": {
       "17391": 0,
@@ -6175,8 +6175,8 @@
     "lat": 37.734353999999996,
     "lng": -122.39086449999999,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "N Chinatown",
+      "SW Bayshore"
     ],
     "platformMap": {
       "17392": 0,
@@ -6197,8 +6197,8 @@
     "lat": 37.7322755,
     "lng": -122.3915535,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "N Chinatown",
+      "SW Bayshore"
     ],
     "platformMap": {
       "17393": 0,
@@ -6218,8 +6218,8 @@
     "lat": 37.768504,
     "lng": -122.389182,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "NW Chinatown",
+      "S Bayshore"
     ],
     "platformMap": {
       "17357": 0
@@ -6238,8 +6238,8 @@
     "lat": 37.768237,
     "lng": -122.389366,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "NW Chinatown",
+      "S Bayshore"
     ],
     "platformMap": {
       "17360": 0
@@ -6259,8 +6259,8 @@
     "lat": 37.764315,
     "lng": -122.388859,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "NW Chinatown",
+      "S Bayshore"
     ],
     "platformMap": {
       "17356": 0,
@@ -6281,8 +6281,8 @@
     "lat": 37.741428,
     "lng": -122.47009,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Taraval/46th",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "18136": 0,
@@ -6303,8 +6303,8 @@
     "lat": 37.741125,
     "lng": -122.466155,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SE Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16738": 0
@@ -6324,8 +6324,8 @@
     "lat": 37.741009,
     "lng": -122.466167,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SE Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16744": 0
@@ -6344,8 +6344,8 @@
     "lat": 37.787151,
     "lng": -122.406477,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "N Chinatown",
+      "S Bayshore"
     ],
     "platformMap": {
       "17877": 0
@@ -6364,8 +6364,8 @@
     "lat": 37.787133,
     "lng": -122.406523,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "N Chinatown",
+      "S Bayshore"
     ],
     "platformMap": {
       "17874": 0
@@ -6412,8 +6412,8 @@
     "lat": 37.775234,
     "lng": -122.41934,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "W Ocean Beach",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16996": 0
@@ -6432,8 +6432,8 @@
     "lat": 37.794042,
     "lng": -122.414693,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "16920": 0
@@ -6452,8 +6452,8 @@
     "lat": 37.793828,
     "lng": -122.416287,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "16922": 0
@@ -6474,8 +6474,8 @@
     "lat": 37.794486,
     "lng": -122.4114445,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "16924": 0,
@@ -6496,8 +6496,8 @@
     "lat": 37.794629,
     "lng": -122.410038,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "16927": 0
@@ -6516,8 +6516,8 @@
     "lat": 37.794255,
     "lng": -122.413008,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "Hyde St & Beach St",
+      "Powell St & Market St"
     ],
     "platformMap": {
       "16929": 0
@@ -6536,8 +6536,8 @@
     "lat": 37.736125,
     "lng": -122.504351,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "NW Taraval/46th",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16932": 0
@@ -6558,8 +6558,8 @@
     "lat": 37.7379615,
     "lng": -122.469013,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SE Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16898": 0,
@@ -6582,8 +6582,8 @@
     "lat": 37.7414545,
     "lng": -122.465373,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SE Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16739": 0,
@@ -6605,8 +6605,8 @@
     "lat": 37.734816,
     "lng": -122.471532,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "SE Balboa Park",
+      "NE Embarcadero"
     ],
     "platformMap": {
       "16503": 0,
@@ -6626,8 +6626,8 @@
     "lat": 37.782358,
     "lng": -122.401551,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "NW Chinatown",
+      "S Bayshore"
     ],
     "platformMap": {
       "17878": 0
@@ -6646,8 +6646,8 @@
     "lat": 37.78238,
     "lng": -122.40173,
     "platformLabels": [
-      "Outbound",
-      "Inbound"
+      "N Chinatown",
+      "S Bayshore"
     ],
     "platformMap": {
       "17873": 0

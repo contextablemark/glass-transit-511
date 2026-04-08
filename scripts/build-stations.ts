@@ -535,14 +535,20 @@ function buildMuniStations(files: Map<string, string>): {
     const sorted = [...stopIds].sort()
     sorted.forEach((sid, i) => { platformMap[sid] = Math.min(i, 1) })
 
+    const displayName = group[0].stop_name
+    const railRoutes = [...allRoutes].filter((r) => RAIL_ROUTES.has(r)).sort()
+    const platformLabels = buildMuniPlatformLabels(
+      displayName, lat, lng, railRoutes, routeTerminals
+    )
+
     stations.push({
       id: `muni-${sorted.join('-')}`,
-      name: group[0].stop_name,
+      name: displayName,
       stops: sorted,
       agency: 'SF',
-      routes: [...allRoutes].filter((r) => RAIL_ROUTES.has(r)).sort(),
+      routes: railRoutes,
       lat, lng,
-      platformLabels: ['Outbound', 'Inbound'],
+      platformLabels,
       platformMap,
     })
   }
