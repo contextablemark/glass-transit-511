@@ -347,17 +347,18 @@ function buildMuniStations(files: Map<string, string>): {
     lng /= group.length
 
     // Assign platforms: use name suffix if available, otherwise direction_id from trip data
-    // Inbound (dir=1) = platform 0, Outbound (dir=0) = platform 1
+    // Platform 0 = Outbound, Platform 1 = Inbound
     const platformMap: Record<string, number> = {}
     for (const s of group) {
       if (/outbound|outbd/i.test(s.stop_name)) {
-        platformMap[s.stop_id] = 1 // Outbound
+        platformMap[s.stop_id] = 0 // Outbound
       } else if (/downtown|downtn|inbound/i.test(s.stop_name)) {
-        platformMap[s.stop_id] = 0 // Inbound
+        platformMap[s.stop_id] = 1 // Inbound / Downtown
       } else {
         // No direction in name — use dominant direction_id from trip data
+        // Muni: direction_id=0 is outbound, direction_id=1 is inbound
         const dir = dominantDirection(s.stop_id)
-        platformMap[s.stop_id] = dir === 0 ? 1 : 0 // dir=0 is outbound → platform 1
+        platformMap[s.stop_id] = dir === 0 ? 0 : 1
       }
     }
 
@@ -368,7 +369,7 @@ function buildMuniStations(files: Map<string, string>): {
       agency: 'SF',
       routes: [...allRoutes].filter((r) => RAIL_ROUTES.has(r)).sort(),
       lat, lng,
-      platformLabels: ['Inbound', 'Outbound'],
+      platformLabels: ['Outbound', 'Inbound'],
       platformMap,
     })
   }

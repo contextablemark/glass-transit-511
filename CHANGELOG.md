@@ -35,7 +35,9 @@
 
 ### Fixed
 
-- **Muni Metro Embarcadero outbound**: Both Embarcadero Metro stops were mapped to platform 0 (Inbound) because neither stop name contains "Outbound" or "Downtown". Now falls back to GTFS `direction_id` from trip data when stop names don't indicate direction.
+- **Muni Metro direction labels reversed**: Outbound and Inbound labels were swapped for Metro stations. Corrected platform label order and assignment logic.
+- **Muni Metro Embarcadero outbound**: Both Embarcadero Metro stops were mapped to the same platform because neither stop name contains "Outbound" or "Downtown". Now falls back to GTFS `direction_id` from trip data when stop names don't indicate direction.
+- **Filter terminating trains**: Trains whose last stop is the station being viewed are now excluded from departures. Particularly useful at terminal stations like Embarcadero where many inbound trains terminate.
 
 ## [0.4.0] - 2026-04-07
 

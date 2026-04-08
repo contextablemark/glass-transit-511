@@ -67,9 +67,18 @@ export function extractArrivals(
     const directionId = tu.trip.directionId ?? 0
     const terminal = getTerminal(routeId, directionId as number)
 
-    for (const stu of tu.stopTimeUpdate) {
+    // Identify the last stop in this trip (trains terminating here should be filtered)
+    const updates = tu.stopTimeUpdate
+    const lastStopId = updates.length > 0
+      ? (updates[updates.length - 1].stopId as string)
+      : ''
+
+    for (const stu of updates) {
       const fullStopId = stu.stopId as string
       if (!fullStopId || !stationStopIds.has(fullStopId)) continue
+
+      // Skip trains that terminate at this station (last stop = this stop)
+      if (fullStopId === lastStopId) continue
 
       const arrTime = Number(
         stu.arrival?.time || stu.departure?.time || 0

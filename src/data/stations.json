@@ -2204,12 +2204,12 @@
     "lat": 37.762651500000004,
     "lng": -122.43526,
     "platformLabels": [
-      "Inbound",
-      "Outbound"
+      "Outbound",
+      "Inbound"
     ],
     "platformMap": {
-      "15728": 0,
-      "16991": 1
+      "15728": 1,
+      "16991": 0
     }
   },
   {
@@ -2248,12 +2248,12 @@
     "lat": 37.767260500000006,
     "lng": -122.42924450000001,
     "platformLabels": [
-      "Inbound",
-      "Outbound"
+      "Outbound",
+      "Inbound"
     ],
     "platformMap": {
-      "15726": 0,
-      "16998": 1
+      "15726": 1,
+      "16998": 0
     }
   },
   {
@@ -2506,12 +2506,12 @@
     "lat": 37.779476,
     "lng": -122.413785,
     "platformLabels": [
-      "Inbound",
-      "Outbound"
+      "Outbound",
+      "Inbound"
     ],
     "platformMap": {
-      "15727": 0,
-      "16997": 1
+      "15727": 1,
+      "16997": 0
     }
   },
   {
@@ -2638,12 +2638,12 @@
     "lat": 37.792922000000004,
     "lng": -122.39679050000001,
     "platformLabels": [
-      "Inbound",
-      "Outbound"
+      "Outbound",
+      "Inbound"
     ],
     "platformMap": {
-      "16992": 0,
-      "17217": 1
+      "16992": 1,
+      "17217": 0
     }
   },
   {
@@ -2681,11 +2681,11 @@
     "lat": 37.748351,
     "lng": -122.458623,
     "platformLabels": [
-      "Inbound",
-      "Outbound"
+      "Outbound",
+      "Inbound"
     ],
     "platformMap": {
-      "15730": 0
+      "15730": 1
     }
   },
   {
@@ -4493,12 +4493,12 @@
     "lat": 37.789005,
     "lng": -122.40173899999999,
     "platformLabels": [
-      "Inbound",
-      "Outbound"
+      "Outbound",
+      "Inbound"
     ],
     "platformMap": {
-      "15731": 0,
-      "16994": 1
+      "15731": 1,
+      "16994": 0
     }
   },
   {
@@ -4729,12 +4729,12 @@
     "lat": 37.7844765,
     "lng": -122.407454,
     "platformLabels": [
-      "Inbound",
-      "Outbound"
+      "Outbound",
+      "Inbound"
     ],
     "platformMap": {
-      "15417": 0,
-      "16995": 1
+      "15417": 1,
+      "16995": 0
     }
   },
   {
@@ -6388,11 +6388,11 @@
     "lat": 37.775127,
     "lng": -122.419252,
     "platformLabels": [
-      "Inbound",
-      "Outbound"
+      "Outbound",
+      "Inbound"
     ],
     "platformMap": {
-      "15419": 0
+      "15419": 1
     }
   },
   {
