@@ -12,6 +12,7 @@
 ### Added
 
 - **Server-side BART API logging**: In dev mode, BART API requests route through Vite proxy for terminal-visible logging alongside GTFS-RT logs.
+- **Departures filtered by favorites**: Departures tab only shows platforms that are toggled on in My Stations. Unfavoriting a platform hides it from both the glasses and the phone.
 
 ## [0.4.0] - 2026-04-07
 
