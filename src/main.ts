@@ -18,12 +18,16 @@ async function main(): Promise<void> {
     !!(window as any).flutter_inappwebview ||
     !!(window as any).webkit?.messageHandlers?.callHandler
 
+  console.log('[main] hasFlutter:', hasFlutter)
+
   if (hasFlutter) {
     try {
+      console.log('[main] waiting for bridge...')
       const { waitForEvenAppBridge } = await import(
         '@evenrealities/even_hub_sdk'
       )
       const bridge = await waitForEvenAppBridge()
+      console.log('[main] bridge ready, starting glasses mode')
 
       // Init storage BEFORE mounting settings so favorites load from bridge
       initStorage(bridge)
@@ -36,7 +40,7 @@ async function main(): Promise<void> {
       await startGlassesMode(bridge)
     } catch {
       // Bridge failed — fall back to browser-only mode
-      console.warn('Glasses mode failed, settings page still available')
+      console.warn('[main] Glasses mode failed, settings page still available')
       initSettingsPage()
     }
   } else {

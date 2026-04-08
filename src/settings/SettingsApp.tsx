@@ -29,12 +29,16 @@ const TABS: Array<{ id: Tab; label: string }> = [
   { id: 'settings', label: 'Settings' },
 ]
 
+/** Notify glasses to reload stations */
+function syncToGlasses() {
+  window.dispatchEvent(new CustomEvent('glass-transit:sync'))
+}
+
 export function SettingsApp() {
   const [tab, setTab] = useState<Tab>('departures')
   const [favorites, setFavorites] = useState<FavoriteEntry[]>([])
   const [settings, setSettings] = useState<Settings>({ ...DEFAULT_SETTINGS })
   const [loading, setLoading] = useState(true)
-  const [toastMsg, setToastMsg] = useState('')
 
   useEffect(() => {
     async function load() {
@@ -49,16 +53,19 @@ export function SettingsApp() {
   const handleReorder = useCallback(async (entries: FavoriteEntry[]) => {
     setFavorites(entries)
     await saveFavorites(entries)
+    syncToGlasses()
   }, [])
 
   const handleRemovePlatform = useCallback(async (stationId: string, platform: number) => {
     const next = await removeFavorite(stationId, platform)
     setFavorites(next)
+    syncToGlasses()
   }, [])
 
   const handleRemoveStation = useCallback(async (stationId: string) => {
     const next = await removeStation(stationId)
     setFavorites(next)
+    syncToGlasses()
   }, [])
 
   const handleAddStation = useCallback(async (stationId: string) => {
@@ -66,6 +73,7 @@ export function SettingsApp() {
     const numPlatforms = station?.platformLabels.length ?? 2
     const next = await addStation(stationId, numPlatforms)
     setFavorites(next)
+    syncToGlasses()
   }, [])
 
   const handleAddPlatform = useCallback(async (stationId: string, platform: number) => {
@@ -75,18 +83,13 @@ export function SettingsApp() {
       favs.push({ stationId, platform })
       await saveFavorites(favs)
       setFavorites(favs)
+      syncToGlasses()
     }
   }, [])
 
   const handleSettingsChange = useCallback(async (next: Settings) => {
     setSettings(next)
     await saveSettings(next)
-  }, [])
-
-  const handleSync = useCallback(() => {
-    window.dispatchEvent(new CustomEvent('glass-transit:sync'))
-    setToastMsg('Sent to glasses!')
-    setTimeout(() => setToastMsg(''), 2000)
   }, [])
 
   if (loading) {
@@ -138,7 +141,7 @@ export function SettingsApp() {
         )}
 
         {tab === 'stations' && (
-          <div style={{ paddingBottom: '5rem' }}>
+          <div>
             <FavoritesList
               favorites={favorites}
               onReorder={handleReorder}
@@ -157,31 +160,6 @@ export function SettingsApp() {
               Add Station
             </div>
             <StationSearch favorites={favorites} onAdd={handleAddStation} />
-
-            {/* Send to Glasses */}
-            <div style={{
-              position: 'fixed',
-              bottom: 0,
-              left: 0,
-              right: 0,
-              padding: '1rem',
-              background: '#1a1a2e',
-              borderTop: '1px solid #333',
-            }}>
-              <button onClick={handleSync} style={{
-                width: '100%',
-                padding: '0.75rem',
-                fontSize: '1rem',
-                fontWeight: 600,
-                background: '#e0e0e0',
-                color: '#1a1a2e',
-                border: 'none',
-                borderRadius: '0.5rem',
-                cursor: 'pointer',
-              }}>
-                Send to Glasses
-              </button>
-            </div>
           </div>
         )}
 
@@ -189,25 +167,6 @@ export function SettingsApp() {
           <SettingsPanel settings={settings} onChange={handleSettingsChange} />
         )}
       </div>
-
-      {/* Toast */}
-      {toastMsg && (
-        <div style={{
-          position: 'fixed',
-          bottom: tab === 'stations' ? '5rem' : '1rem',
-          left: '1rem',
-          right: '1rem',
-          padding: '0.75rem',
-          background: '#333',
-          color: '#e0e0e0',
-          borderRadius: '0.5rem',
-          textAlign: 'center',
-          fontSize: '0.875rem',
-          zIndex: 20,
-        }}>
-          {toastMsg}
-        </div>
-      )}
     </div>
   )
 }
