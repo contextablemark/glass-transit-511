@@ -7,7 +7,7 @@
 
 import { useState } from 'react'
 import type { Settings } from '../types'
-// No demo key baked in — user registers their own
+import { COMMUNITY_PROXY_URL } from '../types'
 
 interface Props {
   settings: Settings
@@ -139,22 +139,22 @@ export function SettingsPanel({ settings, onChange }: Props) {
           border: '1px solid #333',
         }}>
           <div style={{ fontSize: '0.75rem', color: '#999' }}>
-            Required for Muni stations. Also provides BART fallback if the legacy API is unavailable.
+            Muni data uses a community GTFS-RT proxy by default. These settings let you override with your own.
           </div>
 
           <div>
-            <label style={labelStyle}>Transit Proxy URL</label>
+            <label style={labelStyle}>Transit Proxy URL (override)</label>
             <input
               type="text"
-              placeholder="https://your-proxy.workers.dev"
-              value={settings.proxyBaseUrl}
+              placeholder="Leave empty to use community proxy"
+              value={settings.proxyBaseUrl === COMMUNITY_PROXY_URL ? '' : settings.proxyBaseUrl}
               onChange={(e) =>
-                onChange({ ...settings, proxyBaseUrl: e.target.value })
+                onChange({ ...settings, proxyBaseUrl: e.target.value || COMMUNITY_PROXY_URL })
               }
               style={inputStyle}
             />
             <div style={hintStyle}>
-              Leave empty for local dev. See proxy/README.md for setup.
+              A community proxy is used by default. Only set this if you want to use your own.
             </div>
           </div>
 

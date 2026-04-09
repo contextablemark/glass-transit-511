@@ -58,10 +58,12 @@ export interface Settings {
   gtfsRefreshSec: number     // default: 60
 }
 
+export const COMMUNITY_PROXY_URL = 'https://glass-transit-511-proxy.mark-83e.workers.dev'
+
 export const DEFAULT_SETTINGS: Settings = {
   bartApiKey: '',
   bartRefreshSec: 30,
-  proxyBaseUrl: '',
+  proxyBaseUrl: COMMUNITY_PROXY_URL,
   gtfsApiKey: '',
   gtfsRefreshSec: 60,
 }

@@ -8,6 +8,16 @@
 import type { Settings } from '../types'
 
 /**
+ * Get the effective proxy base URL.
+ * In dev mode, use the local Vite proxy (empty string = relative URLs).
+ * In prod, use whatever is in settings (defaults to community proxy).
+ */
+function effectiveBase(settings: Settings): string {
+  if (import.meta.env.DEV) return ''
+  return settings.proxyBaseUrl.replace(/\/+$/, '')
+}
+
+/**
  * Build the URL for a GTFS-RT TripUpdates feed.
  * In dev mode (proxyBaseUrl=''), this is relative to the Vite dev server.
  * In prod, this points to the Cloudflare Worker.
@@ -35,7 +45,7 @@ export function buildFetchOptions(
   settings: Settings,
   agency: string
 ): { url: string; init: RequestInit } {
-  const base = settings.proxyBaseUrl.replace(/\/+$/, '')
+  const base = effectiveBase(settings)
 
   if (settings.gtfsApiKey) {
     // BYOK: POST with key in body

@@ -44,8 +44,10 @@ When you add a station, both platforms are favorited by default. Each becomes it
 | Agency | Primary source | Proxy needed? | Car count? |
 |--------|---------------|---------------|------------|
 | BART | [BART Legacy API](https://api.bart.gov/) (api.bart.gov) | No (CORS supported) | Yes (6 or 9 cars) |
-| Muni | [511.org GTFS-RT](https://511.org/open-data/transit) | Yes (no CORS headers) | No |
-| BART (fallback) | 511.org GTFS-RT | Yes | No |
+| Muni | [511.org GTFS-RT](https://511.org/open-data/transit) | Community proxy included | No |
+| BART (fallback) | 511.org GTFS-RT | Community proxy included | No |
+
+A community CORS proxy is built into the app for Muni and BART GTFS-RT fallback — no setup required. You can override it with your own proxy in Settings → Advanced.
 
 Each source has its own configurable refresh interval: BART API (15/30/60s), GTFS-RT (30/60/120s).
 
@@ -60,9 +62,9 @@ Each source has its own configurable refresh interval: BART API (15/30/60s), GTF
 | Key | Where to get it | Required? |
 |-----|----------------|-----------|
 | BART API key | [api.bart.gov/api/register.aspx](https://api.bart.gov/api/register.aspx) | Optional but recommended — enables car count and richer BART data |
-| 511.org API key | [511.org/open-data](https://511.org/open-data) | Only if you want Muni stations or BART GTFS-RT fallback |
+| 511.org API key | [511.org/open-data](https://511.org/open-data) | Optional — only needed to use your own key instead of the community proxy |
 
-No API keys are baked into the app. Users register and enter their own.
+**Muni works out of the box** — a community CORS proxy is included. BART works with just a BART API key (no proxy needed). No setup is required for basic usage.
 
 ### Local Development
 
@@ -105,17 +107,13 @@ The phone UI works as a standalone web app — no glasses required. BART data lo
 npx vercel
 ```
 
-Or connect the GitHub repo to Vercel for automatic deploys on push. Enter your BART API key in Settings to see live departures. Muni requires the CORS proxy (see below).
+Or connect the GitHub repo to Vercel for automatic deploys on push. Enter your BART API key in Settings to see live departures. Muni works out of the box via the community proxy.
 
-### CORS Proxy (Production — Muni only)
+### CORS Proxy
 
-A CORS proxy is required **only for Muni stations** (and BART GTFS-RT fallback). BART stations work without any proxy via the BART Legacy API.
+A **community CORS proxy** is included in the app by default — Muni data and BART GTFS-RT fallback work without any setup.
 
-If you only use BART stations and have a BART API key, you can skip this entirely.
-
-See [proxy/README.md](proxy/README.md) for Cloudflare Worker setup. The proxy supports two modes:
-- **Community GET** — baked-in 511.org API key, CDN-cached (30s), shared by all users
-- **BYOK POST** — user sends their own 511.org key in the request body
+If you want to run your own proxy (e.g. for higher rate limits or privacy), see [proxy/README.md](proxy/README.md) for Cloudflare Worker setup. Override the proxy URL in Settings → Advanced.
 
 ## Project Structure
 
@@ -169,7 +167,8 @@ A GitHub Action (manual trigger) is also available — requires `API_511_KEY` in
 - **Platform-based grouping**: Arrivals are grouped by physical platform stop_id, not GTFS `direction_id`. At BART stations, different lines share platforms despite having different direction_ids (e.g. Blue-N and Orange-S both use Platform 1 at San Leandro).
 - **Terminal names**: BART terminals come from the Legacy API's `destination` field. Muni terminals are derived from the most common last stop per route+direction in GTFS static data.
 - **Per-platform pages**: Each favorited platform is its own glasses page — gives room for 6 trains without needing a direction separator.
-- **Rate limiting**: 511.org allows 60 requests per hour. The app tracks requests in a sliding window and pauses when near the limit. The BART Legacy API has no documented rate limit.
+- **Community proxy**: A shared Cloudflare Worker proxy is included by default for Muni GTFS-RT data. The 511.org API key is held server-side in the proxy. Can be overridden in Settings → Advanced.
+- **Rate limiting**: The community proxy's 511.org key allows 3,600 requests per hour (increased limit). Cloudflare Worker allows 100K requests/day. The app also tracks requests client-side in a sliding window. The BART Legacy API has no documented rate limit.
 - **Auto-sync**: Glasses display updates automatically when stations are added, removed, or platform toggles change on the phone.
 - **Dual-mode bootstrap**: Phone settings UI always renders (React). Glasses mode activates only inside the Even App WebView.
 - **UTF-8 BOM handling**: 511.org prepends BOM to some protobuf responses — stripped before decode.

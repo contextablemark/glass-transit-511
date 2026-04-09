@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.5.8] - 2026-04-09
+
+### Added
+
+- **Community CORS proxy built-in**: Muni data and BART GTFS-RT fallback work out of the box — no proxy setup required. The community proxy can be overridden in Settings → Advanced.
+
+### Changed
+
+- **Simplified setup**: No configuration needed for basic usage. BART works with just an API key, Muni works immediately via the community proxy.
+- **Dev mode uses local Vite proxy**: In development, GTFS-RT requests always go through the local Vite dev proxy regardless of the community proxy setting.
+
 ## [0.5.7] - 2026-04-09
 
 ### Fixed

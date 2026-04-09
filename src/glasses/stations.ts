@@ -169,9 +169,7 @@ export async function refreshCurrentArrivals(
   if (page.station.agency === 'BA') {
     return fetchBartStation(page.station, settings)
   } else {
-    // In dev mode, empty proxyBaseUrl works (Vite proxy at /transit/...)
-    const isDev = import.meta.env.DEV
-    if (!isDev && !settings.proxyBaseUrl && !settings.gtfsApiKey) {
+    if (!settings.proxyBaseUrl && !settings.gtfsApiKey) {
       return {
         stationId: page.station.id,
         platforms: page.station.platformLabels.map(() => []),
