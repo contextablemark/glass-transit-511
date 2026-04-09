@@ -23,6 +23,17 @@ const BART_COLORS: Record<string, string> = {
   Blue: '#0099cc',
   Grey: '#b0bec7',
 }
+
+/** Muni rail line → { background, text } from GTFS routes.txt */
+const MUNI_COLORS: Record<string, { bg: string; text: string }> = {
+  J: { bg: '#A96614', text: '#fff' },
+  K: { bg: '#437C93', text: '#fff' },
+  L: { bg: '#942D83', text: '#fff' },
+  M: { bg: '#008547', text: '#fff' },
+  N: { bg: '#005B95', text: '#fff' },
+  T: { bg: '#BF2B45', text: '#fff' },
+  F: { bg: '#B49A36', text: '#000' },
+}
 import GtfsRealtimeBindings from 'gtfs-realtime-bindings'
 
 type FeedEntity = GtfsRealtimeBindings.transit_realtime.IFeedEntity
@@ -254,6 +265,21 @@ function PlatformGroup({
                     background: BART_COLORS[t.route],
                     flexShrink: 0,
                   }} />
+                ) : MUNI_COLORS[t.route] ? (
+                  <span style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '1.2rem',
+                    height: '1.2rem',
+                    borderRadius: '50%',
+                    background: MUNI_COLORS[t.route].bg,
+                    color: MUNI_COLORS[t.route].text,
+                    fontWeight: 700,
+                    fontSize: '0.7rem',
+                    flexShrink: 0,
+                    lineHeight: 1,
+                  }}>{t.route}</span>
                 ) : (
                   <span style={{ fontWeight: 600, color: '#e0e0e0' }}>
                     [{t.route}]

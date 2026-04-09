@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.5.5] - 2026-04-09
+
+### Added
+
+- **Muni line circle indicators**: Phone UI shows colored circles with line letter (J, K, L, M, N, T, F) matching official SFMTA colors, same style as the Muni Metro system map.
+
 ## [0.5.4] - 2026-04-09
 
 ### Fixed
