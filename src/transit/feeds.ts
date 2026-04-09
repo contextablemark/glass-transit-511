@@ -9,10 +9,25 @@
 import GtfsRealtimeBindings from 'gtfs-realtime-bindings'
 import { buildFetchOptions, agenciesForStations } from '../data/feed-urls'
 import routeTerminals from '../data/route-terminals.json'
+import stationsData from '../data/stations.json'
 import type { Station, TrainArrival, StationArrivals, Settings } from '../types'
 import { minutesUntil } from '../lib/time'
 
 const terminals = routeTerminals as Record<string, string>
+const allStations = stationsData as unknown as Station[]
+
+// Build stop_id → station name lookup for resolving trip terminals
+const stopIdToName = new Map<string, string>()
+for (const s of allStations) {
+  for (const sid of s.stops) {
+    stopIdToName.set(sid, s.name)
+  }
+}
+
+/** Resolve a stop_id to a human-readable station name, or null if unknown. */
+function resolveStopName(stopId: string): string | null {
+  return stopIdToName.get(stopId) || null
+}
 
 function displayRoute(routeId: string): string {
   return routeId.replace(/-[NS]$/, '')
@@ -65,20 +80,25 @@ export function extractArrivals(
 
     const routeId = (tu.trip.routeId as string) || ''
     const directionId = tu.trip.directionId ?? 0
-    const terminal = getTerminal(routeId, directionId as number)
 
-    // Identify the last stop in this trip (trains terminating here should be filtered)
+    // Identify the last stop in this trip
     const updates = tu.stopTimeUpdate
     const lastStopId = updates.length > 0
       ? (updates[updates.length - 1].stopId as string)
       : ''
 
+    // Use actual trip terminal if it differs from the route's typical terminal
+    // (some trips turn around early, e.g. K ending at Montgomery instead of Balboa Park)
+    const actualTerminal = lastStopId ? resolveStopName(lastStopId) : null
+    const routeTerminal = getTerminal(routeId, directionId as number)
+    const terminal = actualTerminal || routeTerminal
+
     for (const stu of updates) {
       const fullStopId = stu.stopId as string
       if (!fullStopId || !stationStopIds.has(fullStopId)) continue
 
-      // Skip trains that terminate at this station (last stop = this stop)
-      if (fullStopId === lastStopId) continue
+      // Skip trains that terminate at this station (last stop is any of this station's stops)
+      if (stationStopIds.has(lastStopId)) continue
 
       const arrTime = Number(
         stu.arrival?.time || stu.departure?.time || 0

@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.6] - 2026-04-09
+
+### Fixed
+
+- **Terminating train filter strengthened**: Now checks if the trip's last stop is ANY of the station's platform stop_ids (not just the exact matching one). Fixes K trains showing at Embarcadero with "Embarcadero" as destination.
+- **BART terminating trains**: BART API now also filters trains whose destination abbreviation matches the current station.
+- **Trip-specific terminal names**: GTFS-RT departures now show the actual last stop name from the trip's stop sequence, not just the route's typical terminal. Catches short-turn trips (e.g. K ending at Montgomery instead of Balboa Park).
+
 ## [0.5.5] - 2026-04-09
 
 ### Added

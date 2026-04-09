@@ -65,6 +65,9 @@ export async function fetchBartArrivals(
     const platforms: TrainArrival[][] = Array.from({ length: numPlatforms }, () => [])
 
     for (const etd of stationData.etd) {
+      // Skip trains whose destination is this station (terminating here)
+      if (etd.abbreviation === station.bartAbbr) continue
+
       for (const est of etd.estimate) {
         if (est.cancelflag === '1') continue
 
