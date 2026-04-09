@@ -17,12 +17,13 @@
     "lng": -122.27163,
     "platformLabels": [
       "Platform 1",
-      "Platform 2"
+      "Platform 2",
+      "Platform 3"
     ],
     "platformMap": {
       "900101": 0,
       "900102": 1,
-      "900103": 0
+      "900103": 2
     },
     "bartAbbr": "12TH"
   },
@@ -70,12 +71,13 @@
     "lng": -122.268758,
     "platformLabels": [
       "Platform 1",
-      "Platform 2"
+      "Platform 2",
+      "Platform 3"
     ],
     "platformMap": {
       "900201": 0,
       "900202": 1,
-      "900203": 0
+      "900203": 2
     },
     "bartAbbr": "19TH"
   },
@@ -295,12 +297,13 @@
     "lng": -122.196716,
     "platformLabels": [
       "Platform 1",
-      "Platform 2"
+      "Platform 2",
+      "Platform 3"
     ],
     "platformMap": {
       "902301": 0,
       "902302": 1,
-      "902303": 0
+      "902303": 2
     },
     "bartAbbr": "COLS"
   },
@@ -370,12 +373,13 @@
     "lng": -122.468908,
     "platformLabels": [
       "Platform 1",
-      "Platform 2"
+      "Platform 2",
+      "Platform 3"
     ],
     "platformMap": {
       "901901": 0,
       "901902": 1,
-      "901903": 0
+      "901903": 2
     },
     "bartAbbr": "DALY"
   },
@@ -666,13 +670,15 @@
     "lng": -122.267105,
     "platformLabels": [
       "Platform 1",
-      "Platform 2"
+      "Platform 2",
+      "Platform 3",
+      "Platform 4"
     ],
     "platformMap": {
       "900301": 0,
       "900302": 1,
-      "900303": 0,
-      "900304": 1
+      "900303": 2,
+      "900304": 3
     },
     "bartAbbr": "MCAR"
   },
@@ -691,10 +697,11 @@
     "lng": -122.386757,
     "platformLabels": [
       "Platform 1",
-      "Platform 2"
+      "Platform 2",
+      "Platform 3"
     ],
     "platformMap": {
-      "906403": 0
+      "906403": 2
     },
     "bartAbbr": "MLBR"
   },
@@ -808,8 +815,7 @@
     "lat": 37.713256,
     "lng": -122.212237,
     "platformLabels": [
-      "Platform 1",
-      "Platform 2"
+      "Platform 1"
     ],
     "platformMap": {
       "907401": 0
@@ -1022,12 +1028,13 @@
     "lng": -122.391954,
     "platformLabels": [
       "Platform 1",
-      "Platform 2"
+      "Platform 2",
+      "Platform 3"
     ],
     "platformMap": {
       "907101": 0,
       "907102": 1,
-      "907103": 0
+      "907103": 2
     },
     "bartAbbr": "SFIA"
   },

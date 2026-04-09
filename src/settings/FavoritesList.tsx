@@ -100,8 +100,14 @@ export function FavoritesList({
               }}>&#x2715;</button>
             </div>
 
-            {/* Platform toggles */}
-            <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.4rem', paddingLeft: '1.5rem' }}>
+            {/* Platform toggles — 2-column grid for 3+ platforms */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: station.platformLabels.length > 2 ? '1fr 1fr' : `repeat(${station.platformLabels.length}, 1fr)`,
+              gap: '0.5rem',
+              marginTop: '0.4rem',
+              paddingLeft: '1.5rem',
+            }}>
               {station.platformLabels.map((label, platIdx) => {
                 const active = isFavorited(favorites, stationId, platIdx)
                 return (

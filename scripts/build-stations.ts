@@ -227,20 +227,33 @@ function buildBartStations(files: Map<string, string>): {
       if (rs) for (const r of rs) allRoutes.add(r.replace(/-[NS]$/, ''))
     }
 
-    // Group platforms: stops that share routes go in the same group
-    // Simple heuristic for BART: odd-suffix stops (01) = group 0, even-suffix (02) = group 1
-    // This works because BART consistently uses 01 for one direction and 02 for the other
-    const platformMap: Record<string, number> = {}
-    const groups: string[][] = [[], []]
-    for (const kid of children) {
-      const lastDigit = parseInt(kid.slice(-1))
-      const group = lastDigit % 2 === 1 ? 0 : 1
-      platformMap[kid] = group
-      groups[group].push(kid)
+    // Use platform_code from GTFS stops.txt (1-based BART platform number)
+    // Convert to 0-based index for our platformMap
+    const stopsByPlatformCode = new Map<string, Record<string, string>>()
+    for (const s of stops) {
+      stopsByPlatformCode.set(s.stop_id, s)
     }
 
-    // Label platforms as "Platform 1" and "Platform 2"
-    const platformLabels = ['Platform 1', 'Platform 2']
+    const platformMap: Record<string, number> = {}
+    let maxPlatform = 0
+    for (const kid of children) {
+      const stopData = stopsByPlatformCode.get(kid)
+      const platCode = parseInt(stopData?.platform_code || '0') || 0
+      if (platCode > 0) {
+        platformMap[kid] = platCode - 1 // 1-based → 0-based
+        maxPlatform = Math.max(maxPlatform, platCode)
+      } else {
+        // Fallback: use last digit of stop_id
+        const lastDigit = parseInt(kid.slice(-1))
+        platformMap[kid] = lastDigit - 1
+        maxPlatform = Math.max(maxPlatform, lastDigit)
+      }
+    }
+
+    const platformLabels = Array.from(
+      { length: maxPlatform },
+      (_, i) => `Platform ${i + 1}`
+    )
 
     // Extract BART abbreviation from stop_url (e.g. "https://www.bart.gov/stations/mont" → "MONT")
     const urlMatch = (p.stop_url || '').match(/\/stations\/(\w+)/)

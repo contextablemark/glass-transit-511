@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.5.7] - 2026-04-09
+
+### Fixed
+
+- **Multi-platform BART stations**: Daly City (3 platforms), MacArthur (4 platforms), and other stations now correctly use GTFS `platform_code` instead of odd/even stop_id heuristic. Each physical platform gets its own page on glasses and toggle in My Stations.
+
+### Changed
+
+- **2x2 grid for platform toggles**: Stations with 3-4 platforms show toggle buttons in a 2-column grid instead of cramming them in one row.
+
 ## [0.5.6] - 2026-04-09
 
 ### Fixed
