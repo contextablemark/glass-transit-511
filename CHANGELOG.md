@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.5.4] - 2026-04-09
+
+### Fixed
+
+- **Reversed surface stop platforms**: Surface stops (King St, Embarcadero & Brannan, etc.) were assigning platforms by sorted stop_id order instead of actual direction_id from GTFS trip data.
+- **Single-direction stops**: 101 Muni stops that only serve one direction now have a single platform label instead of showing a phantom empty platform.
+- **Muni Metro direction labels**: Swapped Outbound/Inbound labels that were reversed. Replaced with compass+destination labels.
+- **Muni Metro Embarcadero outbound**: Platform assignment fixed for stops without direction suffix in name, using GTFS direction_id fallback.
+- **Terminating trains filtered**: Trains whose last stop is the viewed station are excluded from departures.
+
+### Changed
+
+- **Compass + destination labels for all Muni stops**: Replaced "Outbound"/"Inbound" with SFMTA-style cardinal direction + terminal name (e.g. "W Ocean Beach", "S Caltrain", "NE Embarcadero"). Applied to both Metro underground and surface rail stops.
+
 ## [0.5.0] - 2026-04-08 (first production release)
 
 ### Changed
