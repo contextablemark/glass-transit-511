@@ -530,16 +530,40 @@ function buildMuniStations(files: Map<string, string>): {
     lat /= group.length
     lng /= group.length
 
-    // For surface stops, assign platforms by index (0, 1, ...)
+    // Assign platforms using direction_id from trip data
+    // dir=0 (outbound) → platform 0, dir=1 (inbound) → platform 1
     const platformMap: Record<string, number> = {}
     const sorted = [...stopIds].sort()
-    sorted.forEach((sid, i) => { platformMap[sid] = Math.min(i, 1) })
+
+    // Determine how many actual platforms exist (based on distinct directions)
+    const directionsSeen = new Set<number>()
+    for (const sid of sorted) {
+      directionsSeen.add(dominantDirection(sid))
+    }
+    const numPlatforms = directionsSeen.size
+
+    for (const sid of sorted) {
+      const dir = dominantDirection(sid)
+      platformMap[sid] = dir // dir=0 → platform 0, dir=1 → platform 1
+    }
 
     const displayName = group[0].stop_name
     const railRoutes = [...allRoutes].filter((r) => RAIL_ROUTES.has(r)).sort()
-    const platformLabels = buildMuniPlatformLabels(
+
+    // Build labels — only for platforms that actually exist
+    const allLabels = buildMuniPlatformLabels(
       displayName, lat, lng, railRoutes, routeTerminals
     )
+    const platformLabels = numPlatforms === 1
+      ? [allLabels[dominantDirection(sorted[0])]]  // single platform: use its direction's label
+      : allLabels
+
+    // For single-platform stations, remap all stops to platform 0
+    if (numPlatforms === 1) {
+      for (const sid of sorted) {
+        platformMap[sid] = 0
+      }
+    }
 
     stations.push({
       id: `muni-${sorted.join('-')}`,

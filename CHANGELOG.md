@@ -40,6 +40,11 @@
 - **Filter terminating trains**: Trains whose last stop is the station being viewed are now excluded from departures. Particularly useful at terminal stations like Embarcadero where many inbound trains terminate.
 - **Compass + destination labels for all Muni stops**: Replaced "Outbound"/"Inbound" with SFMTA-style compass direction + terminal name (e.g. "W Ocean Beach", "S Caltrain") for both Metro underground and surface rail stops. Labels prioritize well-known landmarks, skip the station's own name, and compute compass bearing from station to terminal coordinates.
 
+### Fixed
+
+- **Reversed surface stop platforms**: Surface stops (King St, Embarcadero & Brannan, etc.) were assigning platforms by sorted stop_id order instead of actual direction_id. Now uses `dominantDirection()` from GTFS trip data.
+- **Single-direction stops**: Stops that only serve one direction (e.g. Duboce St/Noe St, Church St & Duboce Ave) now have a single platform label instead of showing a phantom empty platform. 101 Muni stops are single-platform.
+
 ## [0.4.0] - 2026-04-07
 
 ### Added
