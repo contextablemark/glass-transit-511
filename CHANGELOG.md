@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.5.9] - 2026-04-13
+
+### Fixed
+
+- **Exit confirmation dialog**: Double-tap now shows a confirmation dialog before exiting (uses `shutDownPageContainer(1)` instead of immediate exit). Required by Even Hub publishing guidelines.
+
 ## [0.5.8] - 2026-04-09
 
 ### Added

@@ -254,7 +254,7 @@ export async function startGlassesMode(b: EvenAppBridge): Promise<void> {
     },
     onDoubleTap: async () => {
       stopAutoRefresh()
-      await b.shutDownPageContainer(0)
+      await b.shutDownPageContainer(1) // 1 = show confirmation dialog before exiting
     },
     onForegroundEnter: () => {
       loadStations().then(() => displayCurrentPage(true))
