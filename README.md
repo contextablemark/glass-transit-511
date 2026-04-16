@@ -16,15 +16,22 @@ Scroll between saved station platforms, see upcoming trains with car counts, and
 
 Each saved platform gets its own page:
 
-```
-San Leandro (BART) Platform 1
+<img width="576" height="288" alt="image" src="https://github.com/user-attachments/assets/b9ed17c1-b715-49cc-b40d-a025887f9a62" />
 
-Platform 1
-▶[Orange] Berryessa      3m | 6 car
- [Green] Berryessa      11m | 6 car
- [Blue] Dublin/Pleasan  28m | 6 car
-━━━━━━━━━━━━━━━━━━━━ 1/4
-```
+### Phone UI
+
+Listings for the next five departures at all My Stations : 
+
+<img width="460" height="894" alt="image" src="https://github.com/user-attachments/assets/d737d95b-c81d-4dee-bf32-ad43a824da21" />
+
+My Stations : 
+
+<img width="461" height="895" alt="image" src="https://github.com/user-attachments/assets/d9dadc1b-7dbf-4050-b6cb-ff9708405979" />
+
+Settings : 
+
+<img width="459" height="897" alt="image" src="https://github.com/user-attachments/assets/487d95e2-4573-490f-a708-d295c8bcae7c" />
+
 
 ### Input
 
